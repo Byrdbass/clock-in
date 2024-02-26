@@ -10,14 +10,13 @@ function App() {
     return setHasError(true)
   }
   const params = new URLSearchParams(window.location.search);
-  console.log(params)
   const [userName, setUserName] = useState(params.get("user"))
-  const [startTime, setStartTime] = useState('');
+  const [startTime, setStartTime] = useState(params.get("prefill_Timesheet_Start_Time"));
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
   const [remainingTimeText, setRemainingTimeText] = useState('--:--');
-  const [duration, setDuration] = useState(30);
-  const [date, setDate] = useState('');
+  const [duration, setDuration] = useState(params.get("prefill_Timesheet_Duration_Minutes"));
+  const [date, setDate] = useState(params.get("prefill_Timesheet_Entry_Date"));
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState('');
 
