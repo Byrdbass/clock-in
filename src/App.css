@@ -29,12 +29,12 @@ body {
   color: #374151;
 }
 input[type="time"], input[type="date"], input[type="text"], textarea {
-  font-size: 1em; /* Adjusted for consistency */
+  font-size: 1em; 
   padding: 5px;
-  border: 2px solid #4d72ac; /* Matching styling */
-  border-radius: 4px; /* Rounded corners */
-  width: 100%; /* Ensure full width for better alignment */
-  background: white; /* Ensure background is white */
+  border: 2px solid #4d72ac; 
+  border-radius: 4px; 
+  width: 100%; 
+  background: white; 
 }
 .progressBarContainer {
   display: flex;
@@ -54,7 +54,7 @@ input[type="time"], input[type="date"], input[type="text"], textarea {
   transition: width 1s linear;
 }
 input[type="range"] {
-  width: 100%; /* Ensure the slider spans full width */
+  width: 100%; 
   margin: 10px 0;
 }
 .sliderValue {
@@ -67,6 +67,6 @@ input[type="range"] {
   text-align: center;
 }
 .inputSection {
-  width: 50%; /* Adjust width to 50% */
-  margin: 0 auto; /* Center the input section */
+  width: 50%; 
+  margin: 0 auto; 
 }

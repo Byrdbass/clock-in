@@ -3,6 +3,7 @@ import { useState } from 'react'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
 import { createTimeEntry } from './helpers/airtablePost'
+import Button from './components/Button/Button'
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
   }
   const params = new URLSearchParams(window.location.search);
   console.log(params)
-  const [userName, setUserName] = useState(params.get("user"))
+  const [userName, setUserName] = useState("test")
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
@@ -31,7 +32,7 @@ function App() {
 
   const handleSubmit = () => {
     // Logic to process the form submission
-    submitTestEntry();
+    // submitTestEntry();
     console.log('Submitting timesheet');
   };
 
@@ -190,7 +191,8 @@ function App() {
                 onChange={(e) => setJobcode3(e.target.value)}
               />
             </div>
-            <div className="inputSection" style={{ flexBasis: '100%' }}>
+            <Notes />
+            {/* <div className="inputSection" style={{ flexBasis: '100%' }}>
               <div className="header">Notes</div>
               <textarea
                 id="notesField"
@@ -199,15 +201,16 @@ function App() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
               ></textarea>
-            </div>
+            </div> */}
             <div className="inputSection" style={{ flexBasis: '100%', textAlign: 'center' }}>
-              <button
+              <Button />
+              {/* <button
                 id="submitTimesheet"
                 style={{ backgroundColor: 'orange', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
                 onClick={handleSubmit}
               >
                 Submit Timesheet
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
