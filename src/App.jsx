@@ -11,27 +11,15 @@ function App() {
   function getDerivedStateFromError() {
     return setHasError(true)
   }
-
-  function getSearchParams() {
-    if (import.meta.env.MODE === 'development') {
-      // Return a test query string in development mode
-      return '?user=testUser&prefill_Timesheet_Start_Time=08:00&prefill_Timesheet_Duration_Minutes=30';
-    } else {
-      // Return the actual query string from the URL in production mode
-      return window.location.search;
-    }
-  }
-  const searchParams = getSearchParams();
-  console.log(searchParams)
-  const [params, setParams] = useState(new URLSearchParams(searchParams));
-  // const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
+  console.log(params)
   const [userName, setUserName] = useState(params.get("user"))
-  const [startTime, setStartTime] = useState(params.get("prefill_Timesheet_Start_Time"));
+  const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
   const [remainingTimeText, setRemainingTimeText] = useState('--:--');
-  const [duration, setDuration] = useState(params.get("prefill_Timesheet_Duration_Minutes"));
-  const [date, setDate] = useState(params.get("prefill_Timesheet_Entry_Date"));
+  const [duration, setDuration] = useState(30);
+  const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState('');
   const submitTestEntry = createTimeEntry()
