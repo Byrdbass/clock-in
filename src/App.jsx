@@ -2,6 +2,8 @@ import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
+import { createTimeEntry } from './helpers/airtablePost'
+
 
 function App() {
   const [hasError, setHasError] = useState(false)
@@ -19,6 +21,7 @@ function App() {
   const [date, setDate] = useState(params.get("prefill_Timesheet_Entry_Date"));
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState('');
+  const submitTestEntry = createTimeEntry()
 
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
@@ -27,6 +30,7 @@ function App() {
 
   const handleSubmit = () => {
     // Logic to process the form submission
+    submitTestEntry();
     console.log('Submitting timesheet');
   };
 
