@@ -1,10 +1,15 @@
-require('dotenv').config(); 
 const Airtable = require('airtable');
+const apiKey = import.meta.env.VITE_AIRTABLE_API_KEY;
 
+if(import.meta.env.MODE === 'development'){
+    
+}
+else {
+    import.meta.env.airtableApiKey;
+}
 Airtable.configure({
     endpointUrl: 'https://api.airtable.com',
-    apiKey: process.env.airtableApiKey
-
+    apiKey: apiKey,
 });
 
 base = Airtable.base('apps7roRhnziLR2ou');

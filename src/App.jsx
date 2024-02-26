@@ -11,7 +11,20 @@ function App() {
   function getDerivedStateFromError() {
     return setHasError(true)
   }
-  const params = new URLSearchParams(window.location.search);
+
+  function getSearchParams() {
+    if (import.meta.env.MODE === 'development') {
+      // Return a test query string in development mode
+      return '?user=testUser&prefill_Timesheet_Start_Time=08:00&prefill_Timesheet_Duration_Minutes=30';
+    } else {
+      // Return the actual query string from the URL in production mode
+      return window.location.search;
+    }
+  }
+  const searchParams = getSearchParams();
+  console.log(searchParams)
+  const [params, setParams] = useState(new URLSearchParams(searchParams));
+  // const params = new URLSearchParams(window.location.search);
   const [userName, setUserName] = useState(params.get("user"))
   const [startTime, setStartTime] = useState(params.get("prefill_Timesheet_Start_Time"));
   const [endTime, setEndTime] = useState('00:00');
@@ -34,7 +47,7 @@ function App() {
     console.log('Submitting timesheet');
   };
 
-  
+
 
   // document.addEventListener("DOMContentLoaded", function () {
   //   const params = new URLSearchParams(window.location.search);
@@ -116,102 +129,102 @@ function App() {
   // })
   return (
     <>
-    <form action="submit">
-      <h1>Hello {userName}</h1>
-    <div className="timerContainer">
-      <div className="timerSection">
-        <div className="header">Start Time</div>
-        <input
-          type="time"
-          className="editableTime startTimeInput"
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-        />
-      </div>
-      <div className="timerSection">
-        <div className="header">End Time</div>
-        <div id="endTime" className="timer-value">{endTime}</div>
-      </div>
-      <div className="timerSection">
-        <div className="header">On the Clock</div>
-        <div id="countUpTimer" className="timer-value">{countUpTimer}</div>
-      </div>
-      <div className="timerSection">
-        <div className="header">Time Remaining</div>
-        <div className="remainingTimeText" id="remainingTimeText">{remainingTimeText}</div>
-        <div className="progressBarContainer">
-          <div className="progressBar" id="progressBar"></div>
+      <form action="submit">
+        <h1>Hello {userName}</h1>
+        <div className="timerContainer">
+          <div className="timerSection">
+            <div className="header">Start Time</div>
+            <input
+              type="time"
+              className="editableTime startTimeInput"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+            />
+          </div>
+          <div className="timerSection">
+            <div className="header">End Time</div>
+            <div id="endTime" className="timer-value">{endTime}</div>
+          </div>
+          <div className="timerSection">
+            <div className="header">On the Clock</div>
+            <div id="countUpTimer" className="timer-value">{countUpTimer}</div>
+          </div>
+          <div className="timerSection">
+            <div className="header">Time Remaining</div>
+            <div className="remainingTimeText" id="remainingTimeText">{remainingTimeText}</div>
+            <div className="progressBarContainer">
+              <div className="progressBar" id="progressBar"></div>
+            </div>
+          </div>
+          <div className="inputSection" style={{ width: '100%', textAlign: 'center' }}>
+            <div className="header">Adjust Duration</div>
+            <input
+              type="range"
+              id="durationSlider"
+              min="1"
+              max="240"
+              value={duration}
+              onChange={handleDurationChange}
+              style={{ width: '60%' }}
+            />
+            <div className="sliderValue" id="sliderValue">{duration} Minutes</div>
+          </div>
+          <div className="formSection" style={{ width: '100%', maxWidth: '640px', margin: '0 auto' }}>
+            <div className="inputSection">
+              <div className="header">Duration</div>
+              <input
+                type="text"
+                id="durationField"
+                placeholder="Duration (minutes)"
+                style={{ fontSize: '1em' }}
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+              />
+            </div>
+            <div className="inputSection">
+              <div className="header">Date</div>
+              <input
+                type="date"
+                id="dateField"
+                style={{ fontSize: '1em' }}
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+            <div className="inputSection">
+              <div className="header">Jobcode3</div>
+              <input
+                type="text"
+                id="jobcode3Field"
+                placeholder="Jobcode3"
+                style={{ fontSize: '1em' }}
+                value={jobcode3}
+                onChange={(e) => setJobcode3(e.target.value)}
+              />
+            </div>
+            <div className="inputSection" style={{ flexBasis: '100%' }}>
+              <div className="header">Notes</div>
+              <textarea
+                id="notesField"
+                placeholder="Enter notes here"
+                style={{ height: '100px', fontSize: '1em' }}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              ></textarea>
+            </div>
+            <div className="inputSection" style={{ flexBasis: '100%', textAlign: 'center' }}>
+              <button
+                id="submitTimesheet"
+                style={{ backgroundColor: 'orange', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                onClick={handleSubmit}
+              >
+                Submit Timesheet
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="inputSection" style={{ width: '100%', textAlign: 'center' }}>
-        <div className="header">Adjust Duration</div>
-        <input
-          type="range"
-          id="durationSlider"
-          min="1"
-          max="240"
-          value={duration}
-          onChange={handleDurationChange}
-          style={{ width: '60%' }}
-        />
-        <div className="sliderValue" id="sliderValue">{duration} Minutes</div>
-      </div>
-      <div className="formSection" style={{ width: '100%', maxWidth: '640px', margin: '0 auto' }}>
-        <div className="inputSection">
-          <div className="header">Duration</div>
-          <input
-            type="text"
-            id="durationField"
-            placeholder="Duration (minutes)"
-            style={{ fontSize: '1em' }}
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-          />
-        </div>
-        <div className="inputSection">
-          <div className="header">Date</div>
-          <input
-            type="date"
-            id="dateField"
-            style={{ fontSize: '1em' }}
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </div>
-        <div className="inputSection">
-          <div className="header">Jobcode3</div>
-          <input
-            type="text"
-            id="jobcode3Field"
-            placeholder="Jobcode3"
-            style={{ fontSize: '1em' }}
-            value={jobcode3}
-            onChange={(e) => setJobcode3(e.target.value)}
-          />
-        </div>
-        <div className="inputSection" style={{ flexBasis: '100%' }}>
-          <div className="header">Notes</div>
-          <textarea
-            id="notesField"
-            placeholder="Enter notes here"
-            style={{ height: '100px', fontSize: '1em' }}
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          ></textarea>
-        </div>
-        <div className="inputSection" style={{ flexBasis: '100%', textAlign: 'center' }}>
-          <button
-            id="submitTimesheet"
-            style={{ backgroundColor: 'orange', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
-            onClick={handleSubmit}
-          >
-            Submit Timesheet
-          </button>
-        </div>
-      </div>
-    </div>
 
-    </form>
+      </form>
     </>
   )
 }
