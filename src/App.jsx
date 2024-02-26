@@ -11,7 +11,7 @@ function App() {
   }
   const params = new URLSearchParams(window.location.search);
   console.log(params)
-  const [userName, setUserName] = useState(params.user)
+  const [userName, setUserName] = useState(params.get("user"))
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
