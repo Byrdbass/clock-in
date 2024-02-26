@@ -9,7 +9,9 @@ function App() {
   function getDerivedStateFromError() {
     return setHasError(true)
   }
+  const params = new URLSearchParams(window.location.search);
 
+  const [userName, setUserName] = useState(params.user)
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
@@ -28,6 +30,8 @@ function App() {
     // Logic to process the form submission
     console.log('Submitting timesheet');
   };
+
+  
 
   // document.addEventListener("DOMContentLoaded", function () {
   //   const params = new URLSearchParams(window.location.search);
@@ -110,6 +114,7 @@ function App() {
   return (
     <>
     <form action="submit">
+      <h1>Hello {userName}</h1>
     <div className="timerContainer">
       <div className="timerSection">
         <div className="header">Start Time</div>
