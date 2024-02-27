@@ -1,7 +1,12 @@
 import '../../App.css';
 import { useState } from 'react';
-export default function Notes() {
+export default function Notes({handleNotesData}) {
     const [notes, setNotes] = useState("")
+
+    const updateNotesData = (newData) => {
+        setNotes(newData);
+        handleNotesData(newData)
+    }
 
     return(
 
@@ -12,7 +17,7 @@ export default function Notes() {
                 placeholder="Enter notes here"
                 style={{ height: '100px', fontSize: '1em' }}
                 value={notes}
-                onChange={(e) => setNotes(e.target.value)}
+                onChange={(e) => updateNotesData(e.target.value)}
             ></textarea>
         </div>
     )

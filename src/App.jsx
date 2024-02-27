@@ -23,8 +23,12 @@ function App() {
   const [duration, setDuration] = useState(30);
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
-  const [notes, setNotes] = useState('');
+  const [notesData, setNotesData] = useState("ERROR no notes written!");
   const submitTestEntry = createTimeEntry
+
+  const handleNotesData = (data) => {
+    setNotesData(data)
+  }
 
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
@@ -34,7 +38,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log('Submitting timesheet');
-    submitTestEntry()
+    submitTestEntry(notesData)
   };
 
 
@@ -192,7 +196,7 @@ function App() {
                 onChange={(e) => setJobcode3(e.target.value)}
               />
             </div>
-            <Notes />
+            <Notes handleNotesData = {handleNotesData}/>
             <Button />
 
           </div>
