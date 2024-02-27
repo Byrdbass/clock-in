@@ -23,7 +23,7 @@ function App() {
   const [duration, setDuration] = useState(30);
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
-  const [notesData, setNotesData] = useState("ERROR no notes written!");
+  const [notesData, setNotesData] = useState("");
   const submitTestEntry = createTimeEntry
 
   const handleNotesData = (data) => {
@@ -32,14 +32,20 @@ function App() {
 
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
-    // Additional logic to adjust other time-related states
   };
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('Submitting timesheet');
     submitTestEntry(notesData)
+    setNotesData("")
   };
+
+  //handle enter key on notes submission
+  const handleEnterPress = (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      handleSubmit(event)
+    }
+  }
 
 
 
@@ -123,7 +129,7 @@ function App() {
   // })
   return (
     <>
-      <form action="submit" onSubmit={handleSubmit}>
+      <form action="submit" onSubmit={handleSubmit} onKeyDown={handleEnterPress}>
         <h1>Hello {userName}</h1>
         <div className="timerContainer">
           <div className="timerSection">
@@ -196,7 +202,11 @@ function App() {
                 onChange={(e) => setJobcode3(e.target.value)}
               />
             </div>
-            <Notes handleNotesData = {handleNotesData}/>
+            <Notes 
+            handleNotesData = {handleNotesData} 
+            notesData = {notesData}
+            setNotesData = {setNotesData}
+            />
             <Button />
 
           </div>

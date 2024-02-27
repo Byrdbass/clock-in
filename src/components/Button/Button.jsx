@@ -1,4 +1,5 @@
 export default function Button() {
+    
     return (
         <>
             <div className="inputSection" style={{ flexBasis: '100%', textAlign: 'center' }}>
