@@ -4,12 +4,12 @@ const timeSheetHoursBase = "apps7roRhnziLR2ou"
 
 let base = new Airtable({apiKey: `${apiKey}`}).base(`${timeSheetHoursBase}`)
 
-export function createTimeEntry(notes) {
+export function createTimeEntry(notes, date) {
     base('Timesheet_Hours').create([
         {
             "fields": {
                 "Team_Member" : [ "recMhLRHRvxzjIHpn" ],
-                "Start_Time_Manual": "2023-12-01T16:38:00.000Z",
+                "Start_Time_Manual": `${date}`,
                 "End_Time_Manual": "2023-12-01T17:29:00.000Z",
                 "Notes": `${notes}`,
             }

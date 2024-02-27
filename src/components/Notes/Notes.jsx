@@ -1,8 +1,8 @@
 import '../../App.css';
-export default function Notes({handleNotesData, notesData, setNotesData}) {
+export default function Notes({handleNotesData, notes, setNotes}) {
 
     const updateNotesData = (event) => {
-        setNotesData(event.target.value);
+        setNotes(event.target.value);
         handleNotesData(event.target.value)
     }
 
@@ -14,7 +14,7 @@ export default function Notes({handleNotesData, notesData, setNotesData}) {
                 id="notesField"
                 placeholder="Enter notes here"
                 style={{ height: '100px', fontSize: '1em' }}
-                value={notesData}
+                value={notes}
                 onChange={updateNotesData}
             ></textarea>
         </div>

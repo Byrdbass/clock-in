@@ -5,6 +5,7 @@ import './App.css'
 import { createTimeEntry } from './helpers/airtablePost'
 import Button from './components/Button/Button'
 import Notes from './components/Notes/Notes'
+import Date from './components/Date/Date'
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     return setHasError(true)
   }
   const params = new URLSearchParams(window.location.search);
-  console.log(params)
+  // console.log(params)
   const [userName, setUserName] = useState(params.get('user'))
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
@@ -23,21 +24,27 @@ function App() {
   const [duration, setDuration] = useState(30);
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
-  const [notesData, setNotesData] = useState("");
+  const [notes, setNotes] = useState("");
   const submitTestEntry = createTimeEntry
-
-  const handleNotesData = (data) => {
-    setNotesData(data)
-  }
 
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
   };
 
+  const handleDateData = (data) => {
+    setDate(data)
+  }
+
+  const handleNotesData = (data) => {
+    setNotes(data)
+  }
+
+
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitTestEntry(notesData)
-    setNotesData("")
+    submitTestEntry(notes, date)
+    setNotes("")
   };
 
   //handle enter key on notes submission
@@ -181,16 +188,12 @@ function App() {
                 onChange={(e) => setDuration(e.target.value)}
               />
             </div>
-            <div className="inputSection">
-              <div className="header">Date</div>
-              <input
-                type="date"
-                id="dateField"
-                style={{ fontSize: '1em' }}
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+              <Date 
+              handleDateData = {handleDateData}
+              date = {date}
+              setDate = {setDate}
               />
-            </div>
+
             <div className="inputSection">
               <div className="header">Jobcode3</div>
               <input
@@ -204,8 +207,8 @@ function App() {
             </div>
             <Notes 
             handleNotesData = {handleNotesData} 
-            notesData = {notesData}
-            setNotesData = {setNotesData}
+            notes = {notes}
+            setNotes = {setNotes}
             />
             <Button />
 
