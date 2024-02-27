@@ -18,6 +18,7 @@ function App() {
   const params = new URLSearchParams(window.location.search);
   // console.log(params)
   const [userName, setUserName] = useState(params.get('user'))
+  const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
@@ -45,7 +46,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitTestEntry(notes, date, startTime)
+    submitTestEntry(notes, date, startTime, userRecordID)
     setNotes("")
     setDate("")
     setStartTime("")
@@ -140,7 +141,7 @@ function App() {
   // })
   return (
     <>
-      <h1>Hello {userName}</h1>
+      <h1>Clock in for {userName}</h1>
       <form action="submit" onSubmit={handleSubmit} onKeyDown={handleEnterPress}>
         <div className="timerContainer">
           <StartTime 
