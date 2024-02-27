@@ -39,12 +39,11 @@ function App() {
     setNotes(data)
   }
 
-
-
   const handleSubmit = (event) => {
     event.preventDefault()
     submitTestEntry(notes, date)
     setNotes("")
+    setDate("")
   };
 
   //handle enter key on notes submission

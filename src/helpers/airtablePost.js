@@ -9,7 +9,7 @@ export function createTimeEntry(notes, date) {
         {
             "fields": {
                 "Team_Member" : [ "recMhLRHRvxzjIHpn" ],
-                "Start_Time_Manual": `${date}`,
+                "Timesheet_Entry_Date": `${date}`,
                 "End_Time_Manual": "2023-12-01T17:29:00.000Z",
                 "Notes": `${notes}`,
             }
