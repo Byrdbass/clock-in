@@ -2,8 +2,9 @@ import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
-import { createTimeEntry } from './helpers/airtablePost'
+//import { createTimeEntry } from './helpers/airtablePost'
 import Button from './components/Button/Button'
+import Notes from './components/Notes/Notes'
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   }
   const params = new URLSearchParams(window.location.search);
   console.log(params)
-  const [userName, setUserName] = useState("test")
+  const [userName, setUserName] = useState(params.get('user'))
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
@@ -23,7 +24,7 @@ function App() {
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState('');
-  const submitTestEntry = createTimeEntry()
+  //const submitTestEntry = createTimeEntry()
 
   const handleDurationChange = (e) => {
     setDuration(e.target.value);

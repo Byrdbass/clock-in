@@ -6,7 +6,7 @@ export default function Notes() {
             id="notesField"
             placeholder="Enter notes here"
             style={{ height: '100px', fontSize: '1em' }}
-            value={notes}
+            // value={notes}
         //   onChange={(e) => setNotes(e.target.value)}
         ></textarea>
     </div>
