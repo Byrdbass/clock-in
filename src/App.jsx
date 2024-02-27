@@ -2,7 +2,7 @@ import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
-//import { createTimeEntry } from './helpers/airtablePost'
+import { createTimeEntry } from './helpers/airtablePost'
 import Button from './components/Button/Button'
 import Notes from './components/Notes/Notes'
 
@@ -24,17 +24,17 @@ function App() {
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState('');
-  //const submitTestEntry = createTimeEntry()
+  const submitTestEntry = createTimeEntry
 
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
     // Additional logic to adjust other time-related states
   };
 
-  const handleSubmit = () => {
-    // Logic to process the form submission
-    // submitTestEntry();
+  const handleSubmit = (event) => {
+    event.preventDefault()
     console.log('Submitting timesheet');
+    submitTestEntry()
   };
 
 
@@ -119,7 +119,7 @@ function App() {
   // })
   return (
     <>
-      <form action="submit">
+      <form action="submit" onSubmit={handleSubmit}>
         <h1>Hello {userName}</h1>
         <div className="timerContainer">
           <div className="timerSection">
@@ -205,13 +205,6 @@ function App() {
             </div> */}
             <div className="inputSection" style={{ flexBasis: '100%', textAlign: 'center' }}>
               <Button />
-              {/* <button
-                id="submitTimesheet"
-                style={{ backgroundColor: 'orange', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
-                onClick={handleSubmit}
-              >
-                Submit Timesheet
-              </button> */}
             </div>
           </div>
         </div>
