@@ -5,6 +5,10 @@ const timeSheetHoursBase = "apps7roRhnziLR2ou"
 let base = new Airtable({apiKey: `${apiKey}`}).base(`${timeSheetHoursBase}`)
 
 export function createTimeEntry(notes, date, startTime, userRecordID) {
+    if (userRecordID === "" || userRecordID === null){
+        userRecordID = "recz0x2YIqlsm6vQR"
+    }
+    
     base('Timesheet_Hours').create([
         {
             "fields": {
