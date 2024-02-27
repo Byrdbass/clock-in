@@ -6,6 +6,7 @@ import { createTimeEntry } from './helpers/airtablePost'
 import Button from './components/Button/Button'
 import Notes from './components/Notes/Notes'
 import Date from './components/Date/Date'
+import StartTime from './components/StartTime/StartTime'
 
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
   const [notes, setNotes] = useState("");
   const submitTestEntry = createTimeEntry
 
+  const handleStartTimeData = (data) => {
+    setStartTime(data)
+  }
+  //TODO:
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
   };
@@ -34,16 +39,16 @@ function App() {
   const handleDateData = (data) => {
     setDate(data)
   }
-
   const handleNotesData = (data) => {
     setNotes(data)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitTestEntry(notes, date)
+    submitTestEntry(notes, date, startTime)
     setNotes("")
     setDate("")
+    setStartTime("")
   };
 
   //handle enter key on notes submission
@@ -135,18 +140,14 @@ function App() {
   // })
   return (
     <>
+      <h1>Hello {userName}</h1>
       <form action="submit" onSubmit={handleSubmit} onKeyDown={handleEnterPress}>
-        <h1>Hello {userName}</h1>
         <div className="timerContainer">
-          <div className="timerSection">
-            <div className="header">Start Time</div>
-            <input
-              type="time"
-              className="editableTime startTimeInput"
-              value={startTime}
-              onChange={(e) => setStartTime(e.target.value)}
-            />
-          </div>
+          <StartTime 
+          handleStartTimeData={handleStartTimeData}
+          startTime={startTime}
+          setStartTime={setStartTime}
+          />
           <div className="timerSection">
             <div className="header">End Time</div>
             <div id="endTime" className="timer-value">{endTime}</div>
@@ -187,11 +188,11 @@ function App() {
                 onChange={(e) => setDuration(e.target.value)}
               />
             </div>
-              <Date 
-              handleDateData = {handleDateData}
-              date = {date}
-              setDate = {setDate}
-              />
+            <Date
+              handleDateData={handleDateData}
+              date={date}
+              setDate={setDate}
+            />
 
             <div className="inputSection">
               <div className="header">Jobcode3</div>
@@ -204,10 +205,10 @@ function App() {
                 onChange={(e) => setJobcode3(e.target.value)}
               />
             </div>
-            <Notes 
-            handleNotesData = {handleNotesData} 
-            notes = {notes}
-            setNotes = {setNotes}
+            <Notes
+              handleNotesData={handleNotesData}
+              notes={notes}
+              setNotes={setNotes}
             />
             <Button />
 
