@@ -21,9 +21,12 @@ function App() {
   const [userName, setUserName] = useState(params.get('user'))
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
   const [startTime, setStartTime] = useState('');
-  const [duration, setDuration] = useState(30);
+  const [duration, setDuration] = useState();
   if(params.get('prefill_Timesheet_Duration_Minutes')){
     setDuration(params.get('prefill_Timesheet_Duration_Minutes'))
+  }
+  else {
+    setDuration(30)
   }
   const [endTime, setEndTime] = useState("");
   const [countUpTimer, setCountUpTimer] = useState('00:00');
