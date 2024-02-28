@@ -1,6 +1,23 @@
 import '../../App.css'
+import { useEffect } from 'react';
 
-export default function Date({handleDateData, date, setDate}) {
+
+
+export default function DateInput({ handleDateData, date, setDate }) {
+
+    useEffect(() => {
+        if (!date || date === ""){
+            const currentDate = getTodaysDate();
+            setDate(currentDate);
+            handleDateData(currentDate)
+        }
+    }, []);
+    
+    
+    const getTodaysDate = () => {
+        const today = new Date();
+        return today.toISOString().split('T')[0]; // Formats date as YYYY-MM-DD
+      };
 
     const updateDateData = (event) => {
         setDate(event.target.value);

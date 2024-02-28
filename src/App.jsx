@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
 import { createTimeEntry } from './helpers/airtablePost'
 import Button from './components/Button/Button'
 import Notes from './components/Notes/Notes'
-import Date from './components/Date/Date'
+import DateInput from './components/Date/DateInput'
 import StartTime from './components/StartTime/StartTime'
 
 
 function App() {
+
   const [hasError, setHasError] = useState(false)
 
   function getDerivedStateFromError() {
@@ -19,6 +20,10 @@ function App() {
   // console.log(params)
   const [userName, setUserName] = useState(params.get('user'))
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
+
+
+
+
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [countUpTimer, setCountUpTimer] = useState('00:00');
@@ -28,6 +33,9 @@ function App() {
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState("");
   const submitTestEntry = createTimeEntry
+
+
+
 
   const handleStartTimeData = (data) => {
     setStartTime(data)
@@ -49,7 +57,20 @@ function App() {
     submitTestEntry(notes, date, startTime, userRecordID)
     setNotes("")
     setDate("")
-    setStartTime("")
+    const getCurrentTime = () => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      return `${hours}:${minutes}`;
+    };
+    const getTodaysDate = () => {
+      const today = new Date();
+      return today.toISOString().split('T')[0]; 
+    };
+    handleDateData(getTodaysDate())
+    setDate(getTodaysDate)
+    setStartTime(getCurrentTime())
+    handleStartTimeData(getCurrentTime())
   };
 
   //handle enter key on notes submission
@@ -60,94 +81,15 @@ function App() {
   }
 
 
-
-  // document.addEventListener("DOMContentLoaded", function () {
-  //   const params = new URLSearchParams(window.location.search);
-  //   const dateField = document.getElementById('dateField');
-  //   const startTimeInput = document.getElementById('startTimeInput');
-  //   const durationField = document.getElementById('durationField');
-  //   const durationSlider = document.getElementById('durationSlider');
-  //   const sliderValueDisplay = document.getElementById('sliderValue'); // Text display for the slider value
-  //   const progressBar = document.getElementById('progressBar');
-  //   const endTimeDisplay = document.getElementById('endTime'); // Display clock for the calculated end time
-  //   const countdownTimerDisplay = document.getElementById('remainingTimeText'); // "Time Remaining" display
-
-  //   // Prefill function with URL parameters
-  //   function prefillInputs() {
-  //       const prefillDate = params.get('prefill_Timesheet_Entry_Date');
-  //       const prefillStartTime = params.get('prefill_Timesheet_Start_Time');
-  //       const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
-
-  //       if (prefillDate) {
-  //           dateField.value = prefillDate.replace(/(\d{2})-(\d{2})-(\d{4})/, '$3-$1-$2');
-  //       }
-  //       if (prefillStartTime) {
-  //           startTimeInput.value = prefillStartTime.substring(0, 5); // Ensure HH:MM format
-  //       }
-  //       if (prefillDuration) {
-  //           durationField.value = prefillDuration;
-  //           durationSlider.value = prefillDuration;
-  //           sliderValueDisplay.textContent = `${prefillDuration} Minutes`;
-  //       }
-  //   }
-
-  //   // Update function for end time, progress bar, slider text, and remaining time
-  //   function updateUI() {
-  //       const startTime = new Date(`${dateField.value}T${startTimeInput.value}`);
-  //       const durationMinutes = parseInt(durationField.value, 10);
-  //       const endTime = new Date(startTime.getTime() + durationMinutes * 60000);
-
-  //       // Update the end time display
-  //       endTimeDisplay.textContent = endTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-
-  //       // Update the slider value text
-  //       sliderValueDisplay.textContent = `${durationField.value} Minutes`;
-
-  //       // Calculate and update remaining time
-  //       const remainingTime = endTime - new Date();
-  //       if (remainingTime > 0) {
-  //           const hours = Math.floor(remainingTime / 3600000);
-  //           const minutes = Math.floor((remainingTime % 3600000) / 60000);
-  //           const seconds = Math.floor((remainingTime % 60000) / 1000);
-  //           countdownTimerDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  //       } else {
-  //           countdownTimerDisplay.textContent = "00:00:00";
-  //       }
-
-  //       // Recalculate and update the progress bar
-  //       const elapsed = new Date() - startTime;
-  //       const totalDuration = endTime - startTime;
-  //       const percentageElapsed = (elapsed / totalDuration) * 100;
-  //       progressBar.style.width = `${Math.min(100, Math.max(0, percentageElapsed))}%`;
-  //   }
-
-  //   // Event listeners for changes
-  //   startTimeInput.addEventListener('change', updateUI);
-  //   durationField.addEventListener('input', () => {
-  //       durationSlider.value = durationField.value; // Sync slider with manual input
-  //       updateUI();
-  //   });
-  //   durationSlider.addEventListener('input', () => {
-  //       durationField.value = durationSlider.value; // Sync field with slider adjustment
-  //       updateUI();
-  //   });
-
-  //   // Initial setup
-  //   prefillInputs();
-  //   updateUI();
-
-  //   // Continuous update for the progress bar and remaining time to reflect real-time changes
-  //   setInterval(updateUI, 1000);
-  // })
   return (
     <>
       <h1>Clock in for {userName}</h1>
       <form action="submit" onSubmit={handleSubmit} onKeyDown={handleEnterPress}>
         <div className="timerContainer">
-          <StartTime 
-          handleStartTimeData={handleStartTimeData}
-          startTime={startTime}
-          setStartTime={setStartTime}
+          <StartTime
+            handleStartTimeData={handleStartTimeData}
+            startTime={startTime}
+            setStartTime={setStartTime}
           />
           <div className="timerSection">
             <div className="header">End Time</div>
@@ -189,7 +131,7 @@ function App() {
                 onChange={(e) => setDuration(e.target.value)}
               />
             </div>
-            <Date
+            <DateInput
               handleDateData={handleDateData}
               date={date}
               setDate={setDate}
