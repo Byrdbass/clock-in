@@ -22,12 +22,6 @@ function App() {
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
   const [startTime, setStartTime] = useState('');
   const [duration, setDuration] = useState();
-  if(params.get('prefill_Timesheet_Duration_Minutes')){
-    setDuration(params.get('prefill_Timesheet_Duration_Minutes'))
-  }
-  else {
-    setDuration(30)
-  }
   const [endTime, setEndTime] = useState("");
   const [countUpTimer, setCountUpTimer] = useState('00:00');
   const [remainingTimeText, setRemainingTimeText] = useState('--:--');
@@ -46,6 +40,12 @@ function App() {
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
   };
+  useEffect(() => {
+    const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
+    if (prefillDuration) {
+      setDuration(prefillDuration)
+    }
+  }, [])
 
   const handleDateData = (data) => {
     setDate(data)
