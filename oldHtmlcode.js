@@ -5,24 +5,6 @@
   const endTimeDisplay = document.getElementById('endTime'); // Display clock for the calculated end time
   const countdownTimerDisplay = document.getElementById('remainingTimeText'); // "Time Remaining" display
 
-  // Prefill function with URL parameters
-  function prefillInputs() {
-      const prefillDate = params.get('prefill_Timesheet_Entry_Date');
-      const prefillStartTime = params.get('prefill_Timesheet_Start_Time');
-      const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
-
-      if (prefillDate) {
-          dateField.value = prefillDate.replace(/(\d{2})-(\d{2})-(\d{4})/, '$3-$1-$2');
-      }
-      if (prefillStartTime) {
-          startTimeInput.value = prefillStartTime.substring(0, 5); // Ensure HH:MM format
-      }
-      if (prefillDuration) {
-          durationField.value = prefillDuration;
-          durationSlider.value = prefillDuration;
-          sliderValueDisplay.textContent = `${prefillDuration} Minutes`;
-      }
-  }
 
   // Update function for end time, progress bar, slider text, and remaining time
   function updateUI() {

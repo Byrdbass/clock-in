@@ -7,7 +7,7 @@ import Button from './components/Button/Button'
 import Notes from './components/Notes/Notes'
 import DateInput from './components/Date/DateInput'
 import StartTime from './components/StartTime/StartTime'
-
+import EndTime from './components/EndTime/EndTime'
 
 function App() {
 
@@ -20,27 +20,26 @@ function App() {
   // console.log(params)
   const [userName, setUserName] = useState(params.get('user'))
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
-
-
-
-
   const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('00:00');
+  const [duration, setDuration] = useState(30);
+  if(params.get('prefill_Timesheet_Duration_Minutes')){
+    setDuration(params.get('prefill_Timesheet_Duration_Minutes'))
+  }
+  const [endTime, setEndTime] = useState("");
   const [countUpTimer, setCountUpTimer] = useState('00:00');
   const [remainingTimeText, setRemainingTimeText] = useState('--:--');
-  const [duration, setDuration] = useState(30);
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState("");
+
   const submitTestEntry = createTimeEntry
-
-
-
-
   const handleStartTimeData = (data) => {
     setStartTime(data)
   }
-  //TODO:
+  const handleEndTimeData = (data) => {
+    setEndTime(data)
+  }
+  //TODO: move to child component
   const handleDurationChange = (e) => {
     setDuration(e.target.value);
   };
@@ -71,6 +70,7 @@ function App() {
     setDate(getTodaysDate)
     setStartTime(getCurrentTime())
     handleStartTimeData(getCurrentTime())
+    setDuration(30)
   };
 
   //handle enter key on notes submission
@@ -91,10 +91,14 @@ function App() {
             startTime={startTime}
             setStartTime={setStartTime}
           />
-          <div className="timerSection">
-            <div className="header">End Time</div>
-            <div id="endTime" className="timer-value">{endTime}</div>
-          </div>
+          <EndTime 
+            startTime={startTime}
+            duration={duration}
+            handleEndTimeData={handleEndTimeData}
+            endTime={endTime}
+            setEndTime={setEndTime}
+          />
+
           <div className="timerSection">
             <div className="header">On the Clock</div>
             <div id="countUpTimer" className="timer-value">{countUpTimer}</div>
