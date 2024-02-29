@@ -14,7 +14,22 @@ export function getTeammateRecord(userRecordID) {
 
         //   console.log(record.fields.Recently_Used_Jobcodes)
         //   console.log(record.fields.All_Assigned_Jobcodes_txt)
-          resolve(record.fields); // Resolve with record.fields
+          resolve(record.fields);
+        }
+      });
+    });
+  }
+
+  export function getProductJobCode3IDs(projRecordID) {
+    return new Promise((resolve, reject) => {
+      base('Project_Product_JobCode3').find(projRecordID, (err, record) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+
+
+          resolve(record);
         }
       });
     });

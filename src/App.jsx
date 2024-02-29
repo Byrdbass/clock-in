@@ -65,7 +65,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitTimeEntry(notes, date, startTime, userRecordID)
+    submitTimeEntry(notes, date, startTime, endTime, userRecordID, jobcode3)
     setNotes("")
     setDate("")
     const getCurrentTime = () => {
