@@ -8,6 +8,7 @@ import Notes from './components/Notes/Notes'
 import DateInput from './components/Date/DateInput'
 import StartTime from './components/StartTime/StartTime'
 import EndTime from './components/EndTime/EndTime'
+import JobCodes from './components/JobCodes/JobCodes'
 
 function App() {
 
@@ -143,18 +144,11 @@ function App() {
               date={date}
               setDate={setDate}
             />
-
-            <div className="inputSection">
-              <div className="header">Jobcode3</div>
-              <input
-                type="text"
-                id="jobcode3Field"
-                placeholder="Jobcode3"
-                style={{ fontSize: '1em' }}
-                value={jobcode3}
-                onChange={(e) => setJobcode3(e.target.value)}
-              />
-            </div>
+            <JobCodes 
+              jobcode3={jobcode3}
+              setJobcode3={setJobcode3}
+              userRecordID={userRecordID}
+            />
             <Notes
               handleNotesData={handleNotesData}
               notes={notes}
