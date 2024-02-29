@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
 import { createTimeEntry } from './helpers/airtablePost'
+import { getTeammateRecord } from './helpers/airTableGetJobcodes'
 import Button from './components/Button/Button'
 import Notes from './components/Notes/Notes'
 import DateInput from './components/Date/DateInput'
@@ -20,17 +21,19 @@ function App() {
   const params = new URLSearchParams(window.location.search);
   // console.log(params)
   const [userName, setUserName] = useState(params.get('user'))
-  const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
+  const [userRecordID, setUserRecordID] = useState(
+    "recMhLRHRvxzjIHpn")
   const [startTime, setStartTime] = useState('');
-  const [duration, setDuration] = useState();
+  const [duration, setDuration] = useState(30);
   const [endTime, setEndTime] = useState("");
   const [countUpTimer, setCountUpTimer] = useState('00:00');
   const [remainingTimeText, setRemainingTimeText] = useState('--:--');
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState("");
+  const [teammateRecords, setTeammateRecords] = useState(null);
 
-  const submitTestEntry = createTimeEntry
+  const submitTimeEntry = createTimeEntry
   const handleStartTimeData = (data) => {
     setStartTime(data)
   }
@@ -43,11 +46,31 @@ function App() {
   };
   useEffect(() => {
     const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
+    const prefillUserRecordID = params.get('userRecordID');
     if (prefillDuration) {
       setDuration(prefillDuration)
     }
+    if (prefillUserRecordID){
+      setUserRecordID(prefillUserRecordID)
+    }
   }, [])
-
+  
+  useEffect(() => {
+    const fetchTeammateRecord = async () => {
+      try {
+          // getRecordFields()
+            const recordFields = await getTeammateRecord(userRecordID);
+            console.log(recordFields); // Use recordId as needed
+        } catch (error) {
+            console.error("Failed to fetch teammate record:", error);
+            // Handle error (e.g., update state to show an error message)
+        }
+    };
+    
+    if (userRecordID) {
+      fetchTeammateRecord();
+    }
+  }, [userRecordID]);
   const handleDateData = (data) => {
     setDate(data)
   }
@@ -57,7 +80,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitTestEntry(notes, date, startTime, userRecordID)
+    submitTimeEntry(notes, date, startTime, userRecordID)
     setNotes("")
     setDate("")
     const getCurrentTime = () => {
