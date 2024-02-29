@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
 import { createTimeEntry } from './helpers/airtablePost'
-import { getTeammateRecord } from './helpers/airTableGetJobcodes'
+
 import Button from './components/Button/Button'
 import Notes from './components/Notes/Notes'
 import DateInput from './components/Date/DateInput'
@@ -55,22 +55,7 @@ function App() {
     }
   }, [])
   
-  useEffect(() => {
-    const fetchTeammateRecord = async () => {
-      try {
-          // getRecordFields()
-            const recordFields = await getTeammateRecord(userRecordID);
-            console.log(recordFields); // Use recordId as needed
-        } catch (error) {
-            console.error("Failed to fetch teammate record:", error);
-            // Handle error (e.g., update state to show an error message)
-        }
-    };
-    
-    if (userRecordID) {
-      fetchTeammateRecord();
-    }
-  }, [userRecordID]);
+
   const handleDateData = (data) => {
     setDate(data)
   }

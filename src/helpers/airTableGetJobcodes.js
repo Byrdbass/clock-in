@@ -12,8 +12,8 @@ export function getTeammateRecord(userRecordID) {
           reject(err);
         } else {
 
-          console.log(record.fields.Recently_Used_Jobcodes)
-          console.log(record.fields.All_Assigned_Jobcodes_txt)
+        //   console.log(record.fields.Recently_Used_Jobcodes)
+        //   console.log(record.fields.All_Assigned_Jobcodes_txt)
           resolve(record.fields); // Resolve with record.fields
         }
       });
