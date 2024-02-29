@@ -1,11 +1,14 @@
 import '../../App.css'
 import { getTeammateRecord } from '../../helpers/airTableGetJobcodes';
 import { useEffect, useState } from 'react'
+import JobSlider from '../JobSlider/JobSlider';
 
 export default function JobCodes({ jobcode3, setJobcode3, userRecordID }) {
 
-    const [recentJobCodes, setRecentJobCodes] = useState('');
-    const [allJobCodes, setAllJobCodes] = useState('');
+    const [loading, setLoading] = useState(true)
+    const [recentJobCodes, setRecentJobCodes] = useState([]);
+    const [allJobCodes, setAllJobCodes] = useState([]);
+
     
     useEffect(() => {
         const fetchTeammateRecord = async () => {
@@ -18,34 +21,30 @@ export default function JobCodes({ jobcode3, setJobcode3, userRecordID }) {
             } catch (error) {
                 console.error("Failed to fetch teammate record:", error);
                 // Handle error (e.g., update state to show an error message)
+            } finally {
+              setLoading(false)
             }
+
         };
         
         if (userRecordID) {
           fetchTeammateRecord();
         }
+
       }, [userRecordID]);
 
     return(
         <div className="inputSection">
-        <div className="header">Jobcode3</div>
-        <select name="jobcode3" id="jobcode3">
-            {recentJobCodes.map(( job, index ) => {
-                return (
+        <label className="header">Jobcode3</label>
+          <JobSlider />
+        <select name="jobcode3" id="jobcode3Field" >
+            {!loading ? recentJobCodes.map(( job, index ) => (
                     <option key={index}>
                         {job}
                     </option>
                 )
-            })}
+            ) : <option>Loading...</option>}
         </select>
-        <input
-          type="text"
-          id="jobcode3Field"
-          placeholder="Jobcode3"
-          style={{ fontSize: '1em' }}
-          value={jobcode3}
-          onChange={(e) => setJobcode3(e.target.value)}
-        />
       </div>
     )
 }
