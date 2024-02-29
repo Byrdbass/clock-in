@@ -1,16 +1,20 @@
 import './jobslider.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function JobSlider() {
-
+export default function JobSlider({ handleJobCodeList }) {
     const [jobCodeList, setJobCodeList] = useState('Recent Job Codes');
     const [colorChange, setColorChange] = useState('dark')
 
     const handleToggle = () => {
-        console.log("toggling")
+        console.log(jobCodeList)
         setJobCodeList(prevOption => prevOption === "Recent Job Codes" ? "All Job Codes" : "Recent Job Codes")
         setColorChange(prevColor => prevColor === 'dark' ? 'light' : 'dark')
+        // handleJobCodeList(jobCodeList)
     }
+    
+    useEffect(()=> {
+        handleJobCodeList(jobCodeList)
+    })
 
     return (
         <div className={``}>
