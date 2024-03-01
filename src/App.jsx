@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
@@ -11,6 +11,7 @@ import StartTime from './components/StartTime/StartTime'
 import EndTime from './components/EndTime/EndTime'
 import JobCodes from './components/JobCodes/JobCodes'
 import TimeRemaining from './components/TimeRemaining/TimeRemaining'
+import CountUp from './components/CountUp/CountUp'
 
 function App() {
 
@@ -19,6 +20,12 @@ function App() {
   function getDerivedStateFromError() {
     return setHasError(true)
   }
+
+  const intervalRef = useRef(null); // Ref to store the interval ID
+  const setIntervalIdInParent = (id) => {
+    intervalRef.current = id; // Function to update the ref with the interval ID
+  };
+
   const params = new URLSearchParams(window.location.search);
   // console.log(params)
   const [userName, setUserName] = useState(params.get('user'))
@@ -28,7 +35,8 @@ function App() {
   const [startTime, setStartTime] = useState('');
   const [duration, setDuration] = useState(30);
   const [endTime, setEndTime] = useState("");
-  const [countUpTimer, setCountUpTimer] = useState('00:00');
+  const [countUpTimer, setCountUpTimer] = useState('00:00:00');
+  const [resetCount, setResetCount] = useState(false);
   const [remainingTimeText, setRemainingTimeText] = useState('--:--');
   const [date, setDate] = useState('');
   const [jobcode3, setJobcode3] = useState('');
@@ -50,11 +58,11 @@ function App() {
     if (prefillDuration) {
       setDuration(prefillDuration)
     }
-    if (prefillUserRecordID){
+    if (prefillUserRecordID) {
       setUserRecordID(prefillUserRecordID)
     }
   }, [])
-  
+
 
   const handleDateData = (data) => {
     setDate(data)
@@ -76,13 +84,14 @@ function App() {
     };
     const getTodaysDate = () => {
       const today = new Date();
-      return today.toISOString().split('T')[0]; 
+      return today.toISOString().split('T')[0];
     };
     handleDateData(getTodaysDate())
     setDate(getTodaysDate)
     setStartTime(getCurrentTime())
     handleStartTimeData(getCurrentTime())
     setDuration(30)
+    setResetCount(true)
   };
 
   //handle enter key on notes submission
@@ -95,7 +104,7 @@ function App() {
   const handleDurationChange = (e) => {
     setDuration(Number(e.target.value)); // Convert string to number
   };
-  
+
 
   return (
     <>
@@ -107,21 +116,28 @@ function App() {
             startTime={startTime}
             setStartTime={setStartTime}
           />
-          <EndTime 
+          <EndTime
             startTime={startTime}
             duration={duration}
             handleEndTimeData={handleEndTimeData}
             endTime={endTime}
             setEndTime={setEndTime}
           />
-          <div className="timerSection">
+          {/* <div className="timerSection">
             <div className="header">On the Clock</div>
             <div id="countUpTimer" className="timer-value">{countUpTimer}</div>
-          </div>
-          <TimeRemaining 
-          remainingTimeText={remainingTimeText}
-          setRemainingTimeText={setRemainingTimeText}
-          duration={duration}
+          </div> */}
+
+          <CountUp
+            countUpTimer={countUpTimer}
+            setCountUpTimer={setCountUpTimer}
+            resetCount={resetCount}
+            />
+
+          <TimeRemaining
+            remainingTimeText={remainingTimeText}
+            setRemainingTimeText={setRemainingTimeText}
+            duration={duration}
           />
 
           <div className="inputSection" style={{ width: '100%', textAlign: 'center' }}>
@@ -154,7 +170,7 @@ function App() {
               date={date}
               setDate={setDate}
             />
-            <JobCodes 
+            <JobCodes
               projectRecordId={projectRecordId}
               setProjectRecordId={setProjectRecordId}
               jobcode3={jobcode3}
