@@ -10,6 +10,7 @@ import DateInput from './components/Date/DateInput'
 import StartTime from './components/StartTime/StartTime'
 import EndTime from './components/EndTime/EndTime'
 import JobCodes from './components/JobCodes/JobCodes'
+import TimeRemaining from './components/TimeRemaining/TimeRemaining'
 
 function App() {
 
@@ -42,9 +43,7 @@ function App() {
     setEndTime(data)
   }
   //TODO: move to child component
-  const handleDurationChange = (e) => {
-    setDuration(e.target.value);
-  };
+
   useEffect(() => {
     const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
     const prefillUserRecordID = params.get('userRecordID');
@@ -66,7 +65,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, )
+    submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId)
     setNotes("")
     setDate("")
     const getCurrentTime = () => {
@@ -93,6 +92,10 @@ function App() {
     }
   }
 
+  const handleDurationChange = (e) => {
+    setDuration(Number(e.target.value)); // Convert string to number
+  };
+  
 
   return (
     <>
@@ -111,18 +114,16 @@ function App() {
             endTime={endTime}
             setEndTime={setEndTime}
           />
-
           <div className="timerSection">
             <div className="header">On the Clock</div>
             <div id="countUpTimer" className="timer-value">{countUpTimer}</div>
           </div>
-          <div className="timerSection">
-            <div className="header">Time Remaining</div>
-            <div className="remainingTimeText" id="remainingTimeText">{remainingTimeText}</div>
-            <div className="progressBarContainer">
-              <div className="progressBar" id="progressBar"></div>
-            </div>
-          </div>
+          <TimeRemaining 
+          remainingTimeText={remainingTimeText}
+          setRemainingTimeText={setRemainingTimeText}
+          duration={duration}
+          />
+
           <div className="inputSection" style={{ width: '100%', textAlign: 'center' }}>
             <div className="header">Adjust Duration</div>
             <input
@@ -145,7 +146,7 @@ function App() {
                 placeholder="Duration (minutes)"
                 style={{ fontSize: '1em' }}
                 value={duration}
-                onChange={(e) => setDuration(e.target.value)}
+                onChange={handleDurationChange}
               />
             </div>
             <DateInput
