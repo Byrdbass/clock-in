@@ -4,7 +4,7 @@ const timeSheetHoursBase = "apps7roRhnziLR2ou"
 
 let base = new Airtable({apiKey: `${apiKey}`}).base(`${timeSheetHoursBase}`)
 
-export function createTimeEntry(notes, date, startTime, endTime, userRecordID, jobCode3) {
+export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId) {
     if (userRecordID === "" || userRecordID === null){
         userRecordID = "recz0x2YIqlsm6vQR"
     }
@@ -16,7 +16,8 @@ export function createTimeEntry(notes, date, startTime, endTime, userRecordID, j
                 "Start_Time_Manual": `${date}T${startTime}`,
                 "Timesheet_Entry_Date": `${date}`,
                 // "End_Time_Manual": `${endTime}`,
-                "Product_Jobcode3": [`recizoqSbdb7fquIx`],
+                "Product_Jobcode3": [`${projectRecordId}`],
+                "Product_Jobcode3_fallback": `${jobcode3}`,
                 "Notes": `${notes}`,
             }
         }

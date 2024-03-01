@@ -23,6 +23,7 @@ function App() {
   const [userName, setUserName] = useState(params.get('user'))
   const [userRecordID, setUserRecordID] = useState(
     "recMhLRHRvxzjIHpn")
+  const [projectRecordId, setProjectRecordId] = useState('')
   const [startTime, setStartTime] = useState('');
   const [duration, setDuration] = useState(30);
   const [endTime, setEndTime] = useState("");
@@ -65,7 +66,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    submitTimeEntry(notes, date, startTime, endTime, userRecordID, jobcode3)
+    submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, )
     setNotes("")
     setDate("")
     const getCurrentTime = () => {
@@ -153,6 +154,8 @@ function App() {
               setDate={setDate}
             />
             <JobCodes 
+              projectRecordId={projectRecordId}
+              setProjectRecordId={setProjectRecordId}
               jobcode3={jobcode3}
               setJobcode3={setJobcode3}
               userRecordID={userRecordID}
