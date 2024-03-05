@@ -13,6 +13,7 @@ import JobCodes from './components/JobCodes/JobCodes'
 import TimeRemaining from './components/TimeRemaining/TimeRemaining'
 import CountUp from './components/CountUp/CountUp'
 import DurationSlider from './components/DurationSlider/DurationSlider'
+import DurationField from './components/DurationField/DurationField'
 
 function App() {
 
@@ -139,17 +140,11 @@ function App() {
           />
 
           <div className="formSection" style={{ width: '100%', maxWidth: '640px', margin: '0 auto' }}>
-            <div className="inputSection">
-              <div className="header">Duration</div>
-              <input
-                type="text"
-                id="durationField"
-                placeholder="Duration (minutes)"
-                style={{ fontSize: '1em' }}
-                value={duration}
-                onChange={handleDurationChange}
-              />
-            </div>
+            <DurationField
+            duration={duration}
+            setDuration={setDuration}
+            handleDurationChange={handleDurationChange}
+            />
             <DateInput
               handleDateData={handleDateData}
               date={date}
@@ -168,10 +163,8 @@ function App() {
               setNotes={setNotes}
             />
             <Button />
-
           </div>
         </div>
-
       </form>
     </>
   )
