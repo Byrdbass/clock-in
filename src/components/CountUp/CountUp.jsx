@@ -9,32 +9,28 @@ export default function CountUp({ countUpTimer, setCountUpTimer, resetCount }) {
     });
 
     useEffect(() => {
-        let elapsedSeconds = 0; // Counter for elapsed seconds
+        let elapsedSeconds = 0; 
 
         const calculateElapsedTime = () => {
-            elapsedSeconds++; // Increment elapsed seconds
-            const totalSeconds = initialTotalSeconds + elapsedSeconds; // Total elapsed seconds including initial time
+            elapsedSeconds++; 
+            const totalSeconds = initialTotalSeconds + elapsedSeconds; 
 
-            // Convert total seconds back into hours, minutes, and seconds
             const hours = Math.floor(totalSeconds / 3600) % 24;
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const seconds = totalSeconds % 60;
 
-            // Format the time string and update using setCountUpTimer
             setCountUpTimer(`${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`);
         };
 
-        // Update the elapsed time every second
         const timer = setInterval(calculateElapsedTime, 1000);
 
-        // Clear the interval on component unmount
         return () => clearInterval(timer);
-    }, [initialTotalSeconds, setCountUpTimer]); // Depend on initialTotalSeconds and setCountUpTimer
+    }, [initialTotalSeconds, setCountUpTimer]); 
 
     useEffect(() => {
         if (resetCount) {
-            setInitialTotalSeconds(0);  // Reset the count
-            setCountUpTimer("00:00:00");  // Reset the display
+            setInitialTotalSeconds(0);  
+            setCountUpTimer("00:00:00");
         }
     }, [resetCount, setCountUpTimer]);
 

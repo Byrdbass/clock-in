@@ -12,6 +12,7 @@ import EndTime from './components/EndTime/EndTime'
 import JobCodes from './components/JobCodes/JobCodes'
 import TimeRemaining from './components/TimeRemaining/TimeRemaining'
 import CountUp from './components/CountUp/CountUp'
+import DurationSlider from './components/DurationSlider/DurationSlider'
 
 function App() {
 
@@ -44,14 +45,7 @@ function App() {
   const [teammateRecords, setTeammateRecords] = useState(null);
 
   const submitTimeEntry = createTimeEntry
-  const handleStartTimeData = (data) => {
-    setStartTime(data)
-  }
-  const handleEndTimeData = (data) => {
-    setEndTime(data)
-  }
-  //TODO: move to child component
-
+  
   useEffect(() => {
     const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
     const prefillUserRecordID = params.get('userRecordID');
@@ -62,14 +56,23 @@ function App() {
       setUserRecordID(prefillUserRecordID)
     }
   }, [])
-
-
+  
+  
+  const handleStartTimeData = (data) => {
+    setStartTime(data)
+  }
+  const handleEndTimeData = (data) => {
+    setEndTime(data)
+  }
   const handleDateData = (data) => {
     setDate(data)
   }
   const handleNotesData = (data) => {
     setNotes(data)
   }
+  const handleDurationChange = (e) => {
+    setDuration(Number(e.target.value)); 
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -101,11 +104,6 @@ function App() {
     }
   }
 
-  const handleDurationChange = (e) => {
-    setDuration(Number(e.target.value)); // Convert string to number
-  };
-
-
   return (
     <>
       <h1>Clock in for {userName}</h1>
@@ -123,11 +121,6 @@ function App() {
             endTime={endTime}
             setEndTime={setEndTime}
           />
-          {/* <div className="timerSection">
-            <div className="header">On the Clock</div>
-            <div id="countUpTimer" className="timer-value">{countUpTimer}</div>
-          </div> */}
-
           <CountUp
             countUpTimer={countUpTimer}
             setCountUpTimer={setCountUpTimer}
@@ -139,20 +132,12 @@ function App() {
             setRemainingTimeText={setRemainingTimeText}
             duration={duration}
           />
+          <DurationSlider 
+          duration={duration}
+          setDuration={setDuration}
+          handleDurationChange={handleDurationChange}
+          />
 
-          <div className="inputSection" style={{ width: '100%', textAlign: 'center' }}>
-            <div className="header">Adjust Duration</div>
-            <input
-              type="range"
-              id="durationSlider"
-              min="1"
-              max="240"
-              value={duration}
-              onChange={handleDurationChange}
-              style={{ width: '60%' }}
-            />
-            <div className="sliderValue" id="sliderValue">{duration} Minutes</div>
-          </div>
           <div className="formSection" style={{ width: '100%', maxWidth: '640px', margin: '0 auto' }}>
             <div className="inputSection">
               <div className="header">Duration</div>
