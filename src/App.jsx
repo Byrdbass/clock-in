@@ -25,8 +25,7 @@ function App() {
   const params = new URLSearchParams(window.location.search);
   // console.log(params)
   const [userName, setUserName] = useState(params.get('user'))
-  const [userRecordID, setUserRecordID] = useState(
-    "recMhLRHRvxzjIHpn")
+  const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
   const [projectRecordId, setProjectRecordId] = useState('')
   const [startTime, setStartTime] = useState('');
   const [duration, setDuration] = useState(30);
