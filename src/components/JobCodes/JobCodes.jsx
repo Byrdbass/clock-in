@@ -45,16 +45,16 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
                 const record = await getTeammateRecord(userRecordID);
                 //NEEDS FIX
                 let jobCodesArray = record.fields.Recently_Used_Jobcodes
-                if(Array.isArray(jobCodesArray)){
-                  jobCodesArray.map((val, index) => {
-                    // console.log(val)
-                    if (val.indexOf(',')> -1){
-                      let newVal = val.split(',')
-                      newVal.forEach(x => {jobCodesArray.push(x)})
-                      jobCodesArray.splice(index, 1)
-                    }
-                  })
-                }
+                // if(Array.isArray(jobCodesArray)){
+                //   jobCodesArray.map((val, index) => {
+                //     // console.log(val)
+                //     if (val.indexOf(',')> -1){
+                //       let newVal = val.split(',')
+                //       newVal.forEach(x => {jobCodesArray.push(x)})
+                //       jobCodesArray.splice(index, 1)
+                //     }
+                //   })
+                // }
                 // console.log(jobCodesArray)
                 setRecentJobCodes(jobCodesArray)
                 setAllJobCodes(record.fields.All_Assigned_Jobcodes_txt)
