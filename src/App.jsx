@@ -4,14 +4,22 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import { createTimeEntry } from './helpers/airtablePost'
 
-import ClockInForm from './Pages/ClockInForm/ClockInForm'
+import ClockInForm from './pages/ClockInForm/ClockInForm'
 import { useTimer } from './utils/TimerProvider'
 import { TimerProvider } from './utils/TimerProvider'
+import DurationSlider from './components/DurationSlider/DurationSlider'
 
 
 function App() {
-
+  const params = new URLSearchParams(window.location.search);
+  const [userName, setUserName] = useState(params.get('user'))
   const [hasError, setHasError] = useState(false)
+  const [duration, setDuration] = useState(25);
+  const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
+
+  const handleDurationChange = (e) => {
+    setDuration(Number(e.target.value));
+  };
 
   function getDerivedStateFromError() {
     return setHasError(true)
@@ -22,23 +30,6 @@ function App() {
     intervalRef.current = id; // Function to update the ref with the interval ID
   };
 
-  const params = new URLSearchParams(window.location.search);
-  // console.log(params)
-  const [userName, setUserName] = useState(params.get('user'))
-  const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
-  const [projectRecordId, setProjectRecordId] = useState('')
-  const [startTime, setStartTime] = useState('');
-  const [duration, setDuration] = useState(30);
-  const [endTime, setEndTime] = useState("");
-  const [countUpTimer, setCountUpTimer] = useState('00:00:00');
-  const [resetCount, setResetCount] = useState(false);
-  const [remainingTimeText, setRemainingTimeText] = useState('--:--');
-  const [date, setDate] = useState('');
-  const [jobcode3, setJobcode3] = useState('');
-  const [notes, setNotes] = useState("");
-  const [teammateRecords, setTeammateRecords] = useState(null);
-
-  const submitTimeEntry = createTimeEntry
 
   useEffect(() => {
     const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
@@ -51,39 +42,24 @@ function App() {
     }
   }, [])
 
-
-  const handleStartTimeData = (data) => {
-    setStartTime(data)
-  }
-  const handleEndTimeData = (data) => {
-    setEndTime(data)
-  }
-  const handleDateData = (data) => {
-    setDate(data)
-  }
-  const handleNotesData = (data) => {
-    setNotes(data)
-  }
-  const handleDurationChange = (e) => {
-    setDuration(Number(e.target.value));
-  };
-
-  const { resetTimers } = useTimer()
-
-
-
-  //handle enter key on notes submission
-  const handleEnterPress = (event) => {
-    if (event.key === "Enter" && !event.shiftKey) {
-      handleSubmit(event)
-    }
-  }
+  useEffect(() => {
+  })
 
   return (
     <>
       <TimerProvider duration={duration}>
         <h1>Clock in for {userName}</h1>
+        <DurationSlider
+          duration={duration}
+          setDuration={setDuration}
+          handleDurationChange={handleDurationChange}
+        />
         <ClockInForm
+          duration={duration}
+          setDuration={setDuration}
+          userRecordID={userRecordID}
+          setUserRecordID={setUserRecordID}
+          handleDurationChange={handleDurationChange}
         />
       </TimerProvider>
     </>
