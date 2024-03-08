@@ -4,16 +4,10 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import { createTimeEntry } from './helpers/airtablePost'
 
-import Button from './components/Button/Button'
-import Notes from './components/Notes/Notes'
-import DateInput from './components/Date/DateInput'
-import StartTime from './components/StartTime/StartTime'
-import EndTime from './components/EndTime/EndTime'
-import JobCodes from './components/JobCodes/JobCodes'
-import TimeRemaining from './components/TimeRemaining/TimeRemaining'
-import CountUp from './components/CountUp/CountUp'
-import DurationSlider from './components/DurationSlider/DurationSlider'
-import DurationField from './components/DurationField/DurationField'
+import ClockInForm from './Pages/ClockInForm/ClockInForm'
+import { useTimer } from './utils/TimerProvider'
+import { TimerProvider } from './utils/TimerProvider'
+
 
 function App() {
 
@@ -46,7 +40,7 @@ function App() {
   const [teammateRecords, setTeammateRecords] = useState(null);
 
   const submitTimeEntry = createTimeEntry
-  
+
   useEffect(() => {
     const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
     const prefillUserRecordID = params.get('userRecordID');
@@ -57,8 +51,8 @@ function App() {
       setUserRecordID(prefillUserRecordID)
     }
   }, [])
-  
-  
+
+
   const handleStartTimeData = (data) => {
     setStartTime(data)
   }
@@ -72,31 +66,12 @@ function App() {
     setNotes(data)
   }
   const handleDurationChange = (e) => {
-    setDuration(Number(e.target.value)); 
+    setDuration(Number(e.target.value));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId)
-    setNotes("")
-    setDate("")
-    const getCurrentTime = () => {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      return `${hours}:${minutes}`;
-    };
-    const getTodaysDate = () => {
-      const today = new Date();
-      return today.toISOString().split('T')[0];
-    };
-    handleDateData(getTodaysDate())
-    setDate(getTodaysDate)
-    setStartTime(getCurrentTime())
-    handleStartTimeData(getCurrentTime())
-    setDuration(30)
-    setResetCount(true)
-  };
+  const { resetTimers } = useTimer()
+
+
 
   //handle enter key on notes submission
   const handleEnterPress = (event) => {
@@ -107,65 +82,11 @@ function App() {
 
   return (
     <>
-      <h1>Clock in for {userName}</h1>
-      <form action="submit" onSubmit={handleSubmit} onKeyDown={handleEnterPress}>
-        <div className="timerContainer">
-          <StartTime
-            handleStartTimeData={handleStartTimeData}
-            startTime={startTime}
-            setStartTime={setStartTime}
-          />
-          <EndTime
-            startTime={startTime}
-            duration={duration}
-            handleEndTimeData={handleEndTimeData}
-            endTime={endTime}
-            setEndTime={setEndTime}
-          />
-          <CountUp
-            countUpTimer={countUpTimer}
-            setCountUpTimer={setCountUpTimer}
-            resetCount={resetCount}
-            />
-
-          <TimeRemaining
-            remainingTimeText={remainingTimeText}
-            setRemainingTimeText={setRemainingTimeText}
-            duration={duration}
-          />
-          <DurationSlider 
-          duration={duration}
-          setDuration={setDuration}
-          handleDurationChange={handleDurationChange}
-          />
-
-          <div className="formSection" style={{ width: '100%', maxWidth: '640px', margin: '0 auto' }}>
-            <DurationField
-            duration={duration}
-            setDuration={setDuration}
-            handleDurationChange={handleDurationChange}
-            />
-            <DateInput
-              handleDateData={handleDateData}
-              date={date}
-              setDate={setDate}
-            />
-            <JobCodes
-              projectRecordId={projectRecordId}
-              setProjectRecordId={setProjectRecordId}
-              jobcode3={jobcode3}
-              setJobcode3={setJobcode3}
-              userRecordID={userRecordID}
-            />
-            <Notes
-              handleNotesData={handleNotesData}
-              notes={notes}
-              setNotes={setNotes}
-            />
-            <Button />
-          </div>
-        </div>
-      </form>
+      <TimerProvider duration={duration}>
+        <h1>Clock in for {userName}</h1>
+        <ClockInForm
+        />
+      </TimerProvider>
     </>
   )
 }
