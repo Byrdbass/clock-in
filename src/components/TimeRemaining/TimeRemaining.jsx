@@ -3,7 +3,7 @@ import '../../App.css'
 import { useEffect } from 'react'
 
 export default function TimeRemaining({ remainingTimeText, setRemainingTimeText, duration }) {
-
+//EXPORT THIS TO HELPER FILE
     function beep() {
         var context = new AudioContext();
         var o = context.createOscillator();
