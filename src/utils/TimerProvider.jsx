@@ -7,17 +7,19 @@ export function useTimer() {
   return useContext(TimerContext);
 }
 
-export function TimerProvider({ children, duration }) {
+export function TimerProvider({ children, duration, clockIn }) {
   const [timers, setTimers] = useState({
     countUpTimer: "00:00:00",
     countDownTimer: duration,
   });
+  const [countUpIntervalId, setCountUpIntervalId] = useState(null);
+  const [countDownIntervalId, setCountDownIntervalId] = useState(null);
 
   //WORKING COUNTDOWN TIMER
   useEffect(() => {
     //parsing duration to dateTime obj
     const endTime = new Date(new Date().getTime() + duration * 60000);
-    let newCountDown;
+    // let newCountDown;
 
     const calculateTimeRemaining = () => {
       const now = new Date();
@@ -29,7 +31,7 @@ export function TimerProvider({ children, duration }) {
         const seconds = Math.floor((timeRemaining / 1000) % 60);
         return `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
       } else {
-        clearInterval(newCountDown);
+        // clearInterval(newCountDown);
         return "00:00:00";
       }
     };
@@ -39,18 +41,48 @@ export function TimerProvider({ children, duration }) {
       setTimers((prevTimers) => ({ ...prevTimers, countDownTimer: calculateTimeRemaining() }));
     };
 
+    const countDownInterval = setInterval(updateRemainingTime, 1000);
+    setCountDownIntervalId(countDownInterval);
+
     // clear interval before updateRemainingTime is run
-    clearInterval(newCountDown)
-    newCountDown = setInterval(updateRemainingTime, 1000)
+    // clearInterval(newCountDown)
+    // newCountDown = setInterval(updateRemainingTime, 1000)
 
     // clear the interval when component is rendered/unmounted AND when duration changes
-    return () => clearInterval(newCountDown)
-  }, [duration, setTimers])
+    return () => clearInterval(countDownInterval)
+  }, [duration])
 
+  useEffect(() => {
+    const startTime = new Date();
 
+    const calculateTimeClockedIn = () => {
+      const now = new Date();
+      const timeLogged = now - startTime
+      const hours = Math.floor((timeLogged / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeLogged / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeLogged / 1000) % 60);
+      return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    }
+
+    const updateTimeClockedIn = () => {
+      setTimers((prevTimers) => ({ ...prevTimers, countUpTimer: calculateTimeClockedIn() }))
+    }
+
+    const countUpInterval = setInterval(updateTimeClockedIn, 1000);
+    setCountUpIntervalId(countUpInterval);
+
+    // clearInterval(countUpInterval)
+    // countUpInterval = setInterval(updateTimeClockedIn, 1000)
+
+    return () => clearInterval(countUpInterval)
+  }, [clockIn])
 
   const resetTimers = () => {
-    setTimers({ countUpTimer: 0, countDownTimer: duration });
+    clearInterval(countUpIntervalId);
+    clearInterval(countDownIntervalId);
+    setTimers({ countUpTimer: "00:00:00", countDownTimer: duration });
+    setCountUpIntervalId(null);
+    setCountDownIntervalId(null);
   };
 
   return (

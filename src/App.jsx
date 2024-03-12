@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
-import { createTimeEntry } from './helpers/airtablePost'
 
 import ClockInForm from './pages/ClockInForm/ClockInForm'
-import { useTimer } from './utils/TimerProvider'
 import { TimerProvider } from './utils/TimerProvider'
 import DurationSlider from './components/DurationSlider/DurationSlider'
 
@@ -15,6 +13,7 @@ function App() {
   const [userName, setUserName] = useState(params.get('user'))
   const [hasError, setHasError] = useState(false)
   const [duration, setDuration] = useState(25);
+  const [clockIn, setClockIn] = useState(0)
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
 
   const handleDurationChange = (e) => {
@@ -24,12 +23,6 @@ function App() {
   function getDerivedStateFromError() {
     return setHasError(true)
   }
-
-  const intervalRef = useRef(null); // Ref to store the interval ID
-  const setIntervalIdInParent = (id) => {
-    intervalRef.current = id; // Function to update the ref with the interval ID
-  };
-
 
   useEffect(() => {
     const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
@@ -42,21 +35,21 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-  })
-
   return (
     <>
       <TimerProvider duration={duration}>
         <h1>Clock in for {userName}</h1>
         <DurationSlider
           duration={duration}
+          clockIn={clockIn}
           setDuration={setDuration}
           handleDurationChange={handleDurationChange}
         />
         <ClockInForm
           duration={duration}
           setDuration={setDuration}
+          clockIn={clockIn}
+          setClockIn={setClockIn}
           userRecordID={userRecordID}
           setUserRecordID={setUserRecordID}
           handleDurationChange={handleDurationChange}
