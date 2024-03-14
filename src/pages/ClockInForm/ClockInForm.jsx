@@ -9,6 +9,7 @@ import JobCodes from "../../components/JobCodes/JobCodes"
 import DurationSlider from "../../components/DurationSlider/DurationSlider"
 import DurationField from "../../components/DurationField/DurationField"
 import Timers from "../../components/Timers/Timers"
+import ModalConfirmation from "../../components/Modal-Confirmation/ModalConfirmation"
 
 import { createTimeEntry } from "../../helpers/airtablePost"
 import { useTimer } from "../../utils/TimerProvider"
@@ -22,6 +23,7 @@ export default function ClockInForm({ duration, setDuration, clockIn, setClockIn
   const [notes, setNotes] = useState("");
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   //post helper function for Airtable
   const submitTimeEntry = createTimeEntry
@@ -40,7 +42,9 @@ export default function ClockInForm({ duration, setDuration, clockIn, setClockIn
   const handleNotesData = (data) => {
     setNotes(data)
   }
-
+  const handleModalClose = () => {
+    return setShowModal(false)
+  }
 
   const { resetTimers } = useTimer()
 
@@ -66,6 +70,7 @@ export default function ClockInForm({ duration, setDuration, clockIn, setClockIn
     resetTimers()
     setDuration(25)
     setClockIn(0)
+    setShowModal(true)
   };
 
   const handleEnterPress = (event) => {
@@ -77,6 +82,10 @@ export default function ClockInForm({ duration, setDuration, clockIn, setClockIn
 
   return (
     <>
+    <ModalConfirmation 
+      showModal={showModal}
+      handleModalClose={handleModalClose}
+    />
       <form action="submit" onSubmit={handleSubmit} onKeyDown={handleEnterPress}>
         <div className="timerContainer">
           <StartTime
