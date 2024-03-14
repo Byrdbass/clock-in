@@ -14,7 +14,15 @@ import ModalConfirmation from "../../components/Modal-Confirmation/ModalConfirma
 import { createTimeEntry } from "../../helpers/airtablePost"
 import { useTimer } from "../../utils/TimerProvider"
 
-export default function ClockInForm({ duration, setDuration, clockIn, setClockIn, userRecordID, setUserRecordID, handleDurationChange }) {
+export default function ClockInForm({ 
+  duration, 
+  setDuration, 
+  clockIn, 
+  setClockIn, 
+  userName,
+  userRecordID, 
+  setUserRecordID, 
+  handleDurationChange }) {
   const params = new URLSearchParams(window.location.search);
 
   const [projectRecordId, setProjectRecordId] = useState('')
@@ -50,9 +58,8 @@ export default function ClockInForm({ duration, setDuration, clockIn, setClockIn
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    //HAVE THIS RETURN NEW RECORD ID - SET TO USESTATE VAR
     submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId)
-    setNotes("")
-    setDate("")
     const getCurrentTime = () => {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
@@ -63,12 +70,15 @@ export default function ClockInForm({ duration, setDuration, clockIn, setClockIn
       const today = new Date();
       return today.toISOString().split('T')[0];
     };
-    handleDateData(getTodaysDate())
-    setDate(getTodaysDate)
-    setStartTime(getCurrentTime())
-    handleStartTimeData(getCurrentTime())
+    //MOVE THESE TO WHEN MODAL CLOSES?
+    // handleDateData(getTodaysDate())
+    // setDate(getTodaysDate)
+    // setStartTime(getCurrentTime())
+    // handleStartTimeData(getCurrentTime())
+    // setDuration(25)
+    // setNotes("")
+    // setDate("")
     resetTimers()
-    setDuration(25)
     setClockIn(0)
     setShowModal(true)
   };
@@ -84,6 +94,13 @@ export default function ClockInForm({ duration, setDuration, clockIn, setClockIn
     <>
     <ModalConfirmation 
       showModal={showModal}
+      userName={userName}
+      date={date}
+      duration={duration}
+      startTime={startTime}
+      endTime={endTime}
+      jobcode3={jobcode3}
+      notes={notes}
       handleModalClose={handleModalClose}
     />
       <form action="submit" onSubmit={handleSubmit} onKeyDown={handleEnterPress}>

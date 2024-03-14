@@ -10,7 +10,10 @@ import DurationSlider from './components/DurationSlider/DurationSlider'
 
 function App() {
   const params = new URLSearchParams(window.location.search);
-  const [userName, setUserName] = useState(params.get('user'))
+  const [userName, setUserName] = useState(params.get('user')
+      //COMMENT OUT FOR PRODUCTION
+      || "test"
+  )
   const [hasError, setHasError] = useState(false)
   const [duration, setDuration] = useState(25);
   const [clockIn, setClockIn] = useState(0)
@@ -26,7 +29,9 @@ function App() {
 
   useEffect(() => {
     const prefillDuration = params.get('prefill_Timesheet_Duration_Minutes');
-    const prefillUserRecordID = params.get('userRecordID');
+    const prefillUserRecordID = params.get('userRecordID') 
+    //COMMENT OUT FOR PRODUCTION
+    || "recMhLRHRvxzjIHpn";
     if (prefillDuration) {
       setDuration(prefillDuration)
     }
@@ -46,6 +51,7 @@ function App() {
           handleDurationChange={handleDurationChange}
         />
         <ClockInForm
+          userName={userName}
           duration={duration}
           setDuration={setDuration}
           clockIn={clockIn}
