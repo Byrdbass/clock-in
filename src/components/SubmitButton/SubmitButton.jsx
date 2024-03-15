@@ -1,8 +1,17 @@
 import './SubmitButton.css'
+import { createTimeEntry } from '../../helpers/airtablePost';
+import { useTimer } from '../../utils/TimerProvider';
+
+
 
 export default function SubmitButton({
-
+    setShowModal, userName, userRecordID, startTime, endTime, duration, date, jobcode3, projectRecordId, notes,
 }) {
+
+    //post helper function for Airtable
+    const submitTimeEntry = createTimeEntry
+
+    const { resetTimers } = useTimer()
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -27,7 +36,7 @@ export default function SubmitButton({
         // setNotes("")
         // setDate("")
         resetTimers()
-        setClockIn(0)
+        // setClockIn(0)
         setShowModal(true)
     };
 
@@ -39,7 +48,7 @@ export default function SubmitButton({
 
     return (
         <>
-            <div className="inputSection" style={{ flexBasis: '100%', textAlign: 'center' }}>
+            <div className="button-div">
                 <button
                     type="button"
                     id="submitTimesheet"
