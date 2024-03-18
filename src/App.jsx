@@ -23,7 +23,7 @@ function App() {
   const params = new URLSearchParams(window.location.search);
   const [userName, setUserName] = useState(params.get('user')
     //COMMENT OUT FOR PRODUCTION
-    || "test"
+    || "Test User"
   )
   const [projectRecordId, setProjectRecordId] = useState('')
   const [hasError, setHasError] = useState(false)

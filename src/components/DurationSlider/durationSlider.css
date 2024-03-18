@@ -1,0 +1,36 @@
+.duration-outer-div {
+    width: 100%;
+    text-align: center;
+    margin: 0px 0px 13px 0px;
+}
+
+.duration-header {
+    font-size: 1.2rem;
+    text-align: center;
+    color: black;
+}
+
+.duration-input {
+    /* appearance: none; */
+    cursor: pointer;
+    margin: 0px;
+}
+/* FOR CUSTOM COLORING ETC */
+/* .duration-input::-webkit-slider-thumb{
+    width: 5px; 
+    height: 8px; 
+    background: purple; 
+    appearance: none;
+    cursor: pointer;
+}
+.duration-input::-webkit-slider-runnable-track {
+    cursor: pointer;
+    width: 60%;
+    height: 8.4px;
+    cursor: pointer;
+    background: #3071a9;
+} */
+
+.duration-value {
+    color: black;
+}

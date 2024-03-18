@@ -1,4 +1,5 @@
-import '../../App.css'
+// import '../../App.css'
+import './jobcodes.css'
 import { getProductJobCode3IDs, getTeammateRecord, getProductNameAndID } from '../../helpers/airTableGetJobcodes';
 import { useEffect, useState } from 'react'
 import JobSlider from '../JobSlider/JobSlider';
@@ -96,12 +97,12 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
     };
     
     return(
-        <div className="inputSection">
+        <div className="jobcodes-outer-div">
         <label className="header">Jobcode3</label>
           <JobSlider 
           handleJobCodeList={handleJobCodeList}
           />
-        <select name="jobcode3" id="jobcode3Field" 
+        <select name="jobcode3" className='jobcodes-dropdown'
         value={jobcode3}
         onChange={handleSelectChange}>
             {!loading ? jobCodes.map(( job, index ) => (

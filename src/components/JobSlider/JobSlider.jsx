@@ -17,7 +17,7 @@ export default function JobSlider({ handleJobCodeList }) {
     })
 
     return (
-        <div className={``}>
+        <div className="jobcode-slider-outer-div">
             <div className={`row toggle ${colorChange}`}>
                 <div className='col'>
                     <p>Recent Job Codes</p>

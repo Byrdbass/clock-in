@@ -5,7 +5,7 @@ body {
   text-align: center;
   font-size: 13px;
   margin: auto;
-  width: 80%;
+  width: 50%;
   padding: 20px;
   border: 1px solid #ebebeb;
   border-radius: 10px;
@@ -17,6 +17,7 @@ body {
 }
 .user-name {
   font-size: 2rem;
+  color: black;
   width: 100vw;
 }
 .form-section{
@@ -31,7 +32,7 @@ body {
 .header {
   font-size: 1.2em;
   color: #374151;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 .timer-value, .remainingTimeText, input, button {
   font-size: 2em;

@@ -1,19 +1,20 @@
-import '../../App.css'
+import "./durationSlider.css"
 
 export default function DurationSlider({ duration, setDuration, handleDurationChange}) {
     return (
-        <div className="inputSection" style={{ width: '100%', textAlign: 'center' }}>
-            <div className="header">Adjust Duration</div>
+        <div className="duration-outer-div">
+            <div className="duration-header">Adjust Duration</div>
             <input
                 type="range"
-                id="durationSlider"
+                className="duration-input"
                 min="1"
                 max="240"
                 value={duration}
                 onChange={handleDurationChange}
-                style={{ width: '60%' }}
+                // why is css file not reading this?
+                style={{ width: '60%', margin: '0px' }}
             />
-            <div className="sliderValue" id="sliderValue">{duration} Minutes</div>
+            <div className="duration-value">{duration} Minutes</div>
         </div>
     )
 }

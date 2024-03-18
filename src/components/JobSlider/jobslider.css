@@ -1,17 +1,23 @@
+.jobcode-slider-outer-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 p {
   font-size: 14px;
+  font-family: 'Inter' , sans-serif;
 }
 .row {
-  margin: 0px 0px 0px 0px;
   display: flex;
+  justify-content: center;
 }
 .toggle {
   border-style: outset;
-  width: 350px;
+  width: 80%;
   height: 3rem;
 }
 .col {
-  margin: 2px 5px 0px 20px;
+  margin: 2px 20px 0px 20px;
 }
 .dark {
   background-color: #243447;
