@@ -34,7 +34,6 @@ export default function ModalConfirmation({
     return (
         <>
             <div>
-
                 <div className='modal' onClick={handleModalClose}>
                     <div className='modal-card' onClick={e => e.stopPropagation()}></div>
                     {/* replace with a .svg of close button */}

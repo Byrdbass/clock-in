@@ -5,7 +5,17 @@ import { useTimer } from '../../utils/TimerProvider';
 
 
 export default function SubmitButton({
-    setShowModal, userName, userRecordID, startTime, endTime, duration, date, jobcode3, projectRecordId, notes,
+    setShowModal, 
+    userName, 
+    userRecordID, 
+    startTime, 
+    endTime, 
+    duration, 
+    date, 
+    jobcode3, 
+    projectRecordId, 
+    notes,
+    setShowError
 }) {
 
     //post helper function for Airtable
@@ -15,6 +25,10 @@ export default function SubmitButton({
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        if (notes === '') {
+            setShowError(true)
+            return
+        }
         //HAVE THIS RETURN NEW RECORD ID - SET TO USESTATE VAR
         submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId)
         const getCurrentTime = () => {

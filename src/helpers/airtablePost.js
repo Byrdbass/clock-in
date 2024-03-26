@@ -14,7 +14,7 @@ export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, 
             "fields": {
                 "Team_Member" : [ `${userRecordID}` ],
                 "Start_Time_Manual": `${date}T${startTime}`,
-                "Timesheet_Entry_Date": `${date}`,
+                "Date_of_Timesheet": `${date}`,
                 // "End_Time_Manual": `${endTime}`,
                 "Product_Jobcode3": [`${projectRecordId}`],
                 "Product_Jobcode3_fallback": `${jobcode3}`,

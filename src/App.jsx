@@ -16,6 +16,7 @@ import DateInput from './components/Date/DateInput'
 import JobCodes from './components/JobCodes/JobCodes'
 import Notes from './components/Notes/Notes'
 import SubmitButton from './components/SubmitButton/SubmitButton'
+import ModalError from './components/Modal-Error/ModalError'
 
 
 
@@ -26,7 +27,7 @@ function App() {
     || "Test User"
   )
   const [projectRecordId, setProjectRecordId] = useState('')
-  const [hasError, setHasError] = useState(false)
+  // const [hasError, setHasError] = useState(false)
   const [showModal, setShowModal] = useState(false);
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState("");
@@ -34,6 +35,7 @@ function App() {
   const [duration, setDuration] = useState(25);
   const [jobcode3, setJobcode3] = useState('');
   const [notes, setNotes] = useState("");
+  const [showError, setShowError] = useState(false)
 
   const [clockIn, setClockIn] = useState(0) //needed?
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
@@ -57,9 +59,12 @@ function App() {
   const handleNotesData = (data) => {
     setNotes(data)
   }
-  function getDerivedStateFromError() {
-    return setHasError(true)
+  const handleModalErrorClose = () => {
+    return setShowError(false)
   }
+  // function getDerivedStateFromError() {
+  //   return setHasError(true)
+  // }
 
 
   useEffect(() => {
@@ -75,8 +80,15 @@ function App() {
     }
   }, [])
 
+
   return (
     <>
+      <ModalError 
+      showError={showError}
+      date={date}
+      notes={notes}
+      handleModalErrorClose={handleModalErrorClose}
+      />
       <TimerProvider duration={duration}>
         <ModalConfirmation
           showModal={showModal}
@@ -145,6 +157,7 @@ function App() {
           jobcode3={jobcode3}
           projectRecordId={projectRecordId}
           notes={notes}
+          setShowError={setShowError}
           />
         </div>
       </TimerProvider>

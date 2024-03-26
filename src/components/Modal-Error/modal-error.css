@@ -1,0 +1,44 @@
+.modal {
+  position: fixed;
+  z-index: 1;
+  overflow: auto;
+  background-color: hsl(0, 0%, 0%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-card {
+  padding: 3rem;
+  background-color: hsl(0, 0%, 99.61%);
+  border-radius: 10px;
+  color: hsl(240, 100%, 3.92%);
+}
+
+.modal-content {
+  background-color: hsl(0, 0%, 99.61%);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid hsl(0, 0%, 53.33%);
+  width: 80%;
+}
+
+.close-button {
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.close-button .topright {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

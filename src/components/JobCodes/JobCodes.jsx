@@ -45,7 +45,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
               // getRecordFields()
                 const record = await getTeammateRecord(userRecordID);
                 //NEEDS FIX
-                let jobCodesArray = record.fields.Recently_Used_Jobcodes
+                let jobCodesArray = record.fields.Recently_Used_Jobcodes_nonTest
                 // if(Array.isArray(jobCodesArray)){
                 //   jobCodesArray.map((val, index) => {
                 //     // console.log(val)
