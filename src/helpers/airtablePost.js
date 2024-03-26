@@ -4,21 +4,30 @@ const timeSheetHoursBase = "apps7roRhnziLR2ou"
 
 let base = new Airtable({apiKey: `${apiKey}`}).base(`${timeSheetHoursBase}`)
 
-export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId) {
+export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration) {
     if (userRecordID === "" || userRecordID === null){
         userRecordID = "recz0x2YIqlsm6vQR"
     }
-    
+
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log(`${date}T${startTime}`)
+    let startDateTime = new Date(`${date}T${startTime}:00Z`); // UTC format
+    console.log(startDateTime)
+    const timezoneOffsetHours = startDateTime.getTimezoneOffset() / 60;
+    // startDateTime.setHours(startDateTime.getHours() - timezoneOffsetHours);
+    const startDateTimeString = startDateTime.setHours(startDateTime.getHours() + timezoneOffsetHours);
     base('Timesheet_Hours').create([
         {
             "fields": {
                 "Team_Member" : [ `${userRecordID}` ],
-                "Start_Time_Manual": `${date}T${startTime}`,
+                "Start_Time_Manual": startDateTimeString,
+                "Start_Time_Manual_test": `${startDateTime}`,
                 "Date_of_Timesheet": `${date}`,
                 // "End_Time_Manual": `${endTime}`,
                 "Product_Jobcode3": [`${projectRecordId}`],
                 "Product_Jobcode3_fallback": `${jobcode3}`,
                 "Notes": `${notes}`,
+                "Intended_Duration": duration
             }
         }
     ], function(err, records) {

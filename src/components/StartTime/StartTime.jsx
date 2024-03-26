@@ -3,19 +3,22 @@ import { useEffect } from 'react';
 
 export default function StartTime({ handleStartTimeData, startTime, setStartTime }) {
     
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const offset = new Date().getTimezoneOffset()
     useEffect(() => {
-        if (!startTime || startTime === ""){
+        // if (!startTime || startTime === ""){
             const currentTime = getCurrentTime();
             setStartTime(currentTime);
             handleStartTimeData(currentTime)
-        }
+        // }
     }, [])
 
     const getCurrentTime = () => {
         const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        return `${hours}:${minutes}`;
+        const options = { hour: '2-digit', minute: '2-digit', hour12: false };
+        const timeString = now.toLocaleTimeString('en-US', options);
+        return timeString.slice(0,5);
     };
 
 

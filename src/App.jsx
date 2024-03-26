@@ -21,6 +21,7 @@ import ModalError from './components/Modal-Error/ModalError'
 
 
 function App() {
+
   const params = new URLSearchParams(window.location.search);
   const [userName, setUserName] = useState(params.get('user')
     //COMMENT OUT FOR PRODUCTION
@@ -28,9 +29,16 @@ function App() {
   )
   const [projectRecordId, setProjectRecordId] = useState('')
   // const [hasError, setHasError] = useState(false)
+
+  const getCurrentTime = () => {
+    const now = new Date();
+    const options = { hour: '2-digit', minute: '2-digit', hour12: true };
+    const timeString = now.toLocaleTimeString('en-US', options);
+    return timeString;
+};
   const [showModal, setShowModal] = useState(false);
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState(getCurrentTime());
+  const [endTime, setEndTime] = useState('');
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState(25);
   const [jobcode3, setJobcode3] = useState('');
