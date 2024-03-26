@@ -1,6 +1,7 @@
 import './SubmitButton.css'
 import { createTimeEntry } from '../../helpers/airtablePost';
 import { useTimer } from '../../utils/TimerProvider';
+import { isFutureDate, isPastPayPeriod } from '../../helpers/isCurrentPayPeriod';
 
 
 
@@ -23,9 +24,15 @@ export default function SubmitButton({
 
     const { resetTimers } = useTimer()
 
+    //helper functions for incorrect date
+    const dateIsFuture = isFutureDate(date);
+    const dateIsPastPP = isPastPayPeriod(date);
+
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (notes === '') {
+        if (notes === '' || 
+        dateIsFuture || 
+        dateIsPastPP) {
             setShowError(true)
             return
         }

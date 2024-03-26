@@ -1,4 +1,5 @@
 import './modal-error.css'
+import { useEffect } from 'react';
 import { isFutureDate, isPastPayPeriod } from '../../helpers/isCurrentPayPeriod'
 
 export default function ModalError({
@@ -7,8 +8,12 @@ export default function ModalError({
     notes,
     handleModalErrorClose
 }) {
+
     const dateIsFuture = isFutureDate(date);
     const dateIsPastPP = isPastPayPeriod(date);
+useEffect(() => {
+
+},[date])
 
     if (!showError) return null
     return (
