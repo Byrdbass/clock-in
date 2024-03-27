@@ -19,7 +19,7 @@ export default function EndTime({ handleEndTimeData, endTime, setEndTime, startT
     return (
         <div className="timerSection">
             <div className="header">End Time</div>
-            <div id="endTime" className="timer-value">
+            <div id="endTime" className="timer-value" value={endTime}>
                 {endTime}
             </div>
         </div>

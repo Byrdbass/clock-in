@@ -7,6 +7,7 @@ import ClockInForm from './pages/ClockInForm/ClockInForm'
 import { TimerProvider } from './utils/TimerProvider'
 import { useTimer } from './utils/TimerProvider'
 import ModalConfirmation from './components/Modal-Confirmation/ModalConfirmation'
+import Navbar from './components/Navbar/Navbar'
 import StartTime from './components/StartTime/StartTime'
 import EndTime from './components/EndTime/EndTime'
 import Timers from './components/Timers/Timers'
@@ -109,6 +110,9 @@ function App() {
           notes={notes}
           handleModalClose={handleModalClose}
         />
+      <Navbar 
+        userRecordID={userRecordID}
+      />
         <div className='timerContainer'>
           <h1 className='user-name'>Clock in for {userName}</h1>
           <StartTime

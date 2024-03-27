@@ -16,6 +16,7 @@ export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, 
     const timezoneOffsetHours = startDateTime.getTimezoneOffset() / 60;
     // startDateTime.setHours(startDateTime.getHours() - timezoneOffsetHours);
     const startDateTimeString = startDateTime.setHours(startDateTime.getHours() + timezoneOffsetHours);
+    console.log(endTime)
     base('Timesheet_Hours').create([
         {
             "fields": {
@@ -23,7 +24,7 @@ export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, 
                 "Start_Time_Manual": startDateTimeString,
                 "Start_Time_Manual_test": `${startDateTime}`,
                 "Date_of_Timesheet": `${date}`,
-                // "End_Time_Manual": `${endTime}`,
+                "End_Time_Manual": `${endTime}`,
                 "Product_Jobcode3": [`${projectRecordId}`],
                 "Product_Jobcode3_fallback": `${jobcode3}`,
                 "Notes": `${notes}`,

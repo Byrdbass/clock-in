@@ -34,7 +34,7 @@ body {
   color: #374151;
   /* margin-bottom: 10px; */
 }
-.timer-value, .remainingTimeText, input, button {
+.timer-value, .remainingTimeText, input {
   font-size: 2em;
   color: #374151;
 }
