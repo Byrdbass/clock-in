@@ -4,6 +4,7 @@
     align-items: center;
     width: 100%;
     min-height: 32px;
+    max-height: 40px;
     position: fixed;
     padding: .5rem 15px .5rem 15px;
     background-color: hsl(0,0%,92.2%)
@@ -37,6 +38,8 @@
 .clock-in-btn{
     background-color: hsl(95.7,61.5%,41.8%);
     margin-right: 15px;
+    height: 2.4rem;
+    line-height: 2px;
 }
 
 .profile-photo {

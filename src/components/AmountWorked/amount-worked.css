@@ -1,0 +1,23 @@
+.data-container{
+    padding: 7rem 7rem 1rem 7rem;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.data-div{
+    text-align: center;
+}
+.data-label{
+    font-size: 11px;
+    line-height: 13.31px;
+    font-weight: 400;
+    color: hsl(0,0%,0%)    
+}
+.data-value{
+    font-size: 32px;
+    line-height: 38.73px;
+    font-weight: 600;
+    color: hsl(0,0%,0%)
+    
+}

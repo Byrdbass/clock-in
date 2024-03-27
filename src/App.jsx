@@ -8,6 +8,7 @@ import { TimerProvider } from './utils/TimerProvider'
 import { useTimer } from './utils/TimerProvider'
 import ModalConfirmation from './components/Modal-Confirmation/ModalConfirmation'
 import Navbar from './components/Navbar/Navbar'
+import AmountWorked from './components/AmountWorked/AmountWorked'
 import StartTime from './components/StartTime/StartTime'
 import EndTime from './components/EndTime/EndTime'
 import Timers from './components/Timers/Timers'
@@ -36,7 +37,7 @@ function App() {
     const options = { hour: '2-digit', minute: '2-digit', hour12: true };
     const timeString = now.toLocaleTimeString('en-US', options);
     return timeString;
-};
+  };
   const [showModal, setShowModal] = useState(false);
   const [startTime, setStartTime] = useState(getCurrentTime());
   const [endTime, setEndTime] = useState('');
@@ -92,11 +93,11 @@ function App() {
 
   return (
     <>
-      <ModalError 
-      showError={showError}
-      date={date}
-      notes={notes}
-      handleModalErrorClose={handleModalErrorClose}
+      <ModalError
+        showError={showError}
+        date={date}
+        notes={notes}
+        handleModalErrorClose={handleModalErrorClose}
       />
       <TimerProvider duration={duration}>
         <ModalConfirmation
@@ -110,9 +111,12 @@ function App() {
           notes={notes}
           handleModalClose={handleModalClose}
         />
-      <Navbar 
-        userRecordID={userRecordID}
-      />
+        <Navbar
+          userRecordID={userRecordID}
+        />
+        <AmountWorked
+          userRecordID={userRecordID}
+        />
         <div className='timerContainer'>
           <h1 className='user-name'>Clock in for {userName}</h1>
           <StartTime
@@ -129,12 +133,12 @@ function App() {
           />
           <Timers />
           <div className='form-section'>
-          <DurationSlider
-            duration={duration}
-            clockIn={clockIn}
-            setDuration={setDuration}
-            handleDurationChange={handleDurationChange}
-          />
+            <DurationSlider
+              duration={duration}
+              clockIn={clockIn}
+              setDuration={setDuration}
+              handleDurationChange={handleDurationChange}
+            />
             <DurationField
               duration={duration}
               setDuration={setDuration}
@@ -159,17 +163,17 @@ function App() {
             />
           </div>
           <SubmitButton
-          setShowModal={setShowModal}
-          userName={userName}
-          userRecordID={userRecordID}
-          startTime={startTime}
-          endTime={endTime}
-          duration={duration}
-          date={date}
-          jobcode3={jobcode3}
-          projectRecordId={projectRecordId}
-          notes={notes}
-          setShowError={setShowError}
+            setShowModal={setShowModal}
+            userName={userName}
+            userRecordID={userRecordID}
+            startTime={startTime}
+            endTime={endTime}
+            duration={duration}
+            date={date}
+            jobcode3={jobcode3}
+            projectRecordId={projectRecordId}
+            notes={notes}
+            setShowError={setShowError}
           />
         </div>
       </TimerProvider>
