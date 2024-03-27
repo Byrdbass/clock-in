@@ -1,4 +1,4 @@
-import '../../App.css';
+import './notes.css'
 export default function Notes({handleNotesData, notes, setNotes}) {
 
     const updateNotesData = (event) => {
@@ -8,10 +8,10 @@ export default function Notes({handleNotesData, notes, setNotes}) {
 
     return(
 
-        <div className="inputSection" style={{ flexBasis: '100%' }}>
-            <div className="header">Notes</div>
+        <div className="notes-outer-div" style={{ flexBasis: '100%' }}>
+            <div className="notes-inner-div">Notes</div>
             <textarea
-                id="notesField"
+                className="notes-field"
                 placeholder="Enter notes here"
                 style={{ height: '100px', fontSize: '1em' }}
                 value={notes}

@@ -10,7 +10,7 @@ export default function Timers({  }) {
   const { updateCountDownTimer } = useTimer()
     return (
         <>
-            <CountUp2 />
+            {/* <CountUp2 /> */}
             <CountDown updateCountDownTimer={updateCountDownTimer}/>
         </>
     )

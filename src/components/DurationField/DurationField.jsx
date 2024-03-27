@@ -1,8 +1,8 @@
-import '../../App.css'
+import './duration-field.css'
 
 export default function DurationField({ duration, setDuration, handleDurationChange }) {
     return (
-            <div className="inputSection">
+            <div className="outer-div">
                 <div className="header">Duration</div>
                 <input
                     type="text"

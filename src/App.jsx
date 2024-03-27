@@ -9,15 +9,19 @@ import { useTimer } from './utils/TimerProvider'
 import ModalConfirmation from './components/Modal-Confirmation/ModalConfirmation'
 import Navbar from './components/Navbar/Navbar'
 import AmountWorked from './components/AmountWorked/AmountWorked'
+import TimeSheetHeader from './components/TimeSheetHeader/TimeSheetHeader'
+import DateInput from './components/StartDate/DateInput'
 import StartTime from './components/StartTime/StartTime'
+import EndDate from './components/EndDate/EndDate'
 import EndTime from './components/EndTime/EndTime'
-import Timers from './components/Timers/Timers'
-import DurationSlider from './components/DurationSlider/DurationSlider'
-import DurationField from './components/DurationField/DurationField'
-import DateInput from './components/Date/DateInput'
 import JobCodes from './components/JobCodes/JobCodes'
 import Notes from './components/Notes/Notes'
 import SubmitButton from './components/SubmitButton/SubmitButton'
+
+import TimersHeader from './components/TimersHeader/TimersHeader'
+import Timers from './components/Timers/Timers'
+import DurationSlider from './components/DurationSlider/DurationSlider'
+import DurationField from './components/DurationField/DurationField'
 import ModalError from './components/Modal-Error/ModalError'
 
 
@@ -117,38 +121,33 @@ function App() {
         <AmountWorked
           userRecordID={userRecordID}
         />
-        <div className='timerContainer'>
-          <h1 className='user-name'>Clock in for {userName}</h1>
-          <StartTime
-            handleStartTimeData={handleStartTimeData}
-            startTime={startTime}
-            setStartTime={setStartTime}
-          />
-          <EndTime
-            startTime={startTime}
-            duration={duration}
-            handleEndTimeData={handleEndTimeData}
-            endTime={endTime}
-            setEndTime={setEndTime}
-          />
-          <Timers />
-          <div className='form-section'>
-            <DurationSlider
-              duration={duration}
-              clockIn={clockIn}
-              setDuration={setDuration}
-              handleDurationChange={handleDurationChange}
-            />
-            <DurationField
-              duration={duration}
-              setDuration={setDuration}
-              handleDurationChange={handleDurationChange}
-            />
-            <DateInput
-              handleDateData={handleDateData}
-              date={date}
-              setDate={setDate}
-            />
+        <div className='entry-and-timers'>
+          <div className='clock-in-container'>
+            <TimeSheetHeader />
+            <div className='start-container'>
+              <DateInput
+                handleDateData={handleDateData}
+                date={date}
+                setDate={setDate}
+              />
+              <StartTime
+                handleStartTimeData={handleStartTimeData}
+                startTime={startTime}
+                setStartTime={setStartTime}
+              />
+            </div>
+            <div className="end-container">
+              <EndDate
+
+              />
+              <EndTime
+                startTime={startTime}
+                duration={duration}
+                handleEndTimeData={handleEndTimeData}
+                endTime={endTime}
+                setEndTime={setEndTime}
+              />
+            </div>
             <JobCodes
               projectRecordId={projectRecordId}
               setProjectRecordId={setProjectRecordId}
@@ -161,20 +160,37 @@ function App() {
               notes={notes}
               setNotes={setNotes}
             />
+
+            <SubmitButton
+              setShowModal={setShowModal}
+              userName={userName}
+              userRecordID={userRecordID}
+              startTime={startTime}
+              endTime={endTime}
+              duration={duration}
+              date={date}
+              jobcode3={jobcode3}
+              projectRecordId={projectRecordId}
+              notes={notes}
+              setShowError={setShowError}
+            />
           </div>
-          <SubmitButton
-            setShowModal={setShowModal}
-            userName={userName}
-            userRecordID={userRecordID}
-            startTime={startTime}
-            endTime={endTime}
-            duration={duration}
-            date={date}
-            jobcode3={jobcode3}
-            projectRecordId={projectRecordId}
-            notes={notes}
-            setShowError={setShowError}
-          />
+          <div className='timer-container'>
+            <TimersHeader />
+            <DurationSlider
+              duration={duration}
+              clockIn={clockIn}
+              setDuration={setDuration}
+              handleDurationChange={handleDurationChange}
+            />
+            <DurationField
+              duration={duration}
+              setDuration={setDuration}
+              handleDurationChange={handleDurationChange}
+            />
+            <Timers />
+          </div>
+
         </div>
       </TimerProvider>
     </>

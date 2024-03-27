@@ -1,4 +1,4 @@
-import '../../App.css'
+import './dateInput.css'
 import { useEffect } from 'react';
 
 
@@ -23,7 +23,6 @@ export default function DateInput({ handleDateData, date, setDate }) {
             day: '2-digit',
             timeZone: `${tz}` 
         });
-        console.log(currentDay)
         return currentDay
       };
 
@@ -33,15 +32,15 @@ export default function DateInput({ handleDateData, date, setDate }) {
     }
 
     return (
-        <div className="inputSection">
-            <div className="header">Date</div>
+        <div className="date-outer-div">
+            <div className="date-inner-div">Start Date</div>
             <input
                 type="date"
-                id="dateField"
-                style={{ fontSize: '1em' }}
+                className='date-field'
                 value={date}
                 onChange={updateDateData}
             />
+            <button className='today-btn'>Today</button>
         </div>
     )
 

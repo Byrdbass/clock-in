@@ -1,0 +1,16 @@
+.notes-outer-div {
+    display: flex;
+    
+}
+
+.notes-inner-div{
+    font-size: 1.2em;
+    font-weight: 400;
+    color: hsl(0, 0%, 0%);
+    margin-right: 3rem;
+}
+
+.notes-field{
+    width: 340px;
+    height: 49px;
+}

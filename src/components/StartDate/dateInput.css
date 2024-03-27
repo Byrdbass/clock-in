@@ -1,0 +1,29 @@
+.date-outer-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.date-inner-div {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: hsl(0, 0%, 0%);
+    margin-right: 10px 
+}
+
+.date-field {
+  font-family: inherit;
+  font-size: 1em; 
+  padding: 5px;
+  border: 1px solid hsl(0, 0%, 0%); 
+  border-radius: 4px; 
+  width: 6rem; 
+  height: 1rem;
+  background: white; 
+}
+
+.today-btn{
+  background-color: inherit;
+  border: none;
+  color: green
+}

@@ -2,7 +2,7 @@ import "../../App.css"
 import { useState } from 'react'
 import SubmitButton from "../../components/SubmitButton/SubmitButton"
 import Notes from "../../components/Notes/Notes"
-import DateInput from "../../components/Date/DateInput"
+import DateInput from "../../components/StartDate/DateInput"
 import StartTime from "../../components/StartTime/StartTime"
 import EndTime from "../../components/EndTime/EndTime"
 import JobCodes from "../../components/JobCodes/JobCodes"
