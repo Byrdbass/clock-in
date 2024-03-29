@@ -12,7 +12,6 @@ p {
   justify-content: center;
 }
 .toggle {
-  border-style: outset;
   width: 80%;
   height: 3rem;
 }
@@ -20,13 +19,13 @@ p {
   margin: 2px 20px 0px 20px;
 }
 .dark {
-  background-color: #243447;
+  background-color: inherit;
   color: #bebebe;
 }
 
 /* Light Mode */
 .light {
-  background-color: rgba(174, 12, 224, 0.39);
+  background-color: inherit;
   color: black;
 }
 

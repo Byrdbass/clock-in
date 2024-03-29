@@ -1,4 +1,5 @@
 import './jobslider.css'
+// import './jobsliderRadio.css'
 import { useState, useEffect } from "react";
 
 export default function JobSlider({ handleJobCodeList }) {
@@ -11,16 +12,31 @@ export default function JobSlider({ handleJobCodeList }) {
         setColorChange(prevColor => prevColor === 'dark' ? 'light' : 'dark')
         // handleJobCodeList(jobCodeList)
     }
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         handleJobCodeList(jobCodeList)
     })
 
     return (
+        <>
+        {/* <div class="container">
+            <div class="switches-container">
+                <input type="radio" id="switchMonthly" name="switchPlan" value="Recent" checked="checked" />
+                <input type="radio" id="switchYearly" name="switchPlan" value="All" />
+                <label for="switchMonthly">Recent</label>
+                <label for="switchYearly">All</label>
+                <div class="switch-wrapper">
+                    <div class="switch">
+                        <div>Recent</div>
+                        <div>All</div>
+                    </div>
+                </div>
+            </div>
+        </div> */}
         <div className="jobcode-slider-outer-div">
             <div className={`row toggle ${colorChange}`}>
                 <div className='col'>
-                    <p>Recent Job Codes</p>
+                    Recent
                 </div>
                 <label className="switch" >
                     <input
@@ -31,9 +47,10 @@ export default function JobSlider({ handleJobCodeList }) {
                     <span className='slider round'></span>
                 </label>
                 <div className='col'>
-                    <p>All Job Codes</p>
+                    All
                 </div>
             </div>
         </div>
+        </>
     )
 }
