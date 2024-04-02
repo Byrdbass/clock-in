@@ -1,7 +1,5 @@
 .date-outer-div {
   position: relative;
-  display: inline-block;
-  margin-left: 2rem;
 }
 .date-inner-div {
     font-size: 1.2em;
@@ -14,8 +12,7 @@
   margin-right: 10px;
   font-family: inherit;
   padding: 5px;
-  width: 88px; 
-  height: 20px;
+  height: 1rem;
   background: white; 
 }
 
@@ -28,5 +25,8 @@
   background: url('../../assets/date-time-icons/calendar-24px-rounded-edges.png') no-repeat center;
   width: 24px;
   height: 24px;
+}
 
+.date-outer-div:hover .calendar-icon{
+  background: url('../../assets/date-time-icons/calendar-24px-rounded-edges.gif') no-repeat center;
 }

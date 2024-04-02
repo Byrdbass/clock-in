@@ -13,6 +13,7 @@ import TimeSheetHeader from './components/TimeSheetHeader/TimeSheetHeader'
 import CountUp2 from './components/CountUp/CountUp2'
 import DateInput from './components/StartDate/DateInput'
 import StartTime from './components/StartTime/StartTime'
+import ClockInBtn from './components/ClockInBtn/ClockInBtn'
 import EndDate from './components/EndDate/EndDate'
 import EndTime from './components/EndTime/EndTime'
 import JobCodes from './components/JobCodes/JobCodes'
@@ -136,6 +137,8 @@ function App() {
                 handleStartTimeData={handleStartTimeData}
                 startTime={startTime}
                 setStartTime={setStartTime}
+              />
+              <ClockInBtn 
               />
             </div>
             <JobCodes

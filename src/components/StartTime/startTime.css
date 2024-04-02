@@ -1,0 +1,25 @@
+.timerSection{
+    position: relative;
+}
+
+.startTimeInput {
+    margin-right: 10px;
+    font-family: inherit;
+    height: 1rem;
+    background: white; 
+  }
+  
+  
+  .clock-icon {
+    position: absolute;
+    left: 102px;
+    pointer-events: none;
+    padding-left: 10px;
+    background: url('../../assets/date-time-icons/clock-24px-simple.png') no-repeat center;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .timerSection:hover .clock-icon{
+    background: url('../../assets/date-time-icons/clock-24px-simple.gif') no-repeat center;
+  }

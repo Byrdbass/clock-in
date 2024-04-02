@@ -1,4 +1,5 @@
-import '../../App.css'
+// import '../../App.css'
+import './startTime.css'
 import { useEffect } from 'react';
 
 export default function StartTime({ handleStartTimeData, startTime, setStartTime }) {
@@ -30,13 +31,22 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
 
     return (
         <div className="timerSection">
-            <div className="header">Start Time</div>
+            <div className="header"></div>
             <input
                 type="time"
-                className="editableTime startTimeInput"
+                className="startTimeInput"
                 value={startTime}
                 onChange={updateStartTime}
+                style={{
+                    border: 'none',
+                    backgroundColor: 'inherit',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    lineHeight: '16.94px',
+                    width: '5.98rem'
+                }}
             />
+            <span className="clock-icon"></span>
         </div>
     )
 }

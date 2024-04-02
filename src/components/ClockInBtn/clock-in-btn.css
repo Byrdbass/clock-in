@@ -1,0 +1,7 @@
+.clock-in {
+    width: 9rem;
+    height: 2.5rem;
+    border-radius: 3px;
+    border: none;
+    background-color: hsl(131.67, 30.51%, 46.27%);
+}
