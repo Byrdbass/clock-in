@@ -22,7 +22,7 @@ export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, 
             "fields": {
                 "Team_Member" : [ `${userRecordID}` ],
                 "Start_Time_Manual": startDateTimeString,
-                "Start_Time_Manual_test": `${startDateTime}`,
+                // "Start_Time_Manual_test": `${startDateTime}`,
                 "Date_of_Timesheet": `${date}`,
                 // "End_Time_Manual": `${endTime}`,
                 "Product_Jobcode3": [`${projectRecordId}`],
