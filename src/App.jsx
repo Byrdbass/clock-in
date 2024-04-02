@@ -142,6 +142,7 @@ function App() {
                 setStartTime={setStartTime}
               />
               <ClockInBtn 
+              handleStartTime={handleStartTimeData}
               />
             </div>
             <JobCodes
@@ -159,7 +160,6 @@ function App() {
 
             <div className="end-container">
               <EndDate
-
                 endDate={endDate}
               />
               <EndTime

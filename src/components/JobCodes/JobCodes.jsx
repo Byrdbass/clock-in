@@ -41,33 +41,12 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
     }
   }, [jobcode3, allProductNames, projectRecordId]);
 
-  // useEffect(() => {
-  //   const fetchProductJobCode3Record = async(projectRecordId) => {
-  //     const projRecordFields = await getProductJobCode3IDs(projectRecordId)
-  //     // console.log(projectRecordId.ID)
-  //     // console.log(projectRecordId.fields.Product_Name)
-  //   }
-  //   fetchProductJobCode3Record(); 
-  // }, [jobCodes])
 
   useEffect(() => {
     const fetchTeammateRecord = async () => {
       try {
-        // getRecordFields()
         const record = await getTeammateRecord(userRecordID);
-        //NEEDS FIX
         let jobCodesArray = record.fields.Recently_Used_Jobcodes_nonTest
-        // if(Array.isArray(jobCodesArray)){
-        //   jobCodesArray.map((val, index) => {
-        //     // console.log(val)
-        //     if (val.indexOf(',')> -1){
-        //       let newVal = val.split(',')
-        //       newVal.forEach(x => {jobCodesArray.push(x)})
-        //       jobCodesArray.splice(index, 1)
-        //     }
-        //   })
-        // }
-        // console.log(jobCodesArray)
         setRecentJobCodes(jobCodesArray)
         setAllJobCodes(record.fields.All_Assigned_Jobcodes_txt)
         setJobCodes(recentJobCodes) //setting initial drop down to recent job codes
