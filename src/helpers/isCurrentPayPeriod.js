@@ -22,9 +22,9 @@ export function isPastPayPeriod(dateData) {
         payPeriodEndDate = Number(new Date(currentYear, currentMonth, 0).getDate()); 
     }
 
-    console.log(`now ${currentDate}, ${currentMonth}, ${currentYear}`)
-    console.log(`dateData ${dateDataPlus1}, ${dateDataMonth}, ${dateDataYear}`)
-    console.log(payPeriodStartDate, payPeriodEndDate)
+    // console.log(`now ${currentDate}, ${currentMonth}, ${currentYear}`)
+    // console.log(`dateData ${dateDataPlus1}, ${dateDataMonth}, ${dateDataYear}`)
+    // console.log(payPeriodStartDate, payPeriodEndDate)
 
     if (dateDataYear < currentYear || 
         (dateDataYear === currentYear && dateDataMonth < currentMonth) || 
