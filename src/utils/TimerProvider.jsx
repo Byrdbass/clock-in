@@ -9,7 +9,7 @@ export function useTimer() {
 
 export function TimerProvider({ children, duration, clockIn }) {
   const [timers, setTimers] = useState({
-    countUpTimer: "00:00:00",
+    countUpTimer: "0:00:00",
     countDownTimer: duration,
   });
   const [countUpIntervalId, setCountUpIntervalId] = useState(null);
@@ -61,7 +61,7 @@ export function TimerProvider({ children, duration, clockIn }) {
       const hours = Math.floor((timeLogged / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((timeLogged / (1000 * 60)) % 60);
       const seconds = Math.floor((timeLogged / 1000) % 60);
-      return `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+      return `${hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
     }
 
     const updateTimeClockedIn = () => {
@@ -80,7 +80,7 @@ export function TimerProvider({ children, duration, clockIn }) {
   const resetTimers = () => {
     clearInterval(countUpIntervalId);
     clearInterval(countDownIntervalId);
-    setTimers({ countUpTimer: "00:00:00", countDownTimer: duration });
+    setTimers({ countUpTimer: "0:00:00", countDownTimer: duration });
     setCountUpIntervalId(null);
     setCountDownIntervalId(null);
   };

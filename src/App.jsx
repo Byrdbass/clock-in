@@ -10,6 +10,7 @@ import ModalConfirmation from './components/Modal-Confirmation/ModalConfirmation
 import Navbar from './components/Navbar/Navbar'
 import AmountWorked from './components/AmountWorked/AmountWorked'
 import TimeSheetHeader from './components/TimeSheetHeader/TimeSheetHeader'
+import CountUp2 from './components/CountUp/CountUp2'
 import DateInput from './components/StartDate/DateInput'
 import StartTime from './components/StartTime/StartTime'
 import EndDate from './components/EndDate/EndDate'
@@ -123,7 +124,8 @@ function App() {
         />
         <div className='entry-and-timers'>
           <div className='clock-in-container'>
-            <TimeSheetHeader />
+            {/* <TimeSheetHeader /> */}
+            <CountUp2 />
             <div className='start-container'>
               <DateInput
                 handleDateData={handleDateData}
@@ -175,7 +177,7 @@ function App() {
               setShowError={setShowError}
             />
           </div>
-          <div className='timer-container'>
+          {/* <div className='timer-container'>
             <TimersHeader />
             <DurationSlider
               duration={duration}
@@ -189,7 +191,7 @@ function App() {
               handleDurationChange={handleDurationChange}
             />
             <Timers />
-          </div>
+          </div> */}
 
         </div>
       </TimerProvider>

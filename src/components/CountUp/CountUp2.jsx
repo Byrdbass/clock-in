@@ -7,7 +7,7 @@ export default function CountUp2(){
 
     return (
         <div className="timerSection">
-            <div className="header">Elapsed Time</div>
+            <div className="header">CURRENT DURATION</div>
             <div id="countUpTimer" className="timer-value">{timers.countUpTimer}</div>
         </div>
     );
