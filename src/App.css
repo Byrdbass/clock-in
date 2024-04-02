@@ -10,7 +10,7 @@ body {
   text-align: center;
   /* font-size: 13px; */
   width: 50%;
-  padding: 20px;
+  padding: 20px 30px;
   border: 1px solid #ebebeb;
   border-radius: 10px;
   box-sizing: border-box;
@@ -20,29 +20,16 @@ body {
 
 .start-container{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
-  margin: 20px 75px ;
+  margin: 20px 0px ;
 }
 .end-container{
   display: flex;
 }
 
-.form-section{
-  width: 100vw;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.timerSection, .inputSection {
-  flex-basis: 45%;
 
-}
-.header {
-  font-size: 1.2em;
-  color: #374151;
-  /* margin-bottom: 10px; */
-}
 .timer-value, .remainingTimeText, input {
   font-size: 2em;
   color: #374151;
@@ -50,7 +37,6 @@ body {
 input[type="time"], input[type="text"], textarea {
   font-family: inherit;
   font-size: 11px; 
-  padding: 5px;
   border: 2px solid #4d72ac; 
   border-radius: 4px; 
   width: 6rem; 

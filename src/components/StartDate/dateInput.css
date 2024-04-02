@@ -4,14 +4,13 @@
 .date-inner-div {
     font-size: 1.2em;
     font-weight: 400;
-    color: hsl(0, 0%, 0%);
+    color: hwb(0 0% 100%);
     margin-right: 10px 
 }
 
 .date-field {
   margin-right: 10px;
   font-family: inherit;
-  padding: 5px;
   height: 1rem;
   background: white; 
 }

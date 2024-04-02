@@ -79,7 +79,10 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
 
   return (
     <div className="jobcodes-outer-div">
+      <div className="jobcodes-inner-div">
       <label className="jobcodes-header">Bill to</label>
+      *
+      </div>
       <select name="jobcode3" className='jobcodes-dropdown'
         value={jobcode3}
         onChange={handleSelectChange}>

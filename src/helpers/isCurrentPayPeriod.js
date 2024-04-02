@@ -15,16 +15,16 @@ export function isPastPayPeriod(dateData) {
     let payPeriodStartDate, payPeriodEndDate;
 
     if (currentDate <= 15) {
-        payPeriodStartDate = new Date(currentYear, currentMonth, 1); 
-        payPeriodEndDate = new Date(currentYear, currentMonth, 15); 
+        payPeriodStartDate = Number(new Date(currentYear, currentMonth, 1.).getDate()); 
+        payPeriodEndDate = Number(new Date(currentYear, currentMonth, 15).getDate()); 
     } else {
         payPeriodStartDate = Number(new Date(currentYear, currentMonth, 16).getDate()); 
         payPeriodEndDate = Number(new Date(currentYear, currentMonth, 0).getDate()); 
     }
 
-    // console.log(`now ${currentDate}, ${currentMonth}, ${currentYear}`)
-    // console.log(`dateData ${dateDataPlus1}, ${dateDataMonth}, ${dateDataYear}`)
-    // console.log(payPeriodStartDate, payPeriodEndDate)
+    console.log(`now ${currentDate}, ${currentMonth}, ${currentYear}`)
+    console.log(`dateData ${dateDataPlus1}, ${dateDataMonth}, ${dateDataYear}`)
+    console.log(payPeriodStartDate, payPeriodEndDate)
 
     if (dateDataYear < currentYear || 
         (dateDataYear === currentYear && dateDataMonth < currentMonth) || 
