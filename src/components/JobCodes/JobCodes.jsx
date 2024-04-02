@@ -14,7 +14,18 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
   // const [projectRecordId, setProjectRecordId] = useState('')
   const [projectRecordIds, setProjectRecordIds] = useState([])
   const [projectRecordName, setProjectRecordName] = useState('')
-  const [jobCodeIndex, setJobCodeIndex] = useState(0)
+  const [jobCodeIndex, setJobCodeIndex] = useState(0);
+
+  const handleJobCodeList = (prevOption) => {
+    setJobCodes(prevOption === "Recent Job Codes" ? recentJobCodes : allJobCodes)
+  }  
+  
+  const handleSelectChange = (e) => {
+    const selectedIndex = e.target.selectedIndex;
+    setJobCodeIndex(selectedIndex);
+    setJobcode3(e.target.value.trim());
+    // console.log(jobcode3, jobCodeIndex, projectRecordId)
+  };
 
   useEffect(() => {
     const entry = Object.entries(allProductNames).find(([key, value]) => key.trim() === jobcode3.trim());
@@ -85,16 +96,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
     fetchproductNameAndID()
   }, [loading])
 
-  const handleJobCodeList = (prevOption) => {
-    setJobCodes(prevOption === "Recent Job Codes" ? recentJobCodes : allJobCodes)
-  }
 
-  const handleSelectChange = (e) => {
-    const selectedIndex = e.target.selectedIndex;
-    setJobCodeIndex(selectedIndex);
-    setJobcode3(e.target.value.trim());
-    // console.log(jobcode3, jobCodeIndex, projectRecordId)
-  };
 
   return (
     <div className="jobcodes-outer-div">

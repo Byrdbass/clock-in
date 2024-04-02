@@ -45,8 +45,9 @@ function App() {
     return timeString;
   };
   const [showModal, setShowModal] = useState(false);
-  const [startTime, setStartTime] = useState(getCurrentTime());
+  const [startDate, setStartTime] = useState(getCurrentTime());
   const [endTime, setEndTime] = useState('');
+  const [endDate, setEndDate] = useState();
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState(25);
   const [jobcode3, setJobcode3] = useState('');
@@ -65,6 +66,9 @@ function App() {
   }
   const handleEndTimeData = (data) => {
     setEndTime(data)
+  }
+  const handleEndDateData = (data) => {
+    setEndDate(data)
   }
   const handleDateData = (data) => {
     setDate(data)
@@ -96,7 +100,6 @@ function App() {
     }
   }, [])
 
-
   return (
     <>
       <ModalError
@@ -111,7 +114,7 @@ function App() {
           userName={userName}
           date={date}
           duration={duration}
-          startTime={startTime}
+          startTime={startDate}
           endTime={endTime}
           jobcode3={jobcode3}
           notes={notes}
@@ -135,7 +138,7 @@ function App() {
               />
               <StartTime
                 handleStartTimeData={handleStartTimeData}
-                startTime={startTime}
+                startTime={startDate}
                 setStartTime={setStartTime}
               />
               <ClockInBtn 
@@ -157,19 +160,23 @@ function App() {
             <div className="end-container">
               <EndDate
 
+                endDate={endDate}
               />
               <EndTime
-                startTime={startTime}
+                startTime={startDate}
                 duration={duration}
                 handleEndTimeData={handleEndTimeData}
+                handleEndDateData={handleEndDateData}
                 endTime={endTime}
                 setEndTime={setEndTime}
+                endDate={endDate}
+                setEndDate={setEndDate}
               />
             <SubmitButton
               setShowModal={setShowModal}
               userName={userName}
               userRecordID={userRecordID}
-              startTime={startTime}
+              startTime={startDate}
               endTime={endTime}
               duration={duration}
               date={date}

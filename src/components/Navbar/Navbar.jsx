@@ -23,7 +23,7 @@ export default function Navbar({ userRecordID }) {
         if (userRecordID) {
             fetchTeammatePhoto();
         }
-    }, [userRecordID, loading])
+    }, [userRecordID, loading, photoUrl])
     return (
         <>
             <div className='navbar-outer-div'>

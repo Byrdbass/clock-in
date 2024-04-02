@@ -1,24 +1,33 @@
 import '../../App.css'
 import { useEffect } from 'react';
 
-export default function EndTime({ handleEndTimeData, endTime, setEndTime, startTime, duration }) {
+export default function EndTime({
+    handleEndTimeData,
+    handleEndDateData,
+    endTime,
+    setEndTime,
+    startTime,
+    duration,
+    setEndDate }) {
 
     useEffect(() => {
         if (startTime && duration) {
-            const [startHours, startMinutes] = startTime.split(":").map(Number);
+            const [startHours, startMinutes, startSeconds] = startTime.split(":").map(Number);
             const startDate = new Date();
-            startDate.setHours(startHours, startMinutes, 0, 0)
-            const endDate = new Date(startDate.getTime() + duration * 60000);
-            const newEndTime = endDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+            startDate.setHours(startHours, startMinutes, startSeconds, 0)
+            const newDate = new Date(startDate.getTime() + duration * 60000);
+            setEndDate(newDate)
+            handleEndDateData(newDate)
+            const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
             setEndTime(newEndTime)
             handleEndTimeData(newEndTime)
         }
-    }, [startTime, duration, setEndTime, handleEndTimeData])
+    }, [startTime, duration, setEndTime, handleEndTimeData, handleEndDateData, setEndDate])
 
 
     return (
         <div className="timerSection">
-            <div className="header">End Time</div>
+            <div className="header"></div>
             <div id="endTime" className="timer-value" value={endTime}>
                 {endTime}
             </div>

@@ -76,7 +76,7 @@ export default function SubmitButton({
                     onClick={handleSubmit} onKeyDown={handleEnterPress}
                     className='submit-button'
                 >
-                    Submit Timesheet
+                    CLOCK OUT
                 </button>
 
             </div>

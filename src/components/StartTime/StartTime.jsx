@@ -17,9 +17,9 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
 
     const getCurrentTime = () => {
         const now = new Date();
-        const options = { hour: '2-digit', minute: '2-digit', hour12: false };
+        const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
         const timeString = now.toLocaleTimeString('en-US', options);
-        return timeString.slice(0,5);
+        return timeString;
     };
 
 
@@ -43,7 +43,7 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
                     fontSize: '14px',
                     fontWeight: '400',
                     lineHeight: '16.94px',
-                    width: '5.98rem'
+                    width: '7.5rem'
                 }}
             />
             <span className="clock-icon"></span>

@@ -15,7 +15,7 @@ export default function JobSlider({ handleJobCodeList }) {
 
     useEffect(() => {
         handleJobCodeList(jobCodeList)
-    })
+    }, [handleJobCodeList, jobCodeList, colorChange, handleToggle])
 
     return (
         <>
