@@ -33,14 +33,22 @@ export default function DateInput({ handleDateData, date, setDate }) {
 
     return (
         <div className="date-outer-div">
-            <div className="date-inner-div">Start Date</div>
+            <div className="date-inner-div"></div>
             <input
                 type="date"
                 className='date-field'
                 value={date}
                 onChange={updateDateData}
+                style={{
+                    border:'none', 
+                    backgroundColor: 'inherit',
+                    fontSize: '14px',
+                    fontWeight: '400',
+                    lineHeight: '16.94px',
+                    width: '7rem'
+                }}
             />
-            <button className='today-btn'>Today</button>
+            <span className="calendar-icon"></span>
         </div>
     )
 

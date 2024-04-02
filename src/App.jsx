@@ -138,18 +138,6 @@ function App() {
                 setStartTime={setStartTime}
               />
             </div>
-            <div className="end-container">
-              <EndDate
-
-              />
-              <EndTime
-                startTime={startTime}
-                duration={duration}
-                handleEndTimeData={handleEndTimeData}
-                endTime={endTime}
-                setEndTime={setEndTime}
-              />
-            </div>
             <JobCodes
               projectRecordId={projectRecordId}
               setProjectRecordId={setProjectRecordId}
@@ -163,6 +151,17 @@ function App() {
               setNotes={setNotes}
             />
 
+            <div className="end-container">
+              <EndDate
+
+              />
+              <EndTime
+                startTime={startTime}
+                duration={duration}
+                handleEndTimeData={handleEndTimeData}
+                endTime={endTime}
+                setEndTime={setEndTime}
+              />
             <SubmitButton
               setShowModal={setShowModal}
               userName={userName}
@@ -176,6 +175,7 @@ function App() {
               notes={notes}
               setShowError={setShowError}
             />
+            </div>
           </div>
           {/* <div className='timer-container'>
             <TimersHeader />
