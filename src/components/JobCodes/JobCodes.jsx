@@ -18,8 +18,8 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
 
   const handleJobCodeList = (prevOption) => {
     setJobCodes(prevOption === "Recent Job Codes" ? recentJobCodes : allJobCodes)
-  }  
-  
+  }
+
   const handleSelectChange = (e) => {
     const selectedIndex = e.target.selectedIndex;
     setJobCodeIndex(selectedIndex);
@@ -79,9 +79,8 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
 
   return (
     <div className="jobcodes-outer-div">
-      <div className="jobcodes-inner-div">
-      <label className="jobcodes-header">Bill to</label>
-      *
+      <div className="jobcodes-inner-div">Bill to
+        <div className="required-star">*</div>
       </div>
       <select name="jobcode3" className='jobcodes-dropdown'
         value={jobcode3}

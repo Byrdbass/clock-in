@@ -12,7 +12,7 @@ export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, 
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     console.log(`${date}T${startTime}`)
     let startDateTime = new Date(`${date}T${startTime}:00Z`); // UTC format
-    // THIS IS AN "INVALID DATE"
+    // TODO: THIS IS AN "INVALID DATE" due to seconds being added?
     console.log(startDateTime)
     const timezoneOffsetHours = startDateTime.getTimezoneOffset() / 60;
     // startDateTime.setHours(startDateTime.getHours() - timezoneOffsetHours);

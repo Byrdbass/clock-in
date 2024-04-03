@@ -6,17 +6,18 @@
 }
 
 .jobcodes-inner-div {
-    color: red;
-}
-
-
-.jobcodes-header {
+    display: flex;
     white-space: nowrap;
     font-size: 11px;
     font-weight: 400;
     line-height: 13.31px;
     color: hsl(0, 0%, 0%);
     padding-right: 25px;
+}
+
+
+.required-star {
+    color: red; 
     /* margin-right: 3rem; */
 }
 
