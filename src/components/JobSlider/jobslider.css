@@ -1,79 +1,138 @@
 .jobcode-slider-outer-div {
   width: 100%;
+  height: 60%;
   display: flex;
   justify-content: center;
-}
-p {
-  font-size: 14px;
-  font-family: 'Inter' , sans-serif;
-}
-.row {
-  display: flex;
-  justify-content: center;
-}
-.toggle {
-  width: 80%;
-  height: 3rem;
-}
-.col {
-  margin: 2px 20px 0px 20px;
-}
-.dark {
-  background-color: inherit;
-  color: #bebebe;
 }
 
-/* Light Mode */
-.light {
-  background-color: inherit;
-  color: black;
+.toggle {
+  /* height: 3rem; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  margin: 2px 20px 0px 20px;
 }
 
 .switch {
   position: relative;
-  display: inline-block;
-  margin: 6px 0px 0px 0px;
-  width: 60px;
-  height: 34px;
+  display: flex;
+  align-items: center;
+  width: 82.64px;
+  height: .2rem;
+  border-radius: 15px;
 }
 /* Hide default HTML checkbox */
 .switch input {
+  /* display: flex;
+  align-items: center; */
+  /* z-index: 2; */
   opacity: 0;
   width: 0;
   height: 0;
 }
 
 .slider {
-  position: absolute;
+  /* z-index: 1; */
+  /* position: absolute; */
+  /* height: 2.3rem; */
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
   cursor: pointer;
+  height: 22px;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #111;
+  background-color: hsl(217.5, 4%, 39.22%);
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  border-radius: 34px;
 }
 
+.firstChoice{
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12.1px;
+  width: 39.26px;
+  padding: 3px 2px;
+  /* vertical-align: middle; */
+  /* height: 22px; */
+  /* margin-bottom: 10px; */
+
+  color: black;
+  border: solid 2px hsl(217.5, 4%, 39.22%);
+  border-radius: 15px;
+  background-color: hsl(0, 0%, 100%)
+}
+
+.secondChoice{
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  font-size: 10px;
+  font-weight: 400;
+  width: 39.26px;
+  padding: 3px 2px;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  background-color: hsl(217.5, 4%, 39.22%);
+}
+
+.light .firstChoice{
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  padding: 2.89px 2px;
+  line-height: normal;
+  color: white;
+  border: none;
+  border-radius: none;
+  background-color: hsl(217.5, 4%, 39.22%);
+}
+
+.input:checked + .light {
+  /* -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(24px); */
+}
+
+.light .secondChoice{
+  padding: 3px 2px;
+  line-height: 12.1px;
+  color: black;
+  border: solid 2px hsl(217.5, 4%, 39.22%);
+  border-radius: 15px;
+  background-color: hsl(0, 0%, 100%)
+}
+
+
+
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
+  /* position: absolute; */
+  /* content: "Recent"; */
+  /* height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
   -webkit-transition: 0.4s;
-  transition: 0.4s;
+  transition: 0.4s; */
+}
+.light .slider:before{
+  /* content: "All" */
+}
+
+.slider:after{
+  /* content: "All" */
 }
 
 input:checked + .slider {
-  background-color: rgb(29, 128, 210);
+  /* background-color: rgb(29, 128, 210); */
 }
 
-input:focus + .slider {
+/* input:focus + .slider {
   box-shadow: 0 0 1px rgb(29, 128, 210);
-}
+} */
 
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
@@ -81,11 +140,5 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
 
-.slider.round:before {
-  border-radius: 50%;
-}
+

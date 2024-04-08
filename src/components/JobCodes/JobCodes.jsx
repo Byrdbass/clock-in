@@ -108,21 +108,21 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
         ) : <option>Loading...</option>}
       </select>
       <div className="jobcode-slider-outer-div">
-        <div className={`row toggle ${colorChange}`}>
-          <div className='col'>
-            Recent
-          </div>
-          <label className="switch" >
+        <div className={`toggle`}>
+          <label className={`switch ${colorChange}`} >
+            
             <input
               type="checkbox"
               checked={jobCodeList === 'All Job Codes'}
               onChange={handleToggle}
             />
-            <span className='slider round'></span>
+            <span className='slider'>
+            <div className="firstChoice">Recent</div>
+            <div className="secondChoice">All</div>
+            </span>
           </label>
-          <div className='col'>
-            All
-          </div>
+
+
         </div>
       </div>
       {/* <JobSlider

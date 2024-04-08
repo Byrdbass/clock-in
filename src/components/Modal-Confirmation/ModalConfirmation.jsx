@@ -38,7 +38,7 @@ export default function ModalConfirmation({
                     <div className='modal-card' onClick={e => e.stopPropagation()}></div>
                     {/* replace with a .svg of close button */}
                     <div className='modal-content'onClick={e => e.stopPropagation()}>
-                        <p className='row'>Name: {userName}</p>
+                        <p className='modal-row'>Name: {userName}</p>
                         <p>Date: {date} </p>
                         <p>Duration: {duration} </p>
                         <p>Start Time: {newStartTime} </p>

@@ -17,6 +17,7 @@ import ClockInBtn from './components/ClockInBtn/ClockInBtn'
 import EndDate from './components/EndDate/EndDate'
 import EndTime from './components/EndTime/EndTime'
 import JobCodes from './components/JobCodes/JobCodes'
+import TaskID from './components/TaskID/TaskID'
 import Notes from './components/Notes/Notes'
 import SubmitButton from './components/SubmitButton/SubmitButton'
 
@@ -51,6 +52,7 @@ function App() {
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState(25);
   const [jobcode3, setJobcode3] = useState('');
+  const [taskNum, setTaskNum] = useState();
   const [notes, setNotes] = useState("");
   const [showError, setShowError] = useState(false)
 
@@ -141,22 +143,28 @@ function App() {
                 startTime={startDate}
                 setStartTime={setStartTime}
               />
-              <ClockInBtn 
-              handleStartTime={handleStartTimeData}
+              <ClockInBtn
+                handleStartTime={handleStartTimeData}
               />
             </div>
-            <JobCodes
-              projectRecordId={projectRecordId}
-              setProjectRecordId={setProjectRecordId}
-              jobcode3={jobcode3}
-              setJobcode3={setJobcode3}
-              userRecordID={userRecordID}
-            />
-            <Notes
-              handleNotesData={handleNotesData}
-              notes={notes}
-              setNotes={setNotes}
-            />
+            <div className="input-fields">
+              <JobCodes
+                projectRecordId={projectRecordId}
+                setProjectRecordId={setProjectRecordId}
+                jobcode3={jobcode3}
+                setJobcode3={setJobcode3}
+                userRecordID={userRecordID}
+              />
+              <TaskID
+                taskNum={taskNum}
+                setTaskNum={setTaskNum}
+              />
+              <Notes
+                handleNotesData={handleNotesData}
+                notes={notes}
+                setNotes={setNotes}
+              />
+            </div>
 
             <div className="end-container">
               <EndDate
@@ -172,19 +180,19 @@ function App() {
                 endDate={endDate}
                 setEndDate={setEndDate}
               />
-            <SubmitButton
-              setShowModal={setShowModal}
-              userName={userName}
-              userRecordID={userRecordID}
-              startTime={startDate}
-              endTime={endTime}
-              duration={duration}
-              date={date}
-              jobcode3={jobcode3}
-              projectRecordId={projectRecordId}
-              notes={notes}
-              setShowError={setShowError}
-            />
+              <SubmitButton
+                setShowModal={setShowModal}
+                userName={userName}
+                userRecordID={userRecordID}
+                startTime={startDate}
+                endTime={endTime}
+                duration={duration}
+                date={date}
+                jobcode3={jobcode3}
+                projectRecordId={projectRecordId}
+                notes={notes}
+                setShowError={setShowError}
+              />
             </div>
           </div>
           {/* <div className='timer-container'>

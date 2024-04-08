@@ -19,7 +19,7 @@ export default function JobSlider({ handleJobCodeList }) {
 
     return (
         <>
-        {/* <div class="container">
+            {/* <div class="container">
             <div class="switches-container">
                 <input type="radio" id="switchMonthly" name="switchPlan" value="Recent" checked="checked" />
                 <input type="radio" id="switchYearly" name="switchPlan" value="All" />
@@ -33,24 +33,27 @@ export default function JobSlider({ handleJobCodeList }) {
                 </div>
             </div>
         </div> */}
-        <div className="jobcode-slider-outer-div">
-            <div className={`row toggle ${colorChange}`}>
-                <div className='col'>
-                    Recent
-                </div>
-                <label className="switch" >
-                    <input
-                        type="checkbox"
-                        checked={jobCodeList === 'All Job Codes' }
-                        onChange={handleToggle} 
-                    />
-                    <span className='slider round'></span>
-                </label>
-                <div className='col'>
-                    All
+            <div className="jobcode-slider-outer-div">
+                <div className={`row toggle ${colorChange}`}>
+                    <label className="switch" >
+                        <span className='slider round'>
+                        <input
+                            type="checkbox"
+                            checked={jobCodeList === 'All Job Codes'}
+                            onChange={handleToggle}
+                        >
+                            <div className=''>
+                                Recent
+                            </div>
+                            <div className=''>
+                                All
+                            </div>
+
+                        </input>
+                            </span>
+                    </label>
                 </div>
             </div>
-        </div>
         </>
     )
 }
