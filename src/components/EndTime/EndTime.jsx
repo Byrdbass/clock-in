@@ -8,6 +8,7 @@ export default function EndTime({
     setEndTime,
     startTime,
     duration,
+    endDate,
     setEndDate }) {
 
     useEffect(() => {
@@ -16,13 +17,17 @@ export default function EndTime({
             const startDate = new Date();
             startDate.setHours(startHours, startMinutes, startSeconds, 0)
             const newDate = new Date(startDate.getTime() + duration * 60000);
-            setEndDate(newDate)
-            handleEndDateData(newDate)
+            if(newDate.getTime() !== endDate?.getTime()){
+                setEndDate(newDate)
+                handleEndDateData(newDate)
+            }
             const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
-            setEndTime(newEndTime)
-            handleEndTimeData(newEndTime)
+            if (newEndTime !== endTime){
+                setEndTime(newEndTime)
+                handleEndTimeData(newEndTime)
+            }
         }
-    }, [startTime, handleEndTimeData, handleEndDateData])
+    }, [startTime, duration, endTime, endDate])
 
 
     return (
