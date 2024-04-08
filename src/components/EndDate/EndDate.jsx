@@ -9,7 +9,7 @@ export default function EndDate({ endDate }) {
         const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
         const newDateStr = new Date(endDate)
         setEndDateStr(newDateStr.toLocaleDateString('en-US', options))
-    },[endDate])
+    },[])
     return (
         <>
             <div className="date-outer-div">

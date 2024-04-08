@@ -22,7 +22,7 @@ export default function EndTime({
             setEndTime(newEndTime)
             handleEndTimeData(newEndTime)
         }
-    }, [startTime, duration, setEndTime, handleEndTimeData, handleEndDateData, setEndDate])
+    }, [startTime, handleEndTimeData, handleEndDateData])
 
 
     return (
