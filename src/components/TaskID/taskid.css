@@ -6,9 +6,19 @@
     font-size: 11px;
     font-weight: 400;
     line-height: 13.31px;
+    color: black;
 }
 
 .task-input{
-    /* margin-right: 200px; */
+    margin-left: 5px;
+    width: 81.61px;
+    background-color: hsl(0, 0%, 100%);
+    border: 1px solid black;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13.31px;
+    text-align: center;
+    border-radius: 3px;
+    color: black;
 }
 

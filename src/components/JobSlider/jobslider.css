@@ -52,7 +52,7 @@
 
 .firstChoice{
   font-size: 10px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 12.1px;
   width: 39.26px;
   padding: 3px 2px;
@@ -83,6 +83,7 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
   padding: 2.89px 2px;
+  font-weight: 400;
   line-height: normal;
   color: white;
   border: none;
@@ -99,6 +100,7 @@
 .light .secondChoice{
   padding: 3px 2px;
   line-height: 12.1px;
+  font-weight: 700;
   color: black;
   border: solid 2px hsl(217.5, 4%, 39.22%);
   border-radius: 15px;

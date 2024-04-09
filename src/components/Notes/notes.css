@@ -22,5 +22,7 @@
 .notes-field{
     width: 340px;
     height: 49px;
-    /* margin-right: 120px; */
+    margin-left: 4px;
+    border-radius: 3px;
+    border: 1px solid black;
 }

@@ -14,7 +14,7 @@ export default function Notes({handleNotesData, notes, setNotes}) {
             </div>
             <textarea
                 className="notes-field"
-                placeholder="Enter notes here"
+                // placeholder="Enter notes here"
                 style={{ height: '100px', fontSize: '1em' }}
                 value={notes}
                 onChange={updateNotesData}
