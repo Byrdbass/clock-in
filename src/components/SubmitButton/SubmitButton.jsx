@@ -69,10 +69,10 @@ export default function SubmitButton({
 
     return (
         <>
-            <div className="button-div">
+            <div className="button-outer-div">
                 <button
                     type="button"
-                    id="submitTimesheet"
+                    // id="submitTimesheet"
                     onClick={handleSubmit} onKeyDown={handleEnterPress}
                     className='submit-button'
                 >

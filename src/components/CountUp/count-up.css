@@ -1,18 +1,45 @@
-.outer-div{
-    border-bottom: 1px solid hsl(210, 4.69%, 25.1%);
+.countUp-outer-div{
+    position: fixed;
+    top: 0px;
+    left: 0px;
     height: 2.7rem;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center; */
+    border-bottom: 1px solid hsl(210, 4.69%, 25.1%);
 }
 
-.header{
+.countUp-header{
+    position: fixed;
+    top: 191px;
+    left: 419px;
+    width: 133px;
+    height: 23px;
     font-weight: 400;
     font-size: 11px;
     line-height: 13.31px;
     text-align: center;
+    color: hsl(0, 0%, 0%);
 }
 
-.timer-value{
+.countUp-timer-value{
+    position: fixed;
+    top: 217px;
+    left: 395px;
+    width: 178px;
+    height: 23px;
     font-weight: 500;
     font-size: 32px;
     line-height: 38.73px;
     text-align: center;
+    color: hsl(0, 0%, 0%);
+}
+
+.countUp-border{
+    position: fixed;
+    width: 450px;
+    top: 261px;
+    left: 261px;
+    border-bottom: 1px solid hsl(210, 4.69%, 25.1%);
 }

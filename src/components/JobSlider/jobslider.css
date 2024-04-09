@@ -1,6 +1,9 @@
 .jobcode-slider-outer-div {
-  width: 100%;
-  height: 60%;
+  position: fixed;
+  width: 82.64px;
+  height: 22px;
+  top: 331px;
+  left: 574.36px;
   display: flex;
   justify-content: center;
 }
@@ -10,7 +13,6 @@
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  margin: 2px 20px 0px 20px;
 }
 
 .switch {
@@ -18,7 +20,7 @@
   display: flex;
   align-items: center;
   width: 82.64px;
-  height: .2rem;
+  height: 0.2rem;
   border-radius: 15px;
 }
 /* Hide default HTML checkbox */
@@ -50,7 +52,7 @@
   border-radius: 34px;
 }
 
-.firstChoice{
+.firstChoice {
   font-size: 10px;
   font-weight: 700;
   line-height: 12.1px;
@@ -63,10 +65,10 @@
   color: black;
   border: solid 2px hsl(217.5, 4%, 39.22%);
   border-radius: 15px;
-  background-color: hsl(0, 0%, 100%)
+  background-color: hsl(0, 0%, 100%);
 }
 
-.secondChoice{
+.secondChoice {
   -webkit-transition: 0.4s;
   transition: 0.4s;
   font-size: 10px;
@@ -79,7 +81,7 @@
   background-color: hsl(217.5, 4%, 39.22%);
 }
 
-.light .firstChoice{
+.light .firstChoice {
   -webkit-transition: 0.4s;
   transition: 0.4s;
   padding: 2.89px 2px;
@@ -97,17 +99,15 @@
   transform: translateX(24px); */
 }
 
-.light .secondChoice{
+.light .secondChoice {
   padding: 3px 2px;
   line-height: 12.1px;
   font-weight: 700;
   color: black;
   border: solid 2px hsl(217.5, 4%, 39.22%);
   border-radius: 15px;
-  background-color: hsl(0, 0%, 100%)
+  background-color: hsl(0, 0%, 100%);
 }
-
-
 
 .slider:before {
   /* position: absolute; */
@@ -120,11 +120,11 @@
   -webkit-transition: 0.4s;
   transition: 0.4s; */
 }
-.light .slider:before{
+.light .slider:before {
   /* content: "All" */
 }
 
-.slider:after{
+.slider:after {
   /* content: "All" */
 }
 
@@ -141,6 +141,3 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
-
-

@@ -13,11 +13,11 @@ export default function EndDate({ endDate }) {
     }, [endDate])
     return (
         <>
-            <div className="date-outer-div">
-                <div className="date-inner-div">
+            <div className="endDate-outer-div">
+                <div className="endDate-inner-div">
                     {endDateStr}
-                    <div className="cal-icon">
-
+                    <div className="cal-icon-div">
+                        {/* <span className="cal-icon"></span> */}
                         <img className="cal-icon" src={calendarIcon} alt="calendar" />
                     </div>
                 </div>

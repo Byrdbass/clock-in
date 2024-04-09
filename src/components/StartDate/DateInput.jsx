@@ -32,8 +32,7 @@ export default function DateInput({ handleDateData, date, setDate }) {
     }
 
     return (
-        <div className="date-outer-div">
-            <div className="date-inner-div"></div>
+        <div className="startDate-outer-div">
             <input
                 type="date"
                 className='date-field'

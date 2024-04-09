@@ -1,4 +1,5 @@
-import '../../App.css'
+import './endTime.css'
+import clockIcon from '../../assets/date-time-icons/clock-24px-simple.png'
 import { useEffect } from 'react';
 
 export default function EndTime({
@@ -17,12 +18,12 @@ export default function EndTime({
             const startDate = new Date();
             startDate.setHours(startHours, startMinutes, startSeconds, 0)
             const newDate = new Date(startDate.getTime() + duration * 60000);
-            if(newDate.getTime() !== endDate?.getTime()){
+            if (newDate.getTime() !== endDate?.getTime()) {
                 setEndDate(newDate)
                 handleEndDateData(newDate)
             }
             const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })
-            if (newEndTime !== endTime){
+            if (newEndTime !== endTime) {
                 setEndTime(newEndTime)
                 handleEndTimeData(newEndTime)
             }
@@ -31,10 +32,12 @@ export default function EndTime({
 
 
     return (
-        <div className="timerSection">
-            <div className="header"></div>
-            <div id="endTime" className="timer-value" value={endTime}>
-                {endTime}
+        <div className="endTime-outer-div">
+            <div className="endTime-inner-div">
+                    {endTime}
+                <div className="endTime-icon-div">
+                    <img src={clockIcon} alt="clock" className="endTime-icon" />
+                </div>
             </div>
         </div>
     )

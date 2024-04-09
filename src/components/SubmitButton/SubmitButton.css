@@ -1,16 +1,20 @@
-.button-div{
-    /* same as "inputSection in App.css */
-    width: 50%;
-    margin: 0 auto;
-    
-    flex-basis: '100%';
-    text-align: center;
+.button-outer-div {
 }
 
 .submit-button {
-    background-color: hsl(4.86, 80.43%, 63.92%);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
+  background-color: hsl(4.86, 80.43%, 63.92%);
+  border-radius: 3px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  width: 114px;
+  height: 25px;
+  top: 475px;
+  left: 558px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16.94px;
+  text-align: center;
 }

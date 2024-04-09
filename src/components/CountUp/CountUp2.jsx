@@ -5,9 +5,10 @@ export default function CountUp2(){
     const { timers } = useTimer()
 
     return (
-        <div className="outer-div">
-            <div className="header">CURRENT DURATION</div>
-            <div id="countUpTimer" className="timer-value">{timers.countUpTimer}</div>
+        <div className="countUp-outer-div">
+            <div className="countUp-header">CURRENT DURATION</div>
+            <div className="countUp-timer-value">{timers.countUpTimer}</div>
+            <div className="countUp-border"></div>
         </div>
     );
 }

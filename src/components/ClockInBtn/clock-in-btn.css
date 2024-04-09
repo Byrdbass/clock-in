@@ -1,7 +1,15 @@
 .clock-in {
-    width: 9rem;
-    height: 2.5rem;
-    border-radius: 3px;
-    border: none;
-    background-color: hsl(131.67, 30.51%, 46.27%);
+  position: fixed;
+  width: 114px;
+  height: 25px;
+  top: 283px;
+  left: 558px;
+  border-radius: 3px;
+  border: 1px solid hsl(131.67, 30.51%, 46.27%);
+  background-color: hsl(131.67, 30.51%, 46.27%);
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16.94px;
+  text-align: center;
 }

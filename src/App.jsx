@@ -9,6 +9,7 @@ import { useTimer } from './utils/TimerProvider'
 import ModalConfirmation from './components/Modal-Confirmation/ModalConfirmation'
 import Navbar from './components/Navbar/Navbar'
 import AmountWorked from './components/AmountWorked/AmountWorked'
+import OptTimer from './components/OptTimer/OptTimer'
 import TimeSheetHeader from './components/TimeSheetHeader/TimeSheetHeader'
 import CountUp2 from './components/CountUp/CountUp2'
 import DateInput from './components/StartDate/DateInput'
@@ -128,6 +129,7 @@ function App() {
         <AmountWorked
           userRecordID={userRecordID}
         />
+        <OptTimer />
         <div className='entry-and-timers'>
           <div className='clock-in-container'>
             {/* <TimeSheetHeader /> */}

@@ -9,7 +9,11 @@ body {
 .clock-in-container {
   text-align: center;
   /* font-size: 13px; */
-  width: 50%;
+  position: fixed;
+  top: 175px;
+  left: 240px;
+  width: 491px;
+  height: 346px;
   padding: 20px 30px;
   border: 1px solid #ebebeb;
   border-radius: 10px;
@@ -23,7 +27,6 @@ body {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  margin: 20px 0px ;
 }
 .input-fields{
   display: flex;
@@ -31,7 +34,12 @@ body {
   align-items: flex-start;
 }
 .end-container{
+
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  /* margin: 20px 0px ; */
 }
 
 

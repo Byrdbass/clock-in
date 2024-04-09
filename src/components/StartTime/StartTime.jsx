@@ -30,8 +30,7 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
 
 
     return (
-        <div className="timerSection">
-            <div className="header"></div>
+        <div className="startTime-outer-div">
             <input
                 type="time"
                 className="startTimeInput"
@@ -43,7 +42,7 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
                     fontSize: '14px',
                     fontWeight: '400',
                     lineHeight: '16.94px',
-                    width: '7.5rem'
+                    width: '7.3rem'
                 }}
             />
             <span className="clock-icon"></span>

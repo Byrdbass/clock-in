@@ -1,25 +1,29 @@
-.timerSection{
-    position: relative;
+.startTime-outer-div {
+  position: fixed;
+  width: 95px;
+  height: 20px;
+  top: 284px;
+  left: 433px;
 }
 
 .startTimeInput {
-    margin-right: 10px;
-    font-family: inherit;
-    height: 1rem;
-    background: white; 
-  }
-  
-  
-  .clock-icon {
-    position: absolute;
-    left: 112px;
-    pointer-events: none;
-    padding-left: 10px;
-    background: url('../../assets/date-time-icons/clock-24px-simple.png') no-repeat center;
-    width: 24px;
-    height: 24px;
-  }
-  
-  .timerSection:hover .clock-icon{
-    background: url('../../assets/date-time-icons/clock-24px-simple.gif') no-repeat center;
-  }
+  font-family: inherit;
+  background: inherit;
+}
+
+.clock-icon {
+  position: fixed;
+  top: 284px;
+  left: 517px;
+  pointer-events: none;
+  padding-left: 10px;
+  background: url("../../assets/date-time-icons/clock-24px-simple.png")
+    no-repeat center;
+  width: 24px;
+  height: 24px;
+}
+
+.startTime-outer-div:hover .clock-icon {
+  background: url("../../assets/date-time-icons/clock-24px-simple.gif")
+    no-repeat center;
+}

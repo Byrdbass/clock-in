@@ -34,20 +34,20 @@ export default function AmountWorked({ userRecordID }) {
         <>
             <div className="data-container">
                 <div className="data-div">
-                    <div className="data-label">DAY</div>
-                    <div className="data-value">
+                    <div className="data-label day-label">DAY</div>
+                    <div className="data-value day-value">
                         {!loading ? dayAmount : " -:-- "}
                     </div>
                 </div>
                 <div className="data-div">
-                    <div className="data-label">WEEK</div>
-                    <div className="data-value">
+                    <div className="data-label week-label">WEEK</div>
+                    <div className="data-value week-value">
                         {!loading ? weekAmount : " -:-- "}
                     </div>
                 </div>
                 <div className="data-div">
-                    <div className="data-label">PAY PERIOD</div>
-                    <div className="data-value">
+                    <div className="data-label pp-label">PAY PERIOD</div>
+                    <div className="data-value pp-value">
                         {!loading ? payPeriodAmount : " -:-- "}
                     </div>
                 </div>

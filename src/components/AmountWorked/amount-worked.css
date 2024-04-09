@@ -1,23 +1,64 @@
-.data-container{
-    padding: 7rem 7rem 1rem 7rem;
-    display: flex;
-    justify-content: space-around;
-    
+.data-container {
+  display: flex;
+  justify-content: space-around;
 }
 
-.data-div{
-    text-align: center;
+.data-div {
+  text-align: center;
 }
-.data-label{
-    font-size: 11px;
-    line-height: 13.31px;
-    font-weight: 400;
-    color: hsl(0,0%,0%)    
+.data-label {
+  font-size: 11px;
+  line-height: 13.31px;
+  font-weight: 400;
+  color: hsl(0, 0%, 0%);
 }
-.data-value{
-    font-size: 32px;
-    line-height: 38.73px;
-    font-weight: 600;
-    color: hsl(0,0%,0%)
-    
+.data-value {
+  font-size: 32px;
+  line-height: 38.73px;
+  font-weight: 600;
+  color: hsl(0, 0%, 0%);
+}
+
+.day-label {
+  position: fixed;
+  width: 88px;
+  height: 23px;
+  top: 60px;
+  left: 256px;
+}
+.day-value {
+  position: fixed;
+  width: 88px;
+  height: 23px;
+  top: 77px;
+  left: 256px;
+}
+.week-label {
+  position: fixed;
+  top: 60px;
+  width: 88px;
+  height: 23px;
+  left: 440px;
+}
+.week-value {
+  position: fixed;
+  top: 77px;
+  width: 88px;
+  height: 23px;
+  left: 440px;
+}
+.pp-label {
+  position: fixed;
+  top: 60px;
+  width: 88px;
+  height: 23px;
+  left: 624px;
+}
+
+.pp-value {
+  position: fixed;
+  top: 77px;
+  width: 88px;
+  height: 23px;
+  left: 624px;
 }

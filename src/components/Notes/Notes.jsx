@@ -8,14 +8,13 @@ export default function Notes({handleNotesData, notes, setNotes}) {
 
     return(
 
-        <div className="notes-outer-div" style={{ flexBasis: '100%' }}>
+        <div className="notes-outer-div">
             <div className="notes-inner-div">Notes
-                <div className='required-star'>*</div>
+                <div className='notes-required-star'>*</div>
             </div>
             <textarea
                 className="notes-field"
                 // placeholder="Enter notes here"
-                style={{ height: '100px', fontSize: '1em' }}
                 value={notes}
                 onChange={updateNotesData}
             ></textarea>

@@ -1,31 +1,31 @@
-.date-outer-div {
-  position: relative;
-}
-.date-inner-div {
-    font-size: 1.2em;
-    font-weight: 400;
-    color: hwb(0 0% 100%);
-    margin-right: 10px 
+.startDate-outer-div {
+  position: fixed;
+  width: 104.14px;
+  height: 20px;
+  top: 284px;
+  left: 310px;
 }
 
 .date-field {
   margin-right: 10px;
   font-family: inherit;
   height: 1rem;
-  background: white; 
+  background: inherit;
 }
-
 
 .calendar-icon {
-  position: absolute;
-  left: 95px;
-  pointer-events: none;
-  padding-left: 10px;
-  background: url('../../assets/date-time-icons/calendar-24px-rounded-edges.png') no-repeat center;
+  position: fixed;
   width: 24px;
   height: 24px;
+  top: 284px;
+  left: 399px;
+  pointer-events: none;
+  background: url("../../assets/date-time-icons/calendar-24px-rounded-edges.png")
+    no-repeat center;
 }
 
-.date-outer-div:hover .calendar-icon{
-  background: url('../../assets/date-time-icons/calendar-24px-rounded-edges.gif') no-repeat center;
+.startDate-outer-div:hover .calendar-icon {
+  background: url("../../assets/date-time-icons/calendar-24px-rounded-edges.gif")
+    no-repeat center;
+    background-color: inherit;
 }
