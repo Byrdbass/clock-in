@@ -4,7 +4,7 @@ const timeSheetHoursBase = "apps7roRhnziLR2ou"
 
 let base = new Airtable({apiKey: `${apiKey}`}).base(`${timeSheetHoursBase}`)
 
-export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration) {
+export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate) {
     if (userRecordID === "" || userRecordID === null){
         userRecordID = "recz0x2YIqlsm6vQR"
     }
@@ -17,7 +17,8 @@ export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, 
     const timezoneOffsetHours = startDateTime.getTimezoneOffset() / 60;
     // startDateTime.setHours(startDateTime.getHours() - timezoneOffsetHours);
     const startDateTimeString = startDateTime.setHours(startDateTime.getHours() + timezoneOffsetHours);
-    console.log(endTime)
+    let endDateTime = new Date(`${endDate}T${endTime}:00Z`); // UTC format
+    const endDateTimeString = endDateTime.setHours(endDateTime.getHours() + timezoneOffsetHours);
     base('Timesheet_Hours').create([
         {
             "fields": {
@@ -25,7 +26,7 @@ export function createTimeEntry(notes, date, startTime, jobcode3, userRecordID, 
                 "Start_Time_Manual": startDateTimeString,
                 // "Start_Time_Manual_test": `${startDateTime}`,
                 "Date_of_Timesheet": `${date}`,
-                // "End_Time_Manual": `${endTime}`,
+                "End_Time_Manual": endDateTimeString,
                 "Product_Jobcode3": [`${projectRecordId}`],
                 "Product_Jobcode3_fallback": `${jobcode3}`,
                 "Notes": `${notes}`,

@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  width: 100px;
+  /* width: 100px; */
   height: 20px;
   top: 478px;
   left: 428px;
@@ -17,17 +17,36 @@
   font-weight: 400;
   color: hsl(0, 0%, 0%);
   position: fixed;
-height: 20px;
-top: 478px;
-left: 428px;
+  height: 20px;
+  top: 478px;
+  left: 428px;
+}
+
+.endTimeInput{
+  font-size: 14px;
+  font-weight: 400;
+  color: hsl(0, 0%, 0%);
 }
 
 .endTime-icon-div {
-  display: flex;
+  position: fixed;
+  width: 24px;
+height: 24px;
+top: 478px;
+left: 516px;
+  pointer-events: none;
+  background: url("../../assets/date-time-icons/clock-24px-simple.png")
+  no-repeat center;
 }
 
 .endTime-icon {
   margin-left: 5px;
   height: 18px;
   width: 19px;
+  pointer-events: none;
+}
+
+.endTime-outer-div:hover .endTime-icon-div{
+  background: url("../../assets/date-time-icons/clock-24px-simple.gif")
+  no-repeat center;
 }

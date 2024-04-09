@@ -1,9 +1,11 @@
 import './clock-in-btn.css'
 import { useEffect } from 'react';
+import { useTimer } from '../../utils/TimerProvider';
 
 export default function ClockInBtn({ handleStartTime }) {
 
     // WHEN BUTTON CLICKED RESET TIMERS
+    const {resetTimers} = useTimer()
     const getCurrentTime = () => {
         const now = new Date();
         const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
@@ -13,6 +15,7 @@ export default function ClockInBtn({ handleStartTime }) {
 
     const updateStartTime = () => {
         handleStartTime(getCurrentTime);
+        resetTimers();
     }
 
     return(

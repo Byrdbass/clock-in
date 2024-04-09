@@ -26,6 +26,7 @@
     padding: 20px;
     border: 1px solid hsl(0, 0%, 53.33%);
     width: 80%; 
+    color: hsl(0, 0%, 0%);
   }
 
   .close-button {
@@ -39,7 +40,8 @@
     background-color: inherit;
     text-align: center;
     cursor: pointer;
-    white-space: nowrap
+    white-space: nowrap;
+    color: hsl(0, 0%, 0%);
   }
 
   .close-button .topright {
@@ -50,4 +52,5 @@
 
   .modal-row {
     font-size: large;
+    color: hsl(0, 0%, 0%);
   }

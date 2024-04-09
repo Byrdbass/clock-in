@@ -175,6 +175,7 @@ function App() {
               <EndTime
                 startTime={startDate}
                 duration={duration}
+                setDuration={setDuration}
                 handleEndTimeData={handleEndTimeData}
                 handleEndDateData={handleEndDateData}
                 endTime={endTime}
@@ -187,6 +188,7 @@ function App() {
                 userName={userName}
                 userRecordID={userRecordID}
                 startTime={startDate}
+                endDate={endDate}
                 endTime={endTime}
                 duration={duration}
                 date={date}

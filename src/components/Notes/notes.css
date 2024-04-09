@@ -25,6 +25,7 @@
 }
 
 .notes-field {
+  color: hsl(0, 0%, 0%);
   position: fixed;
   top: 389px;
   left: 363.62px;

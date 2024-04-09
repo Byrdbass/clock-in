@@ -10,6 +10,7 @@ export default function SubmitButton({
     userName, 
     userRecordID, 
     startTime, 
+    endDate,
     endTime, 
     duration, 
     date, 
@@ -37,7 +38,7 @@ export default function SubmitButton({
             return
         }
         //HAVE THIS RETURN NEW RECORD ID - SET TO USESTATE VAR
-        submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration)
+        submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate)
         const getCurrentTime = () => {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
