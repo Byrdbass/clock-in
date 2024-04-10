@@ -7,11 +7,11 @@
   color: white;
   border: none;
   cursor: pointer;
-  /* position: fixed; */
+  position: relative;
   width: 114px;
   height: 25px;
-  top: 475px;
-  left: 558px;
+  top: 0px;
+  left: 40px;
   font-family: Inter;
   font-size: 14px;
   font-weight: 700;
