@@ -54,6 +54,9 @@ export default function EndTime({
 
     return (
         <div className="endTime-outer-div">
+            <div className="endTime-inner-div">
+                    {endTime}
+            </div>
             <input 
             type="time" 
             className="endTimeInput" 
@@ -70,9 +73,6 @@ export default function EndTime({
                 // zIndex: '1'
             }}
             />
-            <div className="endTime-inner-div">
-                    {endTime}
-            </div>
                 <div className="endTime-icon-div"></div>
         </div>
     )

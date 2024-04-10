@@ -1,38 +1,38 @@
 .optTimer-outer-div {
-  position: fixed;
+  position: relative;
   width: 491px;
   height: 25px;
-  top: 114px;
-  left: 240px;
+  top: 145px;
+  left: 0px;
   background-color: hsl(0, 0%, 92.16%);
   border-radius: 10px;
 }
 
 .optTimer-outer-div-open {
-  position: fixed;
+  position: relative;
   width: 491px;
   height: 76px;
   top: 114px;
-  left: 240px;
+  left: 0px;
   background-color: hsl(0, 0%, 92.16%);
   border-radius: 3px;
 }
 
 .menu-icon {
   background-image: url("../../assets/navbar-icons/icons8-menu-14.png");
-  position: fixed;
+  position: relative;
   width: 14px;
   height: 14px;
-  top: 119px;
-  left: 249px;
+  top: 5px;
+  left: 8px;
 }
 
 .optTimer-header {
-  position: fixed;
+  position: relative;
   width: 129px;
   height: 13px;
-  top: 120px;
-  left: 269px;
+  top: 6px;
+  left: 27px;
   color: hsl(0, 0%, 0%);
   font-size: 11px;
   font-weight: 400;

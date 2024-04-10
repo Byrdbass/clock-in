@@ -22,7 +22,7 @@ export default function ClockInBtn({ handleStartTime }) {
         <>
             <button className='clock-in'
             onClick={updateStartTime}
-            >CLOCK IN</button>
+            >UPDATE START TIME</button>
         </>
     )
 }

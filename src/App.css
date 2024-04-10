@@ -1,17 +1,29 @@
 body {
   font-family: 'Inter', sans-serif;
 }
+.timer-work-outer-div{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  position: relative;
+  top: 9px;
+}
+
 .entry-and-timers{
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
+  position: relative;
+  top: 236px;
+  /* left: 240px; */
 }
 .clock-in-container {
   text-align: center;
   /* font-size: 13px; */
-  position: fixed;
-  top: 175px;
-  left: 240px;
+  position: absolute;
+
+  /* KEEP FOR PROPER MEASUREMENT */
+  /* left: 240px; */
   width: 491px;
   height: 346px;
   padding: 20px 30px;
@@ -24,21 +36,29 @@ body {
 
 .start-container{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 105px;
+  left: 70px;
 }
 .input-fields{
+  position: absolute;
+  top: 152px;
+  left: 70px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: flex-start;
 }
 .end-container{
-
+  position: absolute;
+  top: 299px;
+  left: 70px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
+
   /* margin: 20px 0px ; */
 }
 

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  /* position: fixed; */
   width: 344px;
   height: 23px;
   top: 330px;
@@ -10,9 +10,9 @@
 }
 
 .jobcodes-inner-div {
-  position: fixed;
+  /* position: fixed; */
   width: 43.39px;
-  height: 23px;
+  /* height: 23px; */
   top: 330px;
   left: 313px;
   display: flex;
@@ -26,18 +26,27 @@
 
 .required-star {
   color: red;
-  position: fixed;
-  top: 330px;
-  left: 346px;
+  /* position: fixed; */
+  /* top: 330px;
+  left: 346px; */
   /* margin-right: 3rem; */
+  margin-left: 3px;
 }
 
 .jobcodes-dropdown {
-  position: fixed;
+  /* position: fixed; */
   width: 192.14px;
   height: 22px;
   top: 323px;
   left: 363.62px;
   color: black;
   background-color: hsl(0, 0%, 76.86%);
+  font-size: 9px;
+  line-height: 10.89px;
+  text-align: center;
+}
+
+.placeholder-option{
+  font-size: 9px;
+  line-height: 10.89px;
 }

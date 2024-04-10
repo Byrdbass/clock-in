@@ -1,5 +1,5 @@
 .startDate-outer-div {
-  position: fixed;
+  /* position: fixed; */
   width: 104.14px;
   height: 20px;
   top: 284px;
@@ -14,7 +14,7 @@
 }
 
 .calendar-icon {
-  position: fixed;
+  /* position: fixed; */
   width: 24px;
   height: 24px;
   top: 284px;

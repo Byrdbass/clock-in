@@ -1,16 +1,16 @@
 .clock-in {
-  position: fixed;
-  width: 114px;
-  height: 25px;
-  top: 283px;
-  left: 558px;
+  /* position: fixed; */
+  /* width: 114px; */
+  height: 21px;
+  /* top: 283px;
+  left: 558px; */
   border-radius: 3px;
   border: 1px solid hsl(95.45, 62.26%, 41.57%);
   background-color: hsl(131.67, 30.51%, 46.27%);
   font-family: Inter;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 700;
-  line-height: 16.94px;
+  line-height: 12.1px;
   text-align: center;
   color: white;
 }

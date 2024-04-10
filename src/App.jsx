@@ -126,10 +126,12 @@ function App() {
         <Navbar
           userRecordID={userRecordID}
         />
-        <AmountWorked
-          userRecordID={userRecordID}
-        />
-        <OptTimer />
+        <div className="timer-work-outer-div">
+          <AmountWorked
+            userRecordID={userRecordID}
+          />
+          <OptTimer />
+        </div>
         <div className='entry-and-timers'>
           <div className='clock-in-container'>
             {/* <TimeSheetHeader /> */}

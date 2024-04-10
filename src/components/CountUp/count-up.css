@@ -1,19 +1,7 @@
-.countUp-outer-div{
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    height: 2.7rem;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center; */
-    border-bottom: 1px solid hsl(210, 4.69%, 25.1%);
-}
-
 .countUp-header{
-    position: fixed;
-    top: 191px;
-    left: 419px;
+    position: absolute;
+    top: 15px;
+    left: 179px;
     width: 133px;
     height: 23px;
     font-weight: 400;
@@ -24,9 +12,9 @@
 }
 
 .countUp-timer-value{
-    position: fixed;
-    top: 217px;
-    left: 395px;
+    position: absolute;
+    top: 41px;
+    left: 155px;
     width: 178px;
     height: 23px;
     font-weight: 500;
@@ -37,9 +25,9 @@
 }
 
 .countUp-border{
-    position: fixed;
+    position: absolute;
     width: 450px;
-    top: 261px;
-    left: 261px;
+    top: 85px;
+    left: 21px;
     border-bottom: 1px solid hsl(210, 4.69%, 25.1%);
 }

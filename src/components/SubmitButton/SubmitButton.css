@@ -7,7 +7,7 @@
   color: white;
   border: none;
   cursor: pointer;
-  position: fixed;
+  /* position: fixed; */
   width: 114px;
   height: 25px;
   top: 475px;

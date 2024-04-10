@@ -100,6 +100,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
       <select name="jobcode3" className='jobcodes-dropdown'
         value={jobcode3}
         onChange={handleSelectChange}>
+          <option value="" disabled>Select a Job Code (see TASK if unsure)</option>
         {!loading ? jobCodes.map((job, index) => (
           <option key={index}>
             {job}
