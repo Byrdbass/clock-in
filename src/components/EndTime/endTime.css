@@ -35,8 +35,8 @@ height: 24px;
 top: 478px;
 left: 516px;
   pointer-events: none;
-  background: url("../../assets/date-time-icons/clock-24px-simple.png")
-  no-repeat center;
+  /* background: url("../../assets/date-time-icons/clock-24px-simple.png")
+  no-repeat center; */
 }
 
 .endTime-icon {
@@ -47,6 +47,6 @@ left: 516px;
 }
 
 .endTime-outer-div:hover .endTime-icon-div{
-  background: url("../../assets/date-time-icons/clock-24px-simple.gif")
-  no-repeat center;
+  /* background: url("../../assets/date-time-icons/clock-24px-simple.gif")
+  no-repeat center; */
 }

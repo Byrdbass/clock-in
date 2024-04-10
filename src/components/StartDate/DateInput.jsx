@@ -44,7 +44,7 @@ export default function DateInput({ handleDateData, date, setDate }) {
                     fontSize: '14px',
                     fontWeight: '400',
                     lineHeight: '16.94px',
-                    width: '7rem'
+                    width: '104.14px'
                 }}
             />
             <span className="calendar-icon"></span>

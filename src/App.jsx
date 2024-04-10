@@ -51,7 +51,7 @@ function App() {
   const [endTime, setEndTime] = useState('');
   const [endDate, setEndDate] = useState();
   const [date, setDate] = useState('');
-  const [duration, setDuration] = useState(25);
+  const [duration, setDuration] = useState(1);
   const [jobcode3, setJobcode3] = useState('');
   const [taskNum, setTaskNum] = useState();
   const [notes, setNotes] = useState("");

@@ -20,12 +20,12 @@
   top: 284px;
   left: 399px;
   pointer-events: none;
-  background: url("../../assets/date-time-icons/calendar-24px-rounded-edges.png")
-    no-repeat center;
+  /* background: url("../../assets/date-time-icons/calendar-24px-rounded-edges.png")
+    no-repeat center; */
 }
 
 .startDate-outer-div:hover .calendar-icon {
-  background: url("../../assets/date-time-icons/calendar-24px-rounded-edges.gif")
-    no-repeat center;
+  /* background: url("../../assets/date-time-icons/calendar-24px-rounded-edges.gif")
+    no-repeat center; */
     background-color: inherit;
 }

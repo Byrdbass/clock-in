@@ -17,13 +17,13 @@
   left: 517px;
   pointer-events: none;
   padding-left: 10px;
-  background: url("../../assets/date-time-icons/clock-24px-simple.png")
-    no-repeat center;
+  /* background: url("../../assets/date-time-icons/clock-24px-simple.png")
+    no-repeat center; */
   width: 24px;
   height: 24px;
 }
 
 .startTime-outer-div:hover .clock-icon {
-  background: url("../../assets/date-time-icons/clock-24px-simple.gif")
-    no-repeat center;
+  /* background: url("../../assets/date-time-icons/clock-24px-simple.gif")
+    no-repeat center; */
 }
