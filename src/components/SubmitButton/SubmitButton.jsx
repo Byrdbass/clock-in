@@ -17,6 +17,8 @@ export default function SubmitButton({
     jobcode3, 
     projectRecordId, 
     notes,
+    setNotes,
+    setSubmittedRecordId,
     setShowError
 }) {
 
@@ -39,6 +41,15 @@ export default function SubmitButton({
         }
         //HAVE THIS RETURN NEW RECORD ID - SET TO USESTATE VAR
         submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate)
+        .then(recordId => {
+            setSubmittedRecordId(recordId);
+            setShowModal(true)
+            resetTimers();
+        })
+        .catch(err => {
+            console.error("error submitting time entry:", err)
+            setShowError(true)
+        })
         const getCurrentTime = () => {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
@@ -57,9 +68,7 @@ export default function SubmitButton({
         // setDuration(25)
         // setNotes("")
         // setDate("")
-        resetTimers()
         // setClockIn(0)
-        setShowModal(true)
     };
 
     const handleEnterPress = (event) => {

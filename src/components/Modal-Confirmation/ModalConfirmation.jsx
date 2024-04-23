@@ -10,6 +10,7 @@ export default function ModalConfirmation({
     endTime,
     jobcode3,
     notes,
+    submittedRecordId,
     handleModalClose
 }) 
 {
@@ -45,6 +46,7 @@ export default function ModalConfirmation({
                         <p>End Time: {newEndTime} </p>
                         <p>Job-Code/Product: {jobcode3} </p>
                         <p>Notes on Entry: {notes} </p>
+                        <p> RECORD ID: {submittedRecordId}</p>
                         <p>Your time entry has been submitted!</p>
                     </div>
                     <div className='top-right'>

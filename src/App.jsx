@@ -22,7 +22,6 @@ import TaskID from './components/TaskID/TaskID'
 import Notes from './components/Notes/Notes'
 import SubmitButton from './components/SubmitButton/SubmitButton'
 
-import TimersHeader from './components/TimersHeader/TimersHeader'
 import Timers from './components/Timers/Timers'
 import DurationSlider from './components/DurationSlider/DurationSlider'
 import DurationField from './components/DurationField/DurationField'
@@ -55,13 +54,14 @@ function App() {
   const [jobcode3, setJobcode3] = useState('');
   const [taskNum, setTaskNum] = useState();
   const [notes, setNotes] = useState("");
+  const [submittedRecordId, setSubmittedRecordId] = useState("")
   const [showError, setShowError] = useState(false)
 
   const [clockIn, setClockIn] = useState(0) //needed?
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
-
-
+  console.log(submittedRecordId)
   const handleModalClose = () => {
+    setNotes("")
     return setShowModal(false)
   }
   const handleStartTimeData = (data) => {
@@ -121,6 +121,7 @@ function App() {
           endTime={endTime}
           jobcode3={jobcode3}
           notes={notes}
+          submittedRecordId={submittedRecordId}
           handleModalClose={handleModalClose}
         />
         <Navbar
@@ -198,12 +199,12 @@ function App() {
                 jobcode3={jobcode3}
                 projectRecordId={projectRecordId}
                 notes={notes}
+                setSubmittedRecordId={setSubmittedRecordId}
                 setShowError={setShowError}
               />
             </div>
           </div>
           {/* <div className='timer-container'>
-            <TimersHeader />
             <DurationSlider
               duration={duration}
               clockIn={clockIn}
