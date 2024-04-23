@@ -37,9 +37,9 @@ body {
 .start-container{
   display: flex;
   justify-content: space-evenly;
-  position: absolute;
-  top: 105px;
-  left: 70px;
+  position: relative;
+  top: 84px;
+  /* left: 70px; */
 }
 .input-fields{
   position: absolute;
@@ -51,9 +51,9 @@ body {
   align-items: flex-start;
 }
 .end-container{
-  position: absolute;
-  top: 299px;
-  left: 70px;
+  position: relative;
+  top: 262px;
+  /* left: 70px; */
   display: flex;
   justify-content: space-evenly;
   align-items: center;

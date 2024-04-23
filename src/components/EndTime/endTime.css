@@ -24,12 +24,11 @@
 }
 
 .endTimeInput {
-  z-index: 0;
-  position: absolute;
+  position: relative;
   font-size: 14px;
   font-weight: 400;
-  color: transparent;
-  opacity: 100;
+  height: 20px;
+  color: hsl(0, 0%, 0%);
 }
 
 .endTime-icon-div {

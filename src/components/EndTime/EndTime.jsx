@@ -23,7 +23,7 @@ export default function EndTime({
                 setEndDate(newDate)
                 handleEndDateData(newDate)
             }
-            const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+            const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
             if (newEndTime !== endTime) {
                 setEndTime(newEndTime)
                 handleEndTimeData(newEndTime)
@@ -54,9 +54,6 @@ export default function EndTime({
 
     return (
         <div className="endTime-outer-div">
-            <div className="endTime-inner-div">
-                    {endTime}
-            </div>
             <input 
             type="time" 
             className="endTimeInput" 
@@ -68,12 +65,13 @@ export default function EndTime({
                 fontSize: '14px',
                 fontWeight: '400',
                 lineHeight: '16.94px',
-                width: '7.3rem',
-                color: 'inherit',
+                height: '20px',
+                width: '5.8rem',
+                // color: 'black',
                 // zIndex: '1'
             }}
             />
-                <div className="endTime-icon-div"></div>
+                {/* <div className="endTime-icon-div"></div> */}
         </div>
     )
 }

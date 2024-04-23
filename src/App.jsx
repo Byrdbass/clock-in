@@ -59,7 +59,6 @@ function App() {
 
   const [clockIn, setClockIn] = useState(0) //needed?
   const [userRecordID, setUserRecordID] = useState(params.get('userRecordID'))
-  console.log(submittedRecordId)
   const handleModalClose = () => {
     setNotes("")
     return setShowModal(false)
