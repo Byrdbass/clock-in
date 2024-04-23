@@ -12,7 +12,7 @@
   position: relative;
   width: 491px;
   height: 76px;
-  top: 114px;
+  top: 145px;
   left: 0px;
   background-color: hsl(0, 0%, 92.16%);
   border-radius: 3px;
@@ -28,9 +28,9 @@
 }
 
 .optTimer-header {
-  position: relative;
-  width: 129px;
-  height: 13px;
+  position: absolute;
+  /* width: 129px; */
+  /* height: 13px; */
   top: 6px;
   left: 27px;
   color: hsl(0, 0%, 0%);

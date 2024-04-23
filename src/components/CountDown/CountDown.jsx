@@ -7,10 +7,9 @@ export default function CountDown({ updateCountDownTimer }) {
 
     return( 
         <div className="count-down-outer-div">
-        <div className="header">Intended Time Remaining</div>
-        <div className="remainingTimeText" id="remainingTimeText">{timers.countDownTimer}</div>
+        <div className="remainingTimeText" >{timers.countDownTimer}</div>
         <div className="progressBarContainer">
-            <div className="progressBar" id="progressBar"></div>
+            <div className="progressBar" ></div>
         </div>
     </div>
     )

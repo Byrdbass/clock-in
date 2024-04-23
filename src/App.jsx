@@ -130,7 +130,8 @@ function App() {
           <AmountWorked
             userRecordID={userRecordID}
           />
-          <OptTimer />
+          <OptTimer 
+          />
         </div>
         <div className='entry-and-timers'>
           <div className='clock-in-container'>

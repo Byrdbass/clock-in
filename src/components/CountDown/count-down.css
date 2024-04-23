@@ -1,4 +1,29 @@
 .count-down-outer-div{
-    padding-bottom: 20px;
-    padding-top: 20px;
+    position: absolute;
+    top: 20px;
+    left: 179px;
+}
+.remainingTimeText{
+    font-size: 14px;
+
+}
+
+.progressBarContainer{
+    position: absolute;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    width: 344px;
+    height: 16px;
+    background-color: #600B68;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progressBar{
+    height: 100%;
+    background-color: white;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 1s linear;
 }

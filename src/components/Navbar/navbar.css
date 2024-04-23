@@ -32,13 +32,14 @@
 .my-time-entries-btn {
   background-color: inherit;
   color: hsl(216.9, 19.1%, 26.7%);
+  margin-right: 20px;
 }
 
 .clock-in-btn {
   background-color: hsl(95.7, 61.5%, 41.8%);
-  margin-right: 15px;
-  height: 2.4rem;
+  height: 32px;
   line-height: 2px;
+  margin-right: 25px;
 }
 
 .profile-photo {

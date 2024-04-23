@@ -1,4 +1,9 @@
-.outer-div{
-    border-bottom: 1px solid hsl(210, 4.69%, 25.1%);
-    padding-bottom: 20px;
+.duration-field-outer-div{
+    position: absolute;
+    top: 20px;
+    left: 179px;
+}
+
+.minute-input{
+    width: 50px;
 }

@@ -1,7 +1,10 @@
 .data-container {
   display: flex;
   justify-content: space-around;
-  /* position: relative; */
+  position: absolute;
+  top: 12px;
+  width: 491px;
+  /* left: 256px; */
 }
 
 .data-div {
@@ -22,44 +25,38 @@
 
 .day-label {
   position: relative;
-  /* width: 88px; */
   height: 23px;
-  top: 60px;
+  top: 59px;
   left: 0px;
 }
 .day-value {
   position: relative;
-  /* width: 88px; */
   height: 23px;
-  top: 77px;
+  top: 51px;
   left: 0px;
 }
 .week-label {
   position: relative;
-  top: 60px;
-  /* width: 88px; */
   height: 23px;
+  top: 59px;
   left: 10px;
 }
 .week-value {
   position: relative;
-  top: 77px;
-  /* width: 88px; */
   height: 23px;
+  top: 51px;
   left: 10px;
 }
 .pp-label {
   position: relative;
-  top: 60px;
-  /* width: 88px; */
   height: 23px;
+  top: 59px;
   left: 20px;
 }
 
 .pp-value {
   position: relative;
-  top: 77px;
-  /* width: 88px; */
   height: 23px;
+  top: 51px;
   left: 20px;
 }
