@@ -42,7 +42,7 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
                     fontSize: '14px',
                     fontWeight: '400',
                     lineHeight: '16.94px',
-                    width: '95px'
+                    width: '6.1rem'
                 }}
             />
             <span className="clock-icon"></span>

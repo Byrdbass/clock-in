@@ -6,13 +6,18 @@ export default function CountDown({ updateCountDownTimer, setDuration }) {
     const { timers, stopTimer, setCountDownTime, isEditable } = useTimer();
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
 
+    const formatTime = (num) => `${num < 10 ? '0' : ''}${num}`;
 
     const handleTimeChange = () => {
-        const formattedTime = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+        // Ensure values are numbers
+        const hrs = parseInt(hours, 10);
+        const mins = parseInt(minutes, 10);
+
+        // Format the time string correctly
+        const formattedTime = `${formatTime(hrs)}:${formatTime(mins)}`;
         setCountDownTime(formattedTime);
-        const newDuration = hours * 60 + minutes
+        const newDuration = mins + (hrs * 60);
         setDuration(newDuration)
     };
 

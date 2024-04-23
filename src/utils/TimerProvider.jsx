@@ -84,27 +84,27 @@ export function TimerProvider({ children, duration, setDuration, clockIn }) {
   };
 
   const setCountDownTime = (newTime) => {
+    setIsEditable(false);
     setTimers({ ...timers, countDownTimer: newTime });
     setDuration(newTime)
-    setIsEditable(false);
     // Optionally restart the timer here
-    const newCountDownInterval = setInterval(() => {
-      const endTime = new Date(new Date().getTime() + duration * 60000);
-      const timeRemaining = endTime - new Date();
-      if (timeRemaining > 0) {
-        const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
-        const seconds = Math.floor((timeRemaining / 1000) % 60);
-        setTimers((prevTimers) => ({
-          ...prevTimers,
-          countDownTimer: `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`,
-        }));
-      } else {
-        clearInterval(newCountDownInterval);
-        setTimers((prevTimers) => ({ ...prevTimers, countDownTimer: "00:00:00" }));
-      }
-    }, 1000);
-    setCountDownIntervalId(newCountDownInterval);
+    // const newCountDownInterval = setInterval(() => {
+    //   const endTime = new Date(new Date().getTime() + duration * 60000);
+    //   const timeRemaining = endTime - new Date();
+    //   if (timeRemaining > 0) {
+    //     const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+    //     const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
+    //     const seconds = Math.floor((timeRemaining / 1000) % 60);
+    //     setTimers((prevTimers) => ({
+    //       ...prevTimers,
+    //       countDownTimer: `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`,
+    //     }));
+    //   } else {
+    //     clearInterval(newCountDownInterval);
+    //     setTimers((prevTimers) => ({ ...prevTimers, countDownTimer: "00:00:00" }));
+    //   }
+    // }, 1000);
+    // setCountDownIntervalId(newCountDownInterval);
   };
 
   const resetTimers = () => {
