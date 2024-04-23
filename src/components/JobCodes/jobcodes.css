@@ -34,11 +34,11 @@
 }
 
 .jobcodes-dropdown {
-  /* position: fixed; */
+  position: relative;
   width: 192.14px;
   height: 22px;
-  top: 323px;
-  left: 363.62px;
+  /* top: 323px; */
+  left: -8px;
   color: black;
   background-color: hsl(0, 0%, 76.86%);
   font-size: 9px;

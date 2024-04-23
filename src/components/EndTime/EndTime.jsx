@@ -66,7 +66,7 @@ export default function EndTime({
                 fontWeight: '400',
                 lineHeight: '16.94px',
                 height: '20px',
-                width: '5.8rem',
+                width: '5.9rem',
                 // color: 'black',
                 // zIndex: '1'
             }}

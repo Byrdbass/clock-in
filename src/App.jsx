@@ -50,7 +50,7 @@ function App() {
   const [endTime, setEndTime] = useState('');
   const [endDate, setEndDate] = useState();
   const [date, setDate] = useState('');
-  const [duration, setDuration] = useState(1);
+  const [duration, setDuration] = useState(null);
   const [jobcode3, setJobcode3] = useState('');
   const [taskNum, setTaskNum] = useState();
   const [notes, setNotes] = useState("");
@@ -110,7 +110,7 @@ function App() {
         notes={notes}
         handleModalErrorClose={handleModalErrorClose}
       />
-      <TimerProvider duration={duration}>
+      <TimerProvider duration={duration} setDuration={setDuration}>
         <ModalConfirmation
           showModal={showModal}
           userName={userName}
@@ -131,6 +131,7 @@ function App() {
             userRecordID={userRecordID}
           />
           <OptTimer 
+          setDuration={setDuration}
           />
         </div>
         <div className='entry-and-timers'>
@@ -174,6 +175,8 @@ function App() {
             <div className="end-container">
               <EndDate
                 endDate={endDate}
+                endTime={endTime}
+                duration={duration}
               />
               <EndTime
                 startTime={startDate}

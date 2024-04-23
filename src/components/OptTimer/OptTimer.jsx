@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import DurationField from '../DurationField/DurationField';
 import CountDown from '../CountDown/CountDown';
 
-export default function OptTimer() {
+export default function OptTimer({setDuration}) {
     const [timerModal, setTimerModal] = useState("optTimer-outer-div")
     const [showTimer, setShowTimer] = useState(false)
     const handleTimerOpen = () => {
@@ -16,7 +16,7 @@ export default function OptTimer() {
             <div className={`${timerModal}`}>
                 <div className="menu-icon" onClick={handleTimerOpen}></div>
                 <div className='optTimer-header'>OPTIONAL TIMER</div>
-                {showTimer ? <CountDown/> : null}
+                {showTimer ? <CountDown setDuration={setDuration}/> : null}
             </div>
         </>
     )

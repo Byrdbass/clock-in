@@ -7,11 +7,12 @@ export function useTimer() {
   return useContext(TimerContext);
 }
 
-export function TimerProvider({ children, duration, clockIn }) {
+export function TimerProvider({ children, duration, setDuration, clockIn }) {
   const [timers, setTimers] = useState({
     countUpTimer: "0:00:00",
     countDownTimer: duration,
   });
+  const [isEditable, setIsEditable] = useState(false)
   const [countUpIntervalId, setCountUpIntervalId] = useState(null);
   const [countDownIntervalId, setCountDownIntervalId] = useState(null);
 
@@ -51,7 +52,7 @@ export function TimerProvider({ children, duration, clockIn }) {
     // clear the interval when component is rendered/unmounted AND when duration changes
     return () => clearInterval(countDownInterval)
   }, [duration])
-
+  //COUNTUP timer
   useEffect(() => {
     const startTime = new Date();
 
@@ -77,7 +78,37 @@ export function TimerProvider({ children, duration, clockIn }) {
     return () => clearInterval(countUpInterval)
   }, [clockIn])
 
+  const stopTimer = () => {
+    clearInterval(countDownIntervalId);
+    setIsEditable(true);
+  };
+
+  const setCountDownTime = (newTime) => {
+    setTimers({ ...timers, countDownTimer: newTime });
+    setDuration(newTime)
+    setIsEditable(false);
+    // Optionally restart the timer here
+    const newCountDownInterval = setInterval(() => {
+      const endTime = new Date(new Date().getTime() + duration * 60000);
+      const timeRemaining = endTime - new Date();
+      if (timeRemaining > 0) {
+        const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
+        const seconds = Math.floor((timeRemaining / 1000) % 60);
+        setTimers((prevTimers) => ({
+          ...prevTimers,
+          countDownTimer: `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`,
+        }));
+      } else {
+        clearInterval(newCountDownInterval);
+        setTimers((prevTimers) => ({ ...prevTimers, countDownTimer: "00:00:00" }));
+      }
+    }, 1000);
+    setCountDownIntervalId(newCountDownInterval);
+  };
+
   const resetTimers = () => {
+    // setIsEditable(false)
     clearInterval(countUpIntervalId);
     clearInterval(countDownIntervalId);
     setTimers({ countUpTimer: "0:00:00", countDownTimer: duration });
@@ -116,7 +147,7 @@ export function TimerProvider({ children, duration, clockIn }) {
 
   return (
     <TimerContext.Provider value={{
-      timers, resetTimers,
+      timers, resetTimers, stopTimer, isEditable, setCountDownTime
       // updateCountDownTimer 
     }}>
       {children}
