@@ -28,18 +28,6 @@ export default function CountDown({ updateCountDownTimer, duration, endTime, set
         }
     }, [isEditable])
 
-    // useEffect(()=>{
-    //     let hrs;
-    //     let mins;
-    //     if(duration >= 60){
-    //         hrs = duration/60;
-    //         mins = duration%60;
-    //     }else{
-    //         mins = duration;
-    //     }
-    //     const formattedTime = `${formatTime(hrs)}:${formatTime(mins)}`;
-    //     setCountDownTime(formattedTime)
-    // }, [duration, endTime])
 
     const handleTimeChange = () => {
         // Ensure values are numbers
