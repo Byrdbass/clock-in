@@ -22,8 +22,8 @@ export default function CountDown({ updateCountDownTimer, duration, endTime, set
         }
     }, [timers.countDownTimer, totalDuration]);
 
-    useEffect(()=>{
-        if(isNaN(progressBarWidth)){
+    useEffect(() => {
+        if (isNaN(progressBarWidth)) {
             setProgressBarWidth("100%")
         }
     }, [isEditable])
@@ -46,12 +46,16 @@ export default function CountDown({ updateCountDownTimer, duration, endTime, set
         <div className="count-down-outer-div">
             {isEditable ? (
                 <div className='stopWatchInput'>
-                    <label htmlFor="hours" className="hours-label">hours</label>
-                    <input type="number" value={hours} onChange={(e) => setHours(e.target.value)} placeholder="Hours" min="0" />
-                    <label htmlFor="minutes" className="minutes-label"></label>
-                    <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} placeholder="Minutes" min="0" />
+                    <div className="label-div">
+                        <label htmlFor="hours" className="hours-label">hrs</label>
+                        <label htmlFor="minutes" className="minutes-label">min</label>
+                    </div>
+                    <div className="input-div">
+                        <input className="num-input" type="number" value={hours} onChange={(e) => setHours(e.target.value)} min="0" />
+                        <input className="num-input" type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0" />
+                        <button className="set-time-btn"onClick={handleTimeChange}>Set Time</button>
+                    </div>
                     {/* <input type="number" value={seconds} onChange={(e) => setSeconds(e.target.value)} placeholder="Seconds" /> */}
-                    <button onClick={handleTimeChange}>Set Time</button>
                 </div>
             ) : (
                 <div className='stopWatchDisplay'>
@@ -59,7 +63,7 @@ export default function CountDown({ updateCountDownTimer, duration, endTime, set
                     {/* <div className="progressBarContainer">
                     <div className="progressBar"></div>
                 </div> */}
-                    <button onClick={stopTimer}>Edit</button>
+                    <button className="edit-time-btn" onClick={stopTimer}>Edit</button>
                 </div>
 
             )}

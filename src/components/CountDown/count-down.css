@@ -11,23 +11,53 @@
 .stopWatchInput{
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    font-size: 11px;
+    color: black;
     height: 20px;
-    width: 20px;
+    width: 154px;
 }
 
+.label-div{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80px;
+}
+
+.input-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.num-input{
+    width: 1.7rem;
+    height: 13px;
+    font-size: 11px;
+}
+
+.set-time-btn{
+    cursor: pointer;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(217.5, 4%, 39.22%)
+}
 .stopWatchDisplay{
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    color: black;
     height: 20px;
-    width: 20px;
+    width: 154px;
     font-size: 11px;
 }
 
-.stopWatchInput, input{
-    width: 2rem;
-    font-size: 11px;
+.edit-time-btn{
+    cursor: pointer;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(217.5, 4%, 39.22%)
 }
 
 .progressBarContainer{

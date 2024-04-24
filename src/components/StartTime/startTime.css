@@ -1,5 +1,6 @@
 .startTime-outer-div {
   /* position: fixed; */
+  cursor: pointer;
   width: 95px;
   height: 20px;
   top: 284px;
@@ -7,21 +8,22 @@
 }
 
 .startTimeInput {
+  cursor: pointer;
   font-family: inherit;
   background: inherit;
 }
 
-.clock-icon {
+/* .clock-icon {
   position: fixed;
   top: 284px;
   left: 517px;
   pointer-events: none;
   padding-left: 10px;
-  /* background: url("../../assets/date-time-icons/clock-24px-simple.png")
-    no-repeat center; */
+  background: url("../../assets/date-time-icons/clock-24px-simple.png")
+    no-repeat center;
   width: 24px;
   height: 24px;
-}
+} */
 
 .startTime-outer-div:hover .clock-icon {
   /* background: url("../../assets/date-time-icons/clock-24px-simple.gif")
