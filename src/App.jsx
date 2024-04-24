@@ -119,6 +119,7 @@ function App() {
           startTime={startDate}
           endTime={endTime}
           jobcode3={jobcode3}
+          setJobcode3={setJobcode3}
           notes={notes}
           submittedRecordId={submittedRecordId}
           handleModalClose={handleModalClose}
@@ -131,6 +132,8 @@ function App() {
             userRecordID={userRecordID}
           />
           <OptTimer 
+          duration={duration}
+          endTime={endTime}
           setDuration={setDuration}
           />
         </div>
