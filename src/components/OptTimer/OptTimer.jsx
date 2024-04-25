@@ -16,7 +16,14 @@ export default function OptTimer({duration, endTime, setDuration}) {
             <div className={`${timerModal}`}>
                 <div className="menu-icon" onClick={handleTimerOpen}></div>
                 <div className='optTimer-header'>OPTIONAL TIMER</div>
-                {showTimer ? <CountDown duration={duration} endTime={endTime} setDuration={setDuration}/> : null}
+                {
+                showTimer ? 
+                <CountDown 
+                duration={duration} 
+                endTime={endTime} 
+                setDuration={setDuration}/> 
+
+                : null}
             </div>
         </>
     )

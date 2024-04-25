@@ -3,6 +3,13 @@
     top: 20px;
     left: 179px;
 }
+.count-down-inner-div{
+    position: relative;
+    left: -47px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .remainingTimeText{
     font-size: 14px;
 
@@ -63,6 +70,7 @@
 .progressBarContainer{
     position: relative;
     left: -97px;
+    top: -3px;
     display: flex;
     align-items: center;
     width: 344px;

@@ -1,6 +1,7 @@
 import './count-down.css'
 import { useEffect, useState } from 'react'
 import { useTimer } from '../../utils/TimerProvider';
+import Alarm from '../Alarm/Alarm';
 
 export default function CountDown({ updateCountDownTimer, duration, endTime, setDuration }) {
     const { timers, stopTimer, setCountDownTime, isEditable } = useTimer();
@@ -19,6 +20,9 @@ export default function CountDown({ updateCountDownTimer, duration, endTime, set
             const currentTimeInMinutes = hrs * 60 + mins + secs / 60;
             const progressPercentage = ((totalDuration - currentTimeInMinutes) / totalDuration) * 100;
             setProgressBarWidth(`${100 - Math.max(0, progressPercentage)}%`);
+        }
+        if(timers.countDownTimer === "00:00:00"){
+            setTotalDuration(null)
         }
     }, [timers.countDownTimer, totalDuration]);
 
@@ -44,29 +48,32 @@ export default function CountDown({ updateCountDownTimer, duration, endTime, set
 
     return (
         <div className="count-down-outer-div">
-            {isEditable ? (
-                <div className='stopWatchInput'>
-                    <div className="label-div">
-                        <label htmlFor="hours" className="hours-label">hrs</label>
-                        <label htmlFor="minutes" className="minutes-label">min</label>
+            <div className="count-down-inner-div">
+                {isEditable ? (
+                    <div className='stopWatchInput'>
+                        <div className="label-div">
+                            <label htmlFor="hours" className="hours-label">hrs</label>
+                            <label htmlFor="minutes" className="minutes-label">min</label>
+                        </div>
+                        <div className="input-div">
+                            <input className="num-input" type="number" value={hours} onChange={(e) => setHours(e.target.value)} min="0" />
+                            <input className="num-input" type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0" />
+                            <button className="set-time-btn" onClick={handleTimeChange}>Set Time</button>
+                        </div>
+                        {/* <input type="number" value={seconds} onChange={(e) => setSeconds(e.target.value)} placeholder="Seconds" /> */}
                     </div>
-                    <div className="input-div">
-                        <input className="num-input" type="number" value={hours} onChange={(e) => setHours(e.target.value)} min="0" />
-                        <input className="num-input" type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} min="0" />
-                        <button className="set-time-btn"onClick={handleTimeChange}>Set Time</button>
-                    </div>
-                    {/* <input type="number" value={seconds} onChange={(e) => setSeconds(e.target.value)} placeholder="Seconds" /> */}
-                </div>
-            ) : (
-                <div className='stopWatchDisplay'>
-                    <div className="remainingTimeText">{timers.countDownTimer}</div>
-                    {/* <div className="progressBarContainer">
+                ) : (
+                    <div className='stopWatchDisplay'>
+                        <div className="remainingTimeText">{timers.countDownTimer}</div>
+                        {/* <div className="progressBarContainer">
                     <div className="progressBar"></div>
                 </div> */}
-                    <button className="edit-time-btn" onClick={stopTimer}>Edit</button>
-                </div>
+                        <button className="edit-time-btn" onClick={stopTimer}>Edit</button>
+                    </div>
 
-            )}
+                )}
+                <Alarm totalDuration={totalDuration} />
+            </div>
             <div className="progressBarContainer">
                 <div className="progressBar" style={{ width: progressBarWidth }}></div>
             </div>
