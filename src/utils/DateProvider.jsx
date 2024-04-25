@@ -7,10 +7,14 @@ export function useDate(){
 }
 
 export const DateProvider = ({ children, duration }) => {
-    const [startTime, setStartTime] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endTime, setEndTime] = useState('');
-    const [endDate, setEndDate] = useState('');
+    const [dateInfo, setDateInfo] = useState({
+        startDate: "YYYY-MM-DD",
+        startTime: "HH:mm",
+        endDate: "YYYY-MM-DD",
+        endTime: "HH:mm",
+        duration: 0,
+    })
+
 
     useEffect(() => {
         const currentTime = getCurrentTime();
