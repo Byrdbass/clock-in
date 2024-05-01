@@ -1,41 +1,36 @@
 export function isInCurrentPayPeriod(payPeriodBegin, payPeriodEnd, entryDate) {
-    return entryDate >= payPeriodBegin && entryDate <= payPeriodEnd;
+    console.log(entryDate)
+    const entryDateObj = new Date(entryDate);
+    return entryDateObj >= payPeriodBegin && entryDateObj <= payPeriodEnd;
 }
+
 
 export function isPastPayPeriod(dateData) {
-    const currentDate = Number(new Date().getDate())
-    const currentMonth = Number(new Date().getMonth()) + 1
-    const currentYear = Number(new Date().getFullYear())
-    const dateDataDayOfMonth = Number(new Date(dateData).getDate())
-    // TODO:
-        // WHY IS DATE DATA COMING IN AS ONE DAY EARLIER
-    const dateDataPlus1 = dateDataDayOfMonth 
-    const dateDataMonth = Number(new Date(dateData).getMonth()) + 1
-    const dateDataYear = Number(new Date(dateData).getFullYear())
-    let payPeriodStartDate, payPeriodEndDate;
+    const currentDate = new Date();
+    const entryDate = new Date(dateData + 'T00:00:00Z');  // Ensures the date is treated as UTC
 
-    if (currentDate <= 15) {
-        payPeriodStartDate = Number(new Date(currentYear, currentMonth, 1.).getDate()); 
-        payPeriodEndDate = Number(new Date(currentYear, currentMonth, 15).getDate()); 
+    const currentYear = currentDate.getUTCFullYear();
+    const currentMonth = currentDate.getUTCMonth();
+
+    let payPeriodStart;
+    let payPeriodEnd;
+
+    if (currentDate.getUTCDate() <= 15) {
+        payPeriodStart = new Date(Date.UTC(currentYear, currentMonth, 1));  // First of the month
+        payPeriodEnd = new Date(Date.UTC(currentYear, currentMonth, 15));  // Fifteenth of the month
     } else {
-        payPeriodStartDate = Number(new Date(currentYear, currentMonth, 16).getDate()); 
-        payPeriodEndDate = Number(new Date(currentYear, currentMonth, 0).getDate()); 
+        payPeriodStart = new Date(Date.UTC(currentYear, currentMonth, 16)); // Sixteenth of the month
+        payPeriodEnd = new Date(Date.UTC(currentYear, currentMonth + 1, 0)); // Last day of the month
     }
+    
+    // console.log('Entry Date:', entryDate.toISOString());
+    // console.log('Pay Period Start:', payPeriodStart.toISOString());
+    // console.log('Pay Period End:', payPeriodEnd.toISOString());
 
-    // console.log(`now ${currentDate}, ${currentMonth}, ${currentYear}`)
-    // console.log(`dateData ${dateDataPlus1}, ${dateDataMonth}, ${dateDataYear}`)
-    // console.log(dateData)
-    console.log(payPeriodStartDate, payPeriodEndDate)
-
-    if (dateDataYear < currentYear || 
-        (dateDataYear === currentYear && dateDataMonth < currentMonth) || 
-        (!isInCurrentPayPeriod(payPeriodStartDate, payPeriodEndDate, dateDataPlus1))
-            ) {
-            return true
-        }
-
-    return false
+    return entryDate < payPeriodStart || entryDate > payPeriodEnd;
 }
+
+
 
 export function isFutureDate(dateData) {
     // TODO 

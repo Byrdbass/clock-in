@@ -15,15 +15,9 @@ export default function DateInput({ handleDateData, date, setDate }) {
     
     
     const getTodaysDate = () => {
-        const today = new Date();
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        const currentDay = today.toLocaleDateString('en-CA', { 
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            timeZone: `${tz}` 
-        });
-        return currentDay
+        const today = new Date();  // This gets the current date and time
+        const currentDay = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
+        return currentDay.toISOString().split('T')[0];  // Formats to YYYY-MM-DD
       };
 
     const updateDateData = (event) => {
