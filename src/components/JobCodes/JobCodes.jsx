@@ -31,6 +31,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
     handleJobCodeList(newJobCodeList)
   }
 
+  //TODO setJobCodeRecordID here!?
   const handleSelectChange = (e) => {
     const selectedIndex = e.target.selectedIndex;
     setJobCodeIndex(selectedIndex);

@@ -9,7 +9,7 @@ export function isPastPayPeriod(dateData) {
     const dateDataDayOfMonth = Number(new Date(dateData).getDate())
     // TODO:
         // WHY IS DATE DATA COMING IN AS ONE DAY EARLIER
-    const dateDataPlus1 = dateDataDayOfMonth + 1
+    const dateDataPlus1 = dateDataDayOfMonth 
     const dateDataMonth = Number(new Date(dateData).getMonth()) + 1
     const dateDataYear = Number(new Date(dateData).getFullYear())
     let payPeriodStartDate, payPeriodEndDate;
@@ -24,7 +24,8 @@ export function isPastPayPeriod(dateData) {
 
     // console.log(`now ${currentDate}, ${currentMonth}, ${currentYear}`)
     // console.log(`dateData ${dateDataPlus1}, ${dateDataMonth}, ${dateDataYear}`)
-    // console.log(payPeriodStartDate, payPeriodEndDate)
+    // console.log(dateData)
+    console.log(payPeriodStartDate, payPeriodEndDate)
 
     if (dateDataYear < currentYear || 
         (dateDataYear === currentYear && dateDataMonth < currentMonth) || 
