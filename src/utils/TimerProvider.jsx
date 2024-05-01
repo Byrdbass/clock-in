@@ -10,7 +10,7 @@ export function useTimer() {
 export function TimerProvider({ children, duration, setDuration, clockIn }) {
   const [timers, setTimers] = useState({
     countUpTimer: "0:00:00",
-    countDownTimer: duration,
+    countDownTimer: "0:00:00",
   });
   const [isEditable, setIsEditable] = useState(false)
   const [countUpIntervalId, setCountUpIntervalId] = useState(null);
