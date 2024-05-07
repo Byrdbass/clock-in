@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg' - public folder
 import './App.css'
-
-import ClockInForm from './pages/ClockInForm/ClockInForm'
+import { EntryProvider } from './utils/EntryProvider'
 import { TimerProvider } from './utils/TimerProvider'
-import { useTimer } from './utils/TimerProvider'
 import ModalConfirmation from './components/Modal-Confirmation/ModalConfirmation'
 import Navbar from './components/Navbar/Navbar'
 import AmountWorked from './components/AmountWorked/AmountWorked'
 import OptTimer from './components/OptTimer/OptTimer'
+
+//TODO - MAKE THIS A LINK TO MULTI ENTRY
 import TimeSheetHeader from './components/TimeSheetHeader/TimeSheetHeader'
 import CountUp2 from './components/CountUp/CountUp2'
 import DateInput from './components/StartDate/DateInput'
@@ -104,6 +104,7 @@ function App() {
 
   return (
     <>
+    <EntryProvider >
       <ModalError
         showError={showError}
         date={date}
@@ -226,6 +227,7 @@ function App() {
 
         </div>
       </TimerProvider>
+    </EntryProvider>
     </>
   )
 }
