@@ -20,8 +20,9 @@ export const EntryProvider = ({ children, duration }) => {
         endDate: "YYYY-MM-DD",
         endTime: "HH:mm",
         duration: 0,
-        jobCode: "",
-        jobCodeRecordId: "",
+        jobCodeArr: [],
+        jobCodeRecordIdArr: [],
+        jobCodeRecentRecordIdArr: [],
         taskId: 0,
         notes: "",
         dayAmount: "0:00",
@@ -44,6 +45,7 @@ export const EntryProvider = ({ children, duration }) => {
                     let dayAmountRecord = record.fields["Today (Sum)"]
                     let weekAmountRecord = record.fields["This Week (Sum)"]
                     let payPeriodAmountRecord = record.fields["This Pay Period (Sum)"]
+                    let recentJobCodeRecordKeys = record.fields.Recently_Used_Jobcodes_nonTest
                     setEntry(prevEntry => ({
                         ...prevEntry,
                         userName: userNameRecord,
@@ -60,7 +62,7 @@ export const EntryProvider = ({ children, duration }) => {
         const getJobCodes = async () => {
             try {
                 const jobRecordAndIdsObj = await getProductNameAndID()
-                const jobCodes = Object.keys(jobRecordAndIdsObj);
+                // const jobCodes = Object.keys(jobRecordAndIdsObj);
                 const jobCodeRecordIds = { ...jobRecordAndIdsObj };
         
                 setEntry(prevEntry => ({
@@ -83,9 +85,9 @@ export const EntryProvider = ({ children, duration }) => {
     //     setStartTime(currentTime);
     // }, [])
 
-    const updateJobCodes = (index, jobCodeName) => {
+    const updateJobCodes = (jobCodeName) => {
         const updatedJobCodes = [...entry.jobCodeArr];
-        updatedJobCodes[index] = {
+        updatedJobCodes[0] = {
             jobCode: jobCodeName,
             recordId: entry.jobCodeRecordIdArr[jobCodeName]
         };

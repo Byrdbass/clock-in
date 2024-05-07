@@ -1,13 +1,18 @@
 // import '../../App.css'
 import './jobcodes.css'
 import '../JobSlider/jobslider.css'
-import { getProductJobCode3IDs, getTeammateRecord, getProductNameAndID } from '../../helpers/airTableGetJobcodes';
+import { getTeammateRecord, getProductNameAndID } from '../../helpers/airTableGetJobcodes';
 import { useEffect, useState } from 'react'
-import JobSlider from '../JobSlider/JobSlider';
+import { useEntry } from '../../utils/EntryProvider';
 
-export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3, setJobcode3, userRecordID }) {
+export default function JobCodes({ projectRecordId,
+  setProjectRecordId,
+  jobcode3,
+  setJobcode3,
+  userRecordID }) {
 
   const [loading, setLoading] = useState(true)
+  const { entry, updateJobCodes } = useEntry();
   const [jobCodes, setJobCodes] = useState([])
   const [jobCodeList, setJobCodeList] = useState('Recent Job Codes');
   const [colorChange, setColorChange] = useState('dark')
@@ -36,6 +41,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
     const selectedIndex = e.target.selectedIndex;
     setJobCodeIndex(selectedIndex);
     setJobcode3(e.target.value.trim());
+    updateJobCodes(e.target.value)
     // console.log(jobcode3, jobCodeIndex, projectRecordId)
   };
 
@@ -61,13 +67,13 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
         let jobCodesArray = record.fields.Recently_Used_Jobcodes_nonTest
         setRecentJobCodes(jobCodesArray)
         setAllJobCodes(record.fields.All_Assigned_Jobcodes_txt)
-        if (jobCodeList === "Recent Job Codes"){
+        if (jobCodeList === "Recent Job Codes") {
           setJobCodes(recentJobCodes)
         } else {
           setJobCodes(allJobCodes)
         }
-        setProjectRecordIds(record.fields.Recently_Used_Jobcodes_record_ID)
-        // console.log(projectRecordIds)
+        setProjectRecordIds(record.fields.Recently_Used_Jobcodes_record_ID_nonTest)
+        console.log(projectRecordIds)
         // console.log(recordFields.Recently_Used_Jobcodes_record_ID); 
         // console.log(recordFields.All_Assigned_Jobcodes_record_ID); 
       } catch (error) {
@@ -101,7 +107,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
       <select name="jobcode3" className='jobcodes-dropdown'
         value={jobcode3}
         onChange={handleSelectChange}>
-          <option value="" disabled>Select a Job Code (see TASK if unsure)</option>
+        <option value="" disabled>Select a Job Code (see TASK if unsure)</option>
         {!loading ? jobCodes.map((job, index) => (
           <option key={index}>
             {job}
@@ -112,15 +118,15 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
       <div className="jobcode-slider-outer-div">
         <div className={`toggle`}>
           <label className={`switch ${colorChange}`} >
-            
+
             <input
               type="checkbox"
               checked={jobCodeList === 'All Job Codes'}
               onChange={handleToggle}
             />
             <span className='slider'>
-            <div className="firstChoice">Recent</div>
-            <div className="secondChoice">All</div>
+              <div className="firstChoice">Recent</div>
+              <div className="secondChoice">All</div>
             </span>
           </label>
 
