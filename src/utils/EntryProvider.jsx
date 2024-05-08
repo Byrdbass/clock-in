@@ -45,14 +45,25 @@ export const EntryProvider = ({ children, duration }) => {
                     let dayAmountRecord = record.fields["Today (Sum)"]
                     let weekAmountRecord = record.fields["This Week (Sum)"]
                     let payPeriodAmountRecord = record.fields["This Pay Period (Sum)"]
-                    let recentJobCodeRecordKeys = record.fields.Recently_Used_Jobcodes_nonTest
+                    let recentJobCodes = record.fields.Recently_Used_Jobcodes_nonTest
+                    let recentJobCodeRecordIds = record.fields.Recently_Used_Jobcodes_record_ID_nonTest
+                    let recentJobCodeArr =[]
+                    for (let i = 0; i < recentJobCodes.length; i++) {
+                        let obj = {
+                            jobCode: recentJobCodes[i],
+                            recordId: recentJobCodeRecordIds[i] || "No Record ID"
+                        };
+                        recentJobCodeArr.push(obj);
+                    }
+                    const filteredJobCodeArr = recentJobCodeArr.filter(obj => !obj.jobCode.includes("Error"));
                     setEntry(prevEntry => ({
                         ...prevEntry,
                         userName: userNameRecord,
                         photoUrl: photoRecord,
                         dayAmount: dayAmountRecord,
                         weekAmount: weekAmountRecord,
-                        payPeriodAmount: payPeriodAmountRecord
+                        payPeriodAmount: payPeriodAmountRecord,
+                        jobCodeRecentRecordIdArr: filteredJobCodeArr
                     }))
                 } catch (error) {
                     console.error("Failed to fetch teammate record:", error);
