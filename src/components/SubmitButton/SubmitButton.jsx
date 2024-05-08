@@ -1,21 +1,22 @@
 import './SubmitButton.css'
 import { createTimeEntry } from '../../helpers/airtablePost';
 import { useTimer } from '../../utils/TimerProvider';
+import { useEntry } from '../../utils/EntryProvider';
 import { isFutureDate, isPastPayPeriod } from '../../helpers/isCurrentPayPeriod';
 
 
 
 export default function SubmitButton({
-    setShowModal, 
-    userName, 
-    userRecordID, 
-    startTime, 
+    setShowModal,
+    userName,
+    userRecordID,
+    startTime,
     endDate,
-    endTime, 
-    duration, 
-    date, 
-    jobcode3, 
-    projectRecordId, 
+    endTime,
+    duration,
+    date,
+    jobcode3,
+    projectRecordId,
     notes,
     setNotes,
     setSubmittedRecordId,
@@ -26,6 +27,9 @@ export default function SubmitButton({
     const submitTimeEntry = createTimeEntry
 
     const { resetTimers } = useTimer()
+    const { entry } = useEntry()
+    const jobCodeRecordId = entry.jobCodeArr.recordId
+    const jobCodeName = entry.jobCodeArr.jobCode
 
     //helper functions for incorrect date
     const dateIsFuture = isFutureDate(date);
@@ -33,23 +37,23 @@ export default function SubmitButton({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (notes === '' || 
-        dateIsFuture || 
-        dateIsPastPP) {
+        if (notes === '' ||
+            dateIsFuture ||
+            dateIsPastPP) {
             setShowError(true)
             return
         }
         //HAVE THIS RETURN NEW RECORD ID - SET TO USESTATE VAR
-        submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate)
-        .then(recordId => {
-            setSubmittedRecordId(recordId);
-            setShowModal(true)
-            resetTimers();
-        })
-        .catch(err => {
-            console.error("error submitting time entry:", err)
-            setShowError(true)
-        })
+        submitTimeEntry(notes, date, startTime, jobCodeName, userRecordID, jobCodeRecordId, duration, endTime, endDate)
+            .then(recordId => {
+                setSubmittedRecordId(recordId);
+                setShowModal(true)
+                resetTimers();
+            })
+            .catch(err => {
+                console.error("error submitting time entry:", err)
+                setShowError(true)
+            })
         const getCurrentTime = () => {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');

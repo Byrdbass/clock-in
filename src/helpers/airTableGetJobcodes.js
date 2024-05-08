@@ -42,7 +42,7 @@ export function getProductNameAndID() {
       .eachPage(
         function page(records, fetchNextPage) {
           records.forEach(record => {
-            productNamesWithIds[record.get("Product_Name")] = record.id;
+            productNamesWithIds[record.get("Product_Name")] = record.get("Jobcode3_AT_ID");
           });
           fetchNextPage();
         },

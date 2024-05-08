@@ -1,5 +1,6 @@
 import './modal-confirmation.css'
 import { useEffect, useState } from "react";
+import { useEntry } from '../../utils/EntryProvider';
 
 export default function ModalConfirmation({
     showModal,
@@ -16,6 +17,7 @@ export default function ModalConfirmation({
 {
     const [newStartTime, setNewStartTime] = useState()
     const [newEndTime, setNewEndTime] = useState()
+    const { entry } = useEntry()
 
     useEffect(() => {
         const [hours, minutes] = startTime.split(":").map(Number)
@@ -44,7 +46,7 @@ export default function ModalConfirmation({
                         <p>Duration: {duration} </p>
                         <p>Start Time: {newStartTime} </p>
                         <p>End Time: {newEndTime} </p>
-                        <p>Job-Code/Product: {jobcode3} </p>
+                        <p>Job-Code/Product: {entry.jobCodeArr.jobCode} </p>
                         <p>Notes on Entry: {notes} </p>
                         <p> RECORD ID: {submittedRecordId}</p>
                         <p>Your time entry has been submitted!</p>

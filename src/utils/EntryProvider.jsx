@@ -20,8 +20,9 @@ export const EntryProvider = ({ children, duration }) => {
         endDate: "YYYY-MM-DD",
         endTime: "HH:mm",
         duration: 0,
-        jobCodeArr: [],
-        jobCodeRecordIdArr: [],
+        jobCodeType: "Recent Job Codes",
+        jobCodeArr: {},
+        jobCodeAllRecordIdArr: [],
         jobCodeRecentRecordIdArr: [],
         taskId: 0,
         notes: "",
@@ -73,13 +74,21 @@ export const EntryProvider = ({ children, duration }) => {
         const getJobCodes = async () => {
             try {
                 const jobRecordAndIdsObj = await getProductNameAndID()
-                // const jobCodes = Object.keys(jobRecordAndIdsObj);
-                const jobCodeRecordIds = { ...jobRecordAndIdsObj };
+                const jobCodes = Object.keys(jobRecordAndIdsObj);
+                const jobCodeRecordIds = Object.values(jobRecordAndIdsObj);
+                let allJobCodeArr = []
+                for (let i = 0 ; i< jobCodes.length ; ++i){
+                    let obj = {
+                        jobCode: jobCodes[i],
+                        recordId: jobCodeRecordIds[i] || "No Record ID"
+                    }
+                    allJobCodeArr.push(obj)
+                }
         
                 setEntry(prevEntry => ({
                     ...prevEntry,
                     // jobCodeArr: jobCodes, 
-                    jobCodeRecordIdArr: jobCodeRecordIds 
+                    jobCodeAllRecordIdArr: allJobCodeArr
                 }));
                 
             } catch (error) {
@@ -96,18 +105,38 @@ export const EntryProvider = ({ children, duration }) => {
     //     setStartTime(currentTime);
     // }, [])
 
+    const updateJobCodeType = (newJobCodeType) => {
+        setEntry(prev => ({ ...prev, jobCodeType: newJobCodeType}))
+    }
+
+    const findJobCode = (arr, jobCodeName) => {
+        const foundObj = arr.find(job => job.jobCode === jobCodeName)
+        return foundObj
+    }
     const updateJobCodes = (jobCodeName) => {
-        const updatedJobCodes = [...entry.jobCodeArr];
-        updatedJobCodes[0] = {
-            jobCode: jobCodeName,
-            recordId: entry.jobCodeRecordIdArr[jobCodeName]
-        };
+        const recordIdAll = findJobCode(entry.jobCodeAllRecordIdArr, jobCodeName)
+        const recordIdRecent = findJobCode(entry.jobCodeRecentRecordIdArr, jobCodeName)
+        let updatedJobCodes;
+        if (!recordIdAll.recordId){
+            updatedJobCodes = {
+                jobCode: jobCodeName,
+                recordId: "recBrwBB7eRuIDIuz"
+                // || "recBrwBB7eRuIDIuz"
+            };
+        } else {
+            updatedJobCodes = {
+                jobCode: jobCodeName,
+                recordId: recordIdAll.recordId
+                // || "recBrwBB7eRuIDIuz"
+            };
+        }
         setEntry(prev => ({ ...prev, jobCodeArr: updatedJobCodes }));
     }
 
     return (
         <EntryContext.Provider value={{
             entry, setEntry,
+            updateJobCodeType,
             updateJobCodes
         }}>
             {children}
