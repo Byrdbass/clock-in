@@ -43,8 +43,7 @@ export default function SubmitButton({
             setShowError(true)
             return
         }
-        //HAVE THIS RETURN NEW RECORD ID - SET TO USESTATE VAR
-        submitTimeEntry(notes, date, startTime, jobCodeName, userRecordID, jobCodeRecordId, duration, endTime, endDate)
+        submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate)
             .then(recordId => {
                 setSubmittedRecordId(recordId);
                 setShowModal(true)

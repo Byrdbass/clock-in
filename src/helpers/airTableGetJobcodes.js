@@ -12,8 +12,6 @@ export function getTeammateRecord(userRecordID) {
         console.error(err);
         reject(err);
       } else {
-        //   console.log(record.fields.Recently_Used_Jobcodes)
-        //   console.log(record.fields.All_Assigned_Jobcodes_txt)
         resolve(record);
       }
     });
@@ -36,7 +34,6 @@ export function getProductJobCode3IDs(projRecordID) {
 export function getProductNameAndID() {
   return new Promise((resolve, reject) => {
     const productNamesWithIds = {};
-
     base("Project_Product_JobCode3")
       .select({ view: "Grid view" })
       .eachPage(

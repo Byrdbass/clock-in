@@ -23,6 +23,7 @@ export const EntryProvider = ({ children, duration }) => {
         jobCodeType: "Recent Job Codes",
         jobCodeArr: {},
         jobCodeAllRecordIdArr: [],
+        jobCodeAllAssignRecordIdArr: [],
         jobCodeRecentRecordIdArr: [],
         taskId: 0,
         notes: "",
@@ -48,13 +49,23 @@ export const EntryProvider = ({ children, duration }) => {
                     let payPeriodAmountRecord = record.fields["This Pay Period (Sum)"]
                     let recentJobCodes = record.fields.Recently_Used_Jobcodes_nonTest
                     let recentJobCodeRecordIds = record.fields.Recently_Used_Jobcodes_record_ID_nonTest
+                    let allAssignJobCodes = record.fields.All_Assigned_Jobcodes_Rollup
+                    let allAssignJobCodeRecordIds = record.fields.All_Assigned_Jobcodes_record_ID
                     let recentJobCodeArr =[]
+                    let allJobCodeArr = []
                     for (let i = 0; i < recentJobCodes.length; i++) {
                         let obj = {
                             jobCode: recentJobCodes[i],
                             recordId: recentJobCodeRecordIds[i] || "No Record ID"
                         };
                         recentJobCodeArr.push(obj);
+                    }
+                    for (let i= 0; i < allAssignJobCodes.length ; ++i){
+                        let obj = {
+                            jobCode: allAssignJobCodes[i],
+                            recordId: allAssignJobCodeRecordIds[i] || "No Record ID"
+                        }
+                        allJobCodeArr.push(obj)
                     }
                     const filteredJobCodeArr = recentJobCodeArr.filter(obj => !obj.jobCode.includes("Error"));
                     setEntry(prevEntry => ({
@@ -64,7 +75,8 @@ export const EntryProvider = ({ children, duration }) => {
                         dayAmount: dayAmountRecord,
                         weekAmount: weekAmountRecord,
                         payPeriodAmount: payPeriodAmountRecord,
-                        jobCodeRecentRecordIdArr: filteredJobCodeArr
+                        jobCodeRecentRecordIdArr: filteredJobCodeArr,
+                        jobCodeAllAssignRecordIdArr: allJobCodeArr,
                     }))
                 } catch (error) {
                     console.error("Failed to fetch teammate record:", error);

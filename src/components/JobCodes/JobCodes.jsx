@@ -5,7 +5,7 @@ import { getTeammateRecord, getProductNameAndID } from '../../helpers/airTableGe
 import { useEffect, useState } from 'react'
 import { useEntry } from '../../utils/EntryProvider';
 
-export default function JobCodes() {
+export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3, setJobcode3 }) {
 
   const { entry, updateJobCodes, updateJobCodeType } = useEntry();
   const [jobCodes, setJobCodes] = useState([])
@@ -13,13 +13,27 @@ export default function JobCodes() {
   const [jobCodeList, setJobCodeList] = useState('Recent Job Codes');
   const [colorChange, setColorChange] = useState('dark')
 
+  //render all vs. recent job codes
   useEffect(() => {
     const jobs = jobCodeList === "Recent Job Codes" ?
       entry.jobCodeRecentRecordIdArr.map(val => val.jobCode) :
-      entry.jobCodeAllRecordIdArr.map(val => val.jobCode);
+      entry.jobCodeAllAssignRecordIdArr.map(val => val.jobCode);
     setJobCodes(jobs);
     // Only listen to jobCodeList changes and entry initial load
   }, [jobCodeList, entry.jobCodeRecentRecordIdArr, entry.jobCodeAllRecordIdArr]);
+
+  useEffect(()=> {
+    const findJobCode = (arr, jobCodeName) => {
+      const foundObj = arr.find(job => job.jobCode === jobCodeName)
+      return foundObj
+  }
+  const jobNameAndId = findJobCode(entry.jobCodeAllRecordIdArr, jobcode3)
+  if(jobNameAndId){
+    setProjectRecordId(jobNameAndId.recordId)
+  } else {
+    setProjectRecordId("recBrwBB7eRuIDIuz")
+  }
+  },[jobcode3, projectRecordId])
 
   //function called on checkbox clicked or not
   const handleToggle = () => {
@@ -31,8 +45,9 @@ export default function JobCodes() {
 
 
   const handleSelectChange = (e) => {
+    setJobcode3(e.target.value.trim())
     setSelectedJobCode(e.target.value)
-    updateJobCodes(selectedJobCode)
+    updateJobCodes(e.target.value)
   };
 
 
@@ -42,7 +57,7 @@ export default function JobCodes() {
         <div className="required-star">*</div>
       </div>
       <select name="jobcode3" className='jobcodes-dropdown'
-        value={selectedJobCode}
+        value={jobcode3}
         onChange={handleSelectChange}>
         <option value="" disabled>Select a Job Code (see TASK if unsure)</option>
         {jobCodes.map((job, index) => (
