@@ -33,14 +33,15 @@ export default function SubmitButton({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (!Object.keys(entry.jobCodeArr) ||
+        if (Object.keys(entry.jobCodeArr).length === 0 ||
+            typeof entry.jobCodeArr === "string" ||
             entry.notes === '' ||
             dateIsFuture ||
             dateIsPastPP) {
             showError()
             return
         }
-        submitTimeEntry(entry.notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate)
+        submitTimeEntry(entry.notes, date, startTime, jobCodeName, userRecordID, jobCodeRecordId, duration, endTime, endDate)
             .then(recordId => {
                 setSubmittedRecordId(recordId);
                 handleModalOpen()

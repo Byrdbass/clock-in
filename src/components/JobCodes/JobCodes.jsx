@@ -9,47 +9,33 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
 
   const { entry, updateJobCodes, updateJobCodeType } = useEntry();
   const [jobCodes, setJobCodes] = useState([])
-  const [selectedJobCode, setSelectedJobCode] = useState("Select a Job Code (see TASK if unsure)")
-  const [jobCodeList, setJobCodeList] = useState('Recent Job Codes');
-  const [colorChange, setColorChange] = useState('dark')
+  const [selectedJobCode, setSelectedJobCode] = useState("")
+  // const [jobCodeList, setJobCodeList] = useState('Recent Job Codes');
+  // const [colorChange, setColorChange] = useState('dark')
 
   //render all vs. recent job codes
   useEffect(() => {
-    const jobs = jobCodeList === "Recent Job Codes" ?
+    const jobs = entry.jobCodeType === "Recent Job Codes" ?
       entry.jobCodeRecentRecordIdArr.map(val => val.jobCode) :
       entry.jobCodeAllAssignRecordIdArr.map(val => val.jobCode);
     setJobCodes(jobs);
-    // Only listen to jobCodeList changes and entry initial load
-  }, [jobCodeList, entry.jobCodeRecentRecordIdArr, entry.jobCodeAllRecordIdArr]);
+    setSelectedJobCode(entry.jobCodeArr.jobCode || "");
+  }, [entry.jobCodeType, entry.jobCodeRecentRecordIdArr, entry.jobCodeAllRecordIdArr, entry.jobCodeArr.jobCode]);
 
-  useEffect(() => {
-    const findJobCode = (arr, jobCodeName) => {
-      const foundObj = arr.find(job => job.jobCode === jobCodeName)
-      return foundObj
-    }
-    const jobNameAndId = findJobCode(entry.jobCodeAllRecordIdArr, jobcode3)
-    if (jobNameAndId) {
-      setProjectRecordId(jobNameAndId.recordId)
-    } else {
-      setProjectRecordId("recBrwBB7eRuIDIuz")
-    }
-  }, [jobcode3, projectRecordId])
 
   //function called on checkbox clicked or not
   const handleToggle = () => {
-    const newJobCodeList = jobCodeList === "Recent Job Codes" ? "All Job Codes" : "Recent Job Codes";
-    updateJobCodeType(newJobCodeList)
-    setJobCodeList(newJobCodeList)
-    setColorChange(prevColor => prevColor === 'dark' ? 'light' : 'dark')
+    const newJobCodeList = entry.jobCodeType === "Recent Job Codes" ? "All Job Codes" : "Recent Job Codes"
+    const newJobColor = entry.jobCodeColor === 'dark' ? 'light' : 'dark'
+    updateJobCodeType(newJobCodeList, newJobColor)
+    // setColorChange(prevColor => prevColor === 'dark' ? 'light' : 'dark')
+    setSelectedJobCode("")
   }
 
-
   const handleSelectChange = (e) => {
-    setJobcode3(e.target.value.trim())
     setSelectedJobCode(e.target.value)
     updateJobCodes(e.target.value)
   };
-
 
   return (
     <div className="jobcodes-outer-div">
@@ -57,7 +43,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
         <div className="required-star">*</div>
       </div>
       <select name="jobcode3" className='jobcodes-dropdown'
-        value={jobcode3}
+        value={selectedJobCode}
         onChange={handleSelectChange}>
         <option value="" disabled>Select a Job Code (see TASK if unsure)</option>
         {jobCodes.map((job, index) => (
@@ -69,11 +55,11 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
       </select>
       <div className="jobcode-slider-outer-div">
         <div className={`toggle`}>
-          <label className={`switch ${colorChange}`} >
+          <label className={`switch ${entry.jobCodeColor}`} >
 
             <input
               type="checkbox"
-              checked={jobCodeList === 'All Job Codes'}
+              checked={entry.jobCodeType === 'All Job Codes'}
               onChange={handleToggle}
             />
             <span className='slider'>

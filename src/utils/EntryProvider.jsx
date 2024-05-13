@@ -21,6 +21,7 @@ export const EntryProvider = ({ children, duration }) => {
         endTime: "HH:mm",
         duration: 0,
         jobCodeType: "Recent Job Codes",
+        jobCodeColor: 'dark',
         jobCodeArr: {},
         jobCodeAllRecordIdArr: [],
         jobCodeAllAssignRecordIdArr: [],
@@ -68,7 +69,6 @@ export const EntryProvider = ({ children, duration }) => {
                         }
                         allJobCodeArr.push(obj)
                     }
-                    console.log(recentJobCodes)
                     const filteredJobCodeArr = recentJobCodeArr.filter(obj => !obj.jobCode.includes("Error"));
                     setEntry(prevEntry => ({
                         ...prevEntry,
@@ -119,8 +119,11 @@ export const EntryProvider = ({ children, duration }) => {
     //     setStartTime(currentTime);
     // }, [])
 
-    const updateJobCodeType = (newJobCodeType) => {
-        setEntry(prev => ({ ...prev, jobCodeType: newJobCodeType }))
+    const updateJobCodeType = (newJobCodeType, newJobColor) => {
+        setEntry(prev => ({ ...prev, 
+            jobCodeType: newJobCodeType,
+            jobCodeColor: newJobColor 
+        }))
     }
 
     const handleModalOpen = () => {
@@ -133,6 +136,17 @@ export const EntryProvider = ({ children, duration }) => {
             let dayAmountRecord = record.fields["Today (Sum)"]
             let weekAmountRecord = record.fields["This Week (Sum)"]
             let payPeriodAmountRecord = record.fields["This Pay Period (Sum)"]
+            let recentJobCodes = record.fields.Recently_Used_Jobcodes_nonTest
+            let recentJobCodeRecordIds = record.fields.Recently_Used_Jobcodes_record_ID_nonTest
+            let recentJobCodeArr = []
+            for (let i = 0; i < recentJobCodes.length; i++) {
+                let obj = {
+                    jobCode: recentJobCodes[i]  || "no jobcode",
+                    recordId: recentJobCodeRecordIds[i] || "No Record ID"
+                };
+                recentJobCodeArr.push(obj);
+            }
+            const filteredJobCodeArr = recentJobCodeArr.filter(obj => !obj.jobCode.includes("Error"));
             setEntry(prevEntry => ({
                 ...prevEntry,
                 notes: "",
@@ -141,6 +155,9 @@ export const EntryProvider = ({ children, duration }) => {
                 dayAmount: dayAmountRecord,
                 weekAmount: weekAmountRecord,
                 payPeriodAmount: payPeriodAmountRecord,
+                jobCodeType: "Recent Job Codes",
+                jobCodeColor: "dark",
+                jobCodeRecentRecordIdArr: filteredJobCodeArr,
                 jobCodeArr: {}
             }))
         } catch (error) {
