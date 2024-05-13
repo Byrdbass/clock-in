@@ -27,7 +27,7 @@ export default function SubmitButton({
     const submitTimeEntry = createTimeEntry
 
     const { resetTimers } = useTimer()
-    const { entry } = useEntry()
+    const { entry, handleModalOpen, showError } = useEntry()
     const jobCodeRecordId = entry.jobCodeArr.recordId
     const jobCodeName = entry.jobCodeArr.jobCode
 
@@ -37,32 +37,22 @@ export default function SubmitButton({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (notes === '' ||
+        if (entry.notes === '' ||
             dateIsFuture ||
             dateIsPastPP) {
-            setShowError(true)
+            showError()
             return
         }
-        submitTimeEntry(notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate)
+        submitTimeEntry(entry.notes, date, startTime, jobcode3, userRecordID, projectRecordId, duration, endTime, endDate)
             .then(recordId => {
                 setSubmittedRecordId(recordId);
-                setShowModal(true)
+                handleModalOpen()
                 resetTimers();
             })
             .catch(err => {
                 console.error("error submitting time entry:", err)
                 setShowError(true)
             })
-        const getCurrentTime = () => {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            return `${hours}:${minutes}`;
-        };
-        const getTodaysDate = () => {
-            const today = new Date();
-            return today.toISOString().split('T')[0];
-        };
         //MOVE THESE TO WHEN MODAL CLOSES?
         // handleDateData(getTodaysDate())
         // setDate(getTodaysDate)

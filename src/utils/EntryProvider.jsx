@@ -9,8 +9,8 @@ export function useEntry() {
 
 export const EntryProvider = ({ children, duration }) => {
     const params = new URLSearchParams(window.location.search);
-    const initialUserRecordId = params.get('userRecordID') 
-    || "recMhLRHRvxzjIHpn";
+    const initialUserRecordId = params.get('userRecordID')
+        || "recMhLRHRvxzjIHpn";
     const [entry, setEntry] = useState({
         userName: "",
         userRecordId: initialUserRecordId,
@@ -36,6 +36,7 @@ export const EntryProvider = ({ children, duration }) => {
         submittedRecordId: ""
     })
 
+    //get user info on page load
     useEffect(() => {
         const getTeammateInfo = async () => {
             if (entry.userRecordId) {
@@ -51,7 +52,7 @@ export const EntryProvider = ({ children, duration }) => {
                     let recentJobCodeRecordIds = record.fields.Recently_Used_Jobcodes_record_ID_nonTest
                     let allAssignJobCodes = record.fields.All_Assigned_Jobcodes_Rollup
                     let allAssignJobCodeRecordIds = record.fields.All_Assigned_Jobcodes_record_ID
-                    let recentJobCodeArr =[]
+                    let recentJobCodeArr = []
                     let allJobCodeArr = []
                     for (let i = 0; i < recentJobCodes.length; i++) {
                         let obj = {
@@ -60,7 +61,7 @@ export const EntryProvider = ({ children, duration }) => {
                         };
                         recentJobCodeArr.push(obj);
                     }
-                    for (let i= 0; i < allAssignJobCodes.length ; ++i){
+                    for (let i = 0; i < allAssignJobCodes.length; ++i) {
                         let obj = {
                             jobCode: allAssignJobCodes[i],
                             recordId: allAssignJobCodeRecordIds[i] || "No Record ID"
@@ -89,20 +90,20 @@ export const EntryProvider = ({ children, duration }) => {
                 const jobCodes = Object.keys(jobRecordAndIdsObj);
                 const jobCodeRecordIds = Object.values(jobRecordAndIdsObj);
                 let allJobCodeArr = []
-                for (let i = 0 ; i< jobCodes.length ; ++i){
+                for (let i = 0; i < jobCodes.length; ++i) {
                     let obj = {
                         jobCode: jobCodes[i],
                         recordId: jobCodeRecordIds[i] || "No Record ID"
                     }
                     allJobCodeArr.push(obj)
                 }
-        
+
                 setEntry(prevEntry => ({
                     ...prevEntry,
                     // jobCodeArr: jobCodes, 
                     jobCodeAllRecordIdArr: allJobCodeArr
                 }));
-                
+
             } catch (error) {
                 console.error("Failed to fetch jobcodes:", error);
             }
@@ -118,7 +119,39 @@ export const EntryProvider = ({ children, duration }) => {
     // }, [])
 
     const updateJobCodeType = (newJobCodeType) => {
-        setEntry(prev => ({ ...prev, jobCodeType: newJobCodeType}))
+        setEntry(prev => ({ ...prev, jobCodeType: newJobCodeType }))
+    }
+
+    const handleModalOpen = () => {
+        setEntry(prev => ({ ...prev, showConfirmModal: true }))
+    }
+
+    const handleModalClose = async () => {
+        try {
+            const record = await getTeammateRecord(entry.userRecordId)
+            let dayAmountRecord = record.fields["Today (Sum)"]
+            let weekAmountRecord = record.fields["This Week (Sum)"]
+            let payPeriodAmountRecord = record.fields["This Pay Period (Sum)"]
+            setEntry(prevEntry => ({
+                ...prevEntry,
+                notes: "",
+                showConfirmModal: false,
+                //set updated start time with UTC
+                dayAmount: dayAmountRecord,
+                weekAmount: weekAmountRecord,
+                payPeriodAmount: payPeriodAmountRecord,
+            }))
+        } catch (error) {
+            console.error("Failed to UPDATE teammate record:", error);
+        }
+    }
+
+    const showError = () => {
+        setEntry(prev => ({ ...prev, showErrorModal: true }))
+    }
+
+    const updateNotes = (e) => {
+        setEntry(prev => ({ ...prev, notes: e.target.value }))
     }
 
     const findJobCode = (arr, jobCodeName) => {
@@ -129,7 +162,7 @@ export const EntryProvider = ({ children, duration }) => {
         const recordIdAll = findJobCode(entry.jobCodeAllRecordIdArr, jobCodeName)
         const recordIdRecent = findJobCode(entry.jobCodeRecentRecordIdArr, jobCodeName)
         let updatedJobCodes;
-        if (!recordIdAll.recordId){
+        if (!recordIdAll.recordId) {
             updatedJobCodes = {
                 jobCode: jobCodeName,
                 recordId: "recBrwBB7eRuIDIuz"
@@ -149,7 +182,11 @@ export const EntryProvider = ({ children, duration }) => {
         <EntryContext.Provider value={{
             entry, setEntry,
             updateJobCodeType,
-            updateJobCodes
+            updateJobCodes,
+            updateNotes,
+            handleModalOpen,
+            handleModalClose,
+            showError,
         }}>
             {children}
         </EntryContext.Provider>

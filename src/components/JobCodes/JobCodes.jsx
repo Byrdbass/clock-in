@@ -22,18 +22,18 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
     // Only listen to jobCodeList changes and entry initial load
   }, [jobCodeList, entry.jobCodeRecentRecordIdArr, entry.jobCodeAllRecordIdArr]);
 
-  useEffect(()=> {
+  useEffect(() => {
     const findJobCode = (arr, jobCodeName) => {
       const foundObj = arr.find(job => job.jobCode === jobCodeName)
       return foundObj
-  }
-  const jobNameAndId = findJobCode(entry.jobCodeAllRecordIdArr, jobcode3)
-  if(jobNameAndId){
-    setProjectRecordId(jobNameAndId.recordId)
-  } else {
-    setProjectRecordId("recBrwBB7eRuIDIuz")
-  }
-  },[jobcode3, projectRecordId])
+    }
+    const jobNameAndId = findJobCode(entry.jobCodeAllRecordIdArr, jobcode3)
+    if (jobNameAndId) {
+      setProjectRecordId(jobNameAndId.recordId)
+    } else {
+      setProjectRecordId("recBrwBB7eRuIDIuz")
+    }
+  }, [jobcode3, projectRecordId])
 
   //function called on checkbox clicked or not
   const handleToggle = () => {

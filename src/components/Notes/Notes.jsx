@@ -1,9 +1,11 @@
 import './notes.css'
+import { useEntry } from '../../utils/EntryProvider';
 export default function Notes({handleNotesData, notes, setNotes}) {
-
+    const { entry, updateNotes } = useEntry()
     const updateNotesData = (event) => {
-        setNotes(event.target.value);
-        handleNotesData(event.target.value)
+        updateNotes(event)
+        // setNotes(event.target.value);
+        // handleNotesData(event.target.value)
     }
 
     return(
@@ -15,7 +17,7 @@ export default function Notes({handleNotesData, notes, setNotes}) {
             <textarea
                 className="notes-field"
                 // placeholder="Enter notes here"
-                value={notes}
+                value={entry.notes}
                 onChange={updateNotesData}
             ></textarea>
         </div>

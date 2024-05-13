@@ -12,12 +12,12 @@ export default function ModalConfirmation({
     jobcode3,
     notes,
     submittedRecordId,
-    handleModalClose
+    // handleModalClose
 }) 
 {
     const [newStartTime, setNewStartTime] = useState()
     const [newEndTime, setNewEndTime] = useState()
-    const { entry } = useEntry()
+    const { entry, handleModalClose } = useEntry()
 
     useEffect(() => {
         const [hours, minutes] = startTime.split(":").map(Number)
@@ -32,7 +32,7 @@ export default function ModalConfirmation({
         setNewEndTime(`${endTime.replace(/^0+/, "")}`)
     }, [endTime])
 
-    if (!showModal) return null
+    if (!entry.showConfirmModal) return null
 
     return (
         <>
@@ -47,7 +47,7 @@ export default function ModalConfirmation({
                         <p>Start Time: {newStartTime} </p>
                         <p>End Time: {newEndTime} </p>
                         <p>Job-Code/Product: {entry.jobCodeArr.jobCode} </p>
-                        <p>Notes on Entry: {notes} </p>
+                        <p>Notes on Entry: {entry.notes} </p>
                         <p> RECORD ID: {submittedRecordId}</p>
                         <p>Your time entry has been submitted!</p>
                     </div>
