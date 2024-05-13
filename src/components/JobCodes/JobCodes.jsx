@@ -1,17 +1,14 @@
 // import '../../App.css'
 import './jobcodes.css'
 import '../JobSlider/jobslider.css'
-import { getTeammateRecord, getProductNameAndID } from '../../helpers/airTableGetJobcodes';
 import { useEffect, useState } from 'react'
 import { useEntry } from '../../utils/EntryProvider';
 
-export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3, setJobcode3 }) {
+export default function JobCodes() {
 
   const { entry, updateJobCodes, updateJobCodeType } = useEntry();
   const [jobCodes, setJobCodes] = useState([])
   const [selectedJobCode, setSelectedJobCode] = useState("")
-  // const [jobCodeList, setJobCodeList] = useState('Recent Job Codes');
-  // const [colorChange, setColorChange] = useState('dark')
 
   //render all vs. recent job codes
   useEffect(() => {
@@ -19,6 +16,7 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
       entry.jobCodeRecentRecordIdArr.map(val => val.jobCode) :
       entry.jobCodeAllAssignRecordIdArr.map(val => val.jobCode);
     setJobCodes(jobs);
+    // empty quotes ensure the disabled option appears
     setSelectedJobCode(entry.jobCodeArr.jobCode || "");
   }, [entry.jobCodeType, entry.jobCodeRecentRecordIdArr, entry.jobCodeAllRecordIdArr, entry.jobCodeArr.jobCode]);
 
@@ -28,10 +26,10 @@ export default function JobCodes({ projectRecordId, setProjectRecordId, jobcode3
     const newJobCodeList = entry.jobCodeType === "Recent Job Codes" ? "All Job Codes" : "Recent Job Codes"
     const newJobColor = entry.jobCodeColor === 'dark' ? 'light' : 'dark'
     updateJobCodeType(newJobCodeList, newJobColor)
-    // setColorChange(prevColor => prevColor === 'dark' ? 'light' : 'dark')
     setSelectedJobCode("")
   }
 
+  //function called on dropdown select
   const handleSelectChange = (e) => {
     setSelectedJobCode(e.target.value)
     updateJobCodes(e.target.value)
