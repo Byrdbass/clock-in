@@ -4,18 +4,23 @@ import { useEntry } from '../../utils/EntryProvider';
 import { isFutureDate, isPastPayPeriod } from '../../helpers/isCurrentPayPeriod'
 
 export default function ModalError({
-    showError,
     date,
-    notes,
-    handleModalErrorClose
 }) {
 
-    const { entry } = useEntry()
+    const { entry, showError } = useEntry()
     const dateIsFuture = isFutureDate(date);
     const dateIsPastPP = isPastPayPeriod(date);
-// useEffect(() => {
+    // useEffect(() => {
 
-// },[date])
+    // },[date])
+
+    const handleModalErrorClose = () => {
+        showError()
+    }
+
+    const isObjectEmpty = (obj) => {
+        return Object.keys(obj).length === 0;
+    };
 
     if (!entry.showErrorModal) return null
     return (
@@ -23,9 +28,13 @@ export default function ModalError({
             <div className='modal'>
                 <div className='modal-card'>
                     <div className='modal-content'>
+                        {isObjectEmpty(entry.jobCodeArr) ?
+                            <p>No job code selected. Please select a job code.</p> :
+                            <p>Error Contact Leland for help</p>
+                            }
                         {entry.notes === '' ?
                             <p>Notes Empty</p> :
-                            <p>Error</p>
+                            <p>Error Contact Leland for help</p>
                         }
                         {dateIsFuture ?
                             <p>Date is in the future!</p> :

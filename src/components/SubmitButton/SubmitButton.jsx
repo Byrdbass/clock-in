@@ -7,8 +7,6 @@ import { isFutureDate, isPastPayPeriod } from '../../helpers/isCurrentPayPeriod'
 
 
 export default function SubmitButton({
-    setShowModal,
-    userName,
     userRecordID,
     startTime,
     endDate,
@@ -17,8 +15,6 @@ export default function SubmitButton({
     date,
     jobcode3,
     projectRecordId,
-    notes,
-    setNotes,
     setSubmittedRecordId,
     setShowError
 }) {
@@ -37,7 +33,8 @@ export default function SubmitButton({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        if (entry.notes === '' ||
+        if (!Object.keys(entry.jobCodeArr) ||
+            entry.notes === '' ||
             dateIsFuture ||
             dateIsPastPP) {
             showError()

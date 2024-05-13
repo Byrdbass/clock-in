@@ -3,16 +3,11 @@ import { useEffect, useState } from "react";
 import { useEntry } from '../../utils/EntryProvider';
 
 export default function ModalConfirmation({
-    showModal,
-    userName,
     date,
     duration,
     startTime,
     endTime,
-    jobcode3,
-    notes,
     submittedRecordId,
-    // handleModalClose
 }) 
 {
     const [newStartTime, setNewStartTime] = useState()
@@ -41,7 +36,7 @@ export default function ModalConfirmation({
                     <div className='modal-card' onClick={e => e.stopPropagation()}></div>
                     {/* replace with a .svg of close button */}
                     <div className='modal-content'onClick={e => e.stopPropagation()}>
-                        <p className='modal-row'>Name: {userName}</p>
+                        <p className='modal-row'>Name: {entry.userName}</p>
                         <p>Date: {date} </p>
                         <p>Duration: {duration} </p>
                         <p>Start Time: {newStartTime} </p>

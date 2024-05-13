@@ -56,18 +56,19 @@ export const EntryProvider = ({ children, duration }) => {
                     let allJobCodeArr = []
                     for (let i = 0; i < recentJobCodes.length; i++) {
                         let obj = {
-                            jobCode: recentJobCodes[i],
+                            jobCode: recentJobCodes[i]  || "no jobcode",
                             recordId: recentJobCodeRecordIds[i] || "No Record ID"
                         };
                         recentJobCodeArr.push(obj);
                     }
                     for (let i = 0; i < allAssignJobCodes.length; ++i) {
                         let obj = {
-                            jobCode: allAssignJobCodes[i],
+                            jobCode: allAssignJobCodes[i]   || "no jobcode",
                             recordId: allAssignJobCodeRecordIds[i] || "No Record ID"
                         }
                         allJobCodeArr.push(obj)
                     }
+                    console.log(recentJobCodes)
                     const filteredJobCodeArr = recentJobCodeArr.filter(obj => !obj.jobCode.includes("Error"));
                     setEntry(prevEntry => ({
                         ...prevEntry,
@@ -140,6 +141,7 @@ export const EntryProvider = ({ children, duration }) => {
                 dayAmount: dayAmountRecord,
                 weekAmount: weekAmountRecord,
                 payPeriodAmount: payPeriodAmountRecord,
+                jobCodeArr: {}
             }))
         } catch (error) {
             console.error("Failed to UPDATE teammate record:", error);
@@ -147,7 +149,7 @@ export const EntryProvider = ({ children, duration }) => {
     }
 
     const showError = () => {
-        setEntry(prev => ({ ...prev, showErrorModal: true }))
+        setEntry(prev => ({ ...prev, showErrorModal: !prev.showErrorModal }))
     }
 
     const updateNotes = (e) => {
