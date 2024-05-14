@@ -16,10 +16,10 @@ export function isPastPayPeriod(dateData) {
     let payPeriodEnd;
 
     if (currentDate.getUTCDate() <= 15) {
-        payPeriodStart = new Date(Date.UTC(currentYear, currentMonth, 1));  // First of the month
-        payPeriodEnd = new Date(Date.UTC(currentYear, currentMonth, 15));  // Fifteenth of the month
+        payPeriodStart = new Date(Date.UTC(currentYear, currentMonth, 1));  
+        payPeriodEnd = new Date(Date.UTC(currentYear, currentMonth, 15)); 
     } else {
-        payPeriodStart = new Date(Date.UTC(currentYear, currentMonth, 16)); // Sixteenth of the month
+        payPeriodStart = new Date(Date.UTC(currentYear, currentMonth, 16)); 
         payPeriodEnd = new Date(Date.UTC(currentYear, currentMonth + 1, 0)); // Last day of the month
     }
     

@@ -1,5 +1,4 @@
 import './modal-error.css'
-import { useEffect } from 'react';
 import { useEntry } from '../../utils/EntryProvider';
 import { isFutureDate, isPastPayPeriod } from '../../helpers/isCurrentPayPeriod'
 
@@ -10,9 +9,6 @@ export default function ModalError({
     const { entry, showError } = useEntry()
     const dateIsFuture = isFutureDate(date);
     const dateIsPastPP = isPastPayPeriod(date);
-    // useEffect(() => {
-
-    // },[date])
 
     const handleModalErrorClose = () => {
         showError()

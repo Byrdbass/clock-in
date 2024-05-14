@@ -51,15 +51,6 @@ export default function SubmitButton({
                 console.error("error submitting time entry:", err)
                 setShowError(true)
             })
-        //MOVE THESE TO WHEN MODAL CLOSES?
-        // handleDateData(getTodaysDate())
-        // setDate(getTodaysDate)
-        // setStartTime(getCurrentTime())
-        // handleStartTimeData(getCurrentTime())
-        // setDuration(25)
-        // setNotes("")
-        // setDate("")
-        // setClockIn(0)
     };
 
     const handleEnterPress = (event) => {

@@ -11,12 +11,12 @@ export const EntryProvider = ({ children, duration }) => {
     const params = new URLSearchParams(window.location.search);
     const initialUserRecordId = params.get('userRecordID')
         || "recMhLRHRvxzjIHpn";
+
     const [entry, setEntry] = useState({
         userName: "",
         userRecordId: initialUserRecordId,
         photoUrl: "",
-        startDate: "YYYY-MM-DD",
-        startTime: "HH:mm",
+        startDateTime: new Date(), //in UTC - local time zone calc. of +/- hrs
         endDate: "YYYY-MM-DD",
         endTime: "HH:mm",
         duration: 0,
@@ -57,14 +57,14 @@ export const EntryProvider = ({ children, duration }) => {
                     let allJobCodeArr = []
                     for (let i = 0; i < recentJobCodes.length; i++) {
                         let obj = {
-                            jobCode: recentJobCodes[i]  || "no jobcode",
+                            jobCode: recentJobCodes[i] || "no jobcode",
                             recordId: recentJobCodeRecordIds[i] || "No Record ID"
                         };
                         recentJobCodeArr.push(obj);
                     }
                     for (let i = 0; i < allAssignJobCodes.length; ++i) {
                         let obj = {
-                            jobCode: allAssignJobCodes[i]   || "no jobcode",
+                            jobCode: allAssignJobCodes[i] || "no jobcode",
                             recordId: allAssignJobCodeRecordIds[i] || "No Record ID"
                         }
                         allJobCodeArr.push(obj)
@@ -114,15 +114,11 @@ export const EntryProvider = ({ children, duration }) => {
         getJobCodes()
     }, [entry.userRecordId])
 
-    // useEffect(() => {
-    //     const currentTime = getCurrentTime();
-    //     setStartTime(currentTime);
-    // }, [])
-
     const updateJobCodeType = (newJobCodeType, newJobColor) => {
-        setEntry(prev => ({ ...prev, 
+        setEntry(prev => ({
+            ...prev,
             jobCodeType: newJobCodeType,
-            jobCodeColor: newJobColor 
+            jobCodeColor: newJobColor
         }))
     }
 
@@ -141,7 +137,7 @@ export const EntryProvider = ({ children, duration }) => {
             let recentJobCodeArr = []
             for (let i = 0; i < recentJobCodes.length; i++) {
                 let obj = {
-                    jobCode: recentJobCodes[i]  || "no jobcode",
+                    jobCode: recentJobCodes[i] || "no jobcode",
                     recordId: recentJobCodeRecordIds[i] || "No Record ID"
                 };
                 recentJobCodeArr.push(obj);
@@ -159,6 +155,15 @@ export const EntryProvider = ({ children, duration }) => {
                 jobCodeColor: "dark",
                 jobCodeRecentRecordIdArr: filteredJobCodeArr,
                 jobCodeArr: {}
+                //TODO MOVE THESE TO WHEN MODAL CLOSES?
+                // handleDateData(getTodaysDate())
+                // setDate(getTodaysDate)
+                // setStartTime(getCurrentTime())
+                // handleStartTimeData(getCurrentTime())
+                // setDuration(25)
+                // setNotes("")
+                // setDate("")
+                // setClockIn(0)
             }))
         } catch (error) {
             console.error("Failed to UPDATE teammate record:", error);
@@ -167,6 +172,11 @@ export const EntryProvider = ({ children, duration }) => {
 
     const showError = () => {
         setEntry(prev => ({ ...prev, showErrorModal: !prev.showErrorModal }))
+    }
+    //TODO export this function and use it in StartTime.jsx
+    const updateStartTime = (newStartTime) => {
+
+        setEntry(prev => ({ ...prev, startDateTime: newStartTime}))
     }
 
     const updateNotes = (e) => {

@@ -1,26 +1,30 @@
 // import '../../App.css'
 import './startTime.css'
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useEntry } from '../../utils/EntryProvider';
 
 export default function StartTime({ handleStartTimeData, startTime, setStartTime }) {
-    
+    const { entry } = useEntry();
+    const [ startTimeFormatted, setStartTimeFormatted ] = useState("")
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     const offset = new Date().getTimezoneOffset()
-    useEffect(() => {
-        // if (!startTime || startTime === ""){
-            const currentTime = getCurrentTime();
-            setStartTime(currentTime);
-            handleStartTimeData(currentTime)
-        // }
-    }, [])
-
     const getCurrentTime = () => {
         const now = new Date();
         const options = { hour: '2-digit', minute: '2-digit', hour12: false };
         const timeString = now.toLocaleTimeString('en-US', options);
         return timeString;
     };
+
+    useEffect(() => {
+            const currentTime = getCurrentTime();
+            setStartTime(currentTime);
+
+            const options = { hour: '2-digit', minute: '2-digit', hour12: false };
+            const timeString = entry.startDateTime.toLocaleTimeString('en-US', options);
+            setStartTimeFormatted(timeString)
+    }, [entry.startDateTime])
+
 
 
     const updateStartTime = (e) => {
@@ -34,7 +38,7 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
             <input
                 type="time"
                 className="startTimeInput"
-                value={startTime}
+                value={startTimeFormatted}
                 onChange={updateStartTime}
                 style={{
                     border: 'none',
