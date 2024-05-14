@@ -37,6 +37,7 @@
 
 .clock-in-btn {
   background-color: hsl(95.7, 61.5%, 41.8%);
+  color: white;
   height: 32px;
   line-height: 2px;
   margin-right: 25px;

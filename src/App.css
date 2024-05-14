@@ -44,7 +44,7 @@ body {
 .input-fields{
   position: absolute;
   top: 152px;
-  left: 70px;
+  left: 61px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
