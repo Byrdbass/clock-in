@@ -1,27 +1,26 @@
 import './clock-in-btn.css'
-import { useEffect } from 'react';
 import { useTimer } from '../../utils/TimerProvider';
+import { useEntry } from '../../utils/EntryProvider';
+import { getCurrentTime, getCurrentDate } from '../../helpers/getCurrentTime';
 
-export default function ClockInBtn({ handleStartTime }) {
+export default function ClockInBtn() {
 
     // WHEN BUTTON CLICKED RESET TIMERS
     const {resetTimers} = useTimer()
-    const getCurrentTime = () => {
-        const now = new Date();
-        const options = { hour: '2-digit', minute: '2-digit', hour12: false };
-        const timeString = now.toLocaleTimeString('en-US', options);
-        return timeString;
-    };
+    const { entry, updateStartTime, updateStartDate } = useEntry()
 
-    const updateStartTime = () => {
-        handleStartTime(getCurrentTime);
+    const handleStartTime = () => {
+        let newStartTime = getCurrentTime();
+        let newStartDate = getCurrentDate();
+        updateStartTime(newStartTime)
+        updateStartDate(newStartDate)
         resetTimers();
     }
 
     return(
         <>
             <button className='clock-in'
-            onClick={updateStartTime}
+            onClick={handleStartTime}
             >UPDATE START TIME</button>
         </>
     )

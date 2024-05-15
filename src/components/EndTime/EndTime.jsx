@@ -2,6 +2,7 @@ import './endTime.css'
 import clockIcon from '../../assets/date-time-icons/clock-24px-simple.png'
 import { useEffect } from 'react';
 import { useTimer } from '../../utils/TimerProvider';
+import { useEntry } from '../../utils/EntryProvider';
 
 export default function EndTime({
     handleEndTimeData,
@@ -13,7 +14,8 @@ export default function EndTime({
     setDuration,
     endDate,
     setEndDate }) {
-
+    
+    const { entry, updateEndTime } = useEntry();
     const { setCountDownTime } = useTimer();
     const formatTime = (num) => `${num < 10 ? '0' : ''}${num}`;
 
@@ -35,7 +37,7 @@ export default function EndTime({
     }, [startTime, duration, endTime, endDate])
 
 
-    const updateEndTime = (e) => {
+    const handleEndTime = (e) => {
         const newEndTimeValue = e.target.value;
         setEndTime(newEndTimeValue);
         handleEndTimeData(newEndTimeValue);
@@ -57,6 +59,7 @@ export default function EndTime({
             setEndTime(newEndTimeValue);
             handleEndTimeData(newEndTimeValue);
         }
+        updateEndTime(e.target.value)
     }
 
     return (
@@ -64,8 +67,8 @@ export default function EndTime({
             <input
                 type="time"
                 className="endTimeInput"
-                value={endTime}
-                onChange={updateEndTime}
+                value={entry.endTime}
+                onChange={handleEndTime}
                 style={{
                     border: 'none',
                     backgroundColor: 'inherit',

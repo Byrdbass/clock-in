@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { convertTimeToDateObj } from '../helpers/parseDateTime';
+import { convertTimeToDateObj, getDuration } from '../helpers/parseDateTime';
 import { getCurrentTime, getCurrentDate } from '../helpers/getCurrentTime'
 import { getTeammateRecord, getProductNameAndID } from '../helpers/airTableGetJobcodes';
 
@@ -23,8 +23,9 @@ export const EntryProvider = ({ children, duration }) => {
         startDateTime: new Date(), //in UTC - local time zone calc. of +/- hrs
         startTime: initialTime,
         startDate: initialDate,
-        endTime: "HH:mm",
-        endDate: "YYYY-MM-DD",
+        endDateTime: new Date(),
+        endTime: initialTime, //or initialize to "undefined?"
+        endDate: initialDate,
         duration: 0,
         jobCodeType: "Recent Job Codes",
         jobCodeColor: 'dark',
@@ -190,6 +191,16 @@ export const EntryProvider = ({ children, duration }) => {
         setEntry(prev => ({ ...prev, startTime: newStartTime, startDateTime: newDateTime}))
     }
 
+    const updateEndDate = (newEndDate) => {
+        let newDateTime = convertTimeToDateObj(entry.endTime, newEndDate)
+        setEntry(prev => ({ ...prev, endDate: newEndDate, endDateTime: newDateTime}))
+    }
+
+    const updateEndTime = (newEndTime) => {
+        let newDateTime = convertTimeToDateObj(newEndTime, entry.endDate)
+        setEntry(prev => ({ ...prev, endTime: newEndTime, endDateTime: newDateTime}))
+    }
+
     const updateNotes = (e) => {
         setEntry(prev => ({ ...prev, notes: e.target.value }))
     }
@@ -227,6 +238,8 @@ export const EntryProvider = ({ children, duration }) => {
             showError,
             updateStartDate,
             updateStartTime,
+            updateEndDate,
+            updateEndTime,
             updateNotes,
             updateJobCodes,
         }}>
