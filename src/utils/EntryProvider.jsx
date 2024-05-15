@@ -1,6 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { getCurrentTime } from '../helpers/getCurrentTime';
+import { convertTimeToDateObj } from '../helpers/parseDateTime';
+import { getCurrentTime, getCurrentDate } from '../helpers/getCurrentTime'
 import { getTeammateRecord, getProductNameAndID } from '../helpers/airTableGetJobcodes';
+
 
 const EntryContext = createContext();
 export function useEntry() {
@@ -11,14 +13,18 @@ export const EntryProvider = ({ children, duration }) => {
     const params = new URLSearchParams(window.location.search);
     const initialUserRecordId = params.get('userRecordID')
         || "recMhLRHRvxzjIHpn";
+    const initialTime = getCurrentTime()
+    const initialDate = getCurrentDate()
 
     const [entry, setEntry] = useState({
         userName: "",
         userRecordId: initialUserRecordId,
         photoUrl: "",
         startDateTime: new Date(), //in UTC - local time zone calc. of +/- hrs
-        endDate: "YYYY-MM-DD",
+        startTime: initialTime,
+        startDate: initialDate,
         endTime: "HH:mm",
+        endDate: "YYYY-MM-DD",
         duration: 0,
         jobCodeType: "Recent Job Codes",
         jobCodeColor: 'dark',
@@ -173,10 +179,15 @@ export const EntryProvider = ({ children, duration }) => {
     const showError = () => {
         setEntry(prev => ({ ...prev, showErrorModal: !prev.showErrorModal }))
     }
-    //TODO export this function and use it in StartTime.jsx
-    const updateStartTime = (newStartTime) => {
 
-        setEntry(prev => ({ ...prev, startDateTime: newStartTime}))
+    const updateStartDate = (newStartDate) => {
+        let newDateTime = convertTimeToDateObj(entry.startTime, newStartDate)
+        setEntry(prev => ({ ...prev, startDate: newStartDate, startDateTime: newDateTime}))
+    }
+
+    const updateStartTime = (newStartTime) => {
+        let newDateTime = convertTimeToDateObj(newStartTime, entry.startDate)
+        setEntry(prev => ({ ...prev, startTime: newStartTime, startDateTime: newDateTime}))
     }
 
     const updateNotes = (e) => {
@@ -211,11 +222,13 @@ export const EntryProvider = ({ children, duration }) => {
         <EntryContext.Provider value={{
             entry, setEntry,
             updateJobCodeType,
-            updateJobCodes,
-            updateNotes,
             handleModalOpen,
             handleModalClose,
             showError,
+            updateStartDate,
+            updateStartTime,
+            updateNotes,
+            updateJobCodes,
         }}>
             {children}
         </EntryContext.Provider>

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useEntry } from '../../utils/EntryProvider';
 
 export default function StartTime({ handleStartTimeData, startTime, setStartTime }) {
-    const { entry } = useEntry();
+    const { entry, updateStartTime } = useEntry();
     const [ startTimeFormatted, setStartTimeFormatted ] = useState("")
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -20,16 +20,18 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
             const currentTime = getCurrentTime();
             setStartTime(currentTime);
 
-            const options = { hour: '2-digit', minute: '2-digit', hour12: false };
-            const timeString = entry.startDateTime.toLocaleTimeString('en-US', options);
+            const options = { hour: '2-digit', minute: '2-digit', hour24: false };
+            const timeString = entry.startTime
             setStartTimeFormatted(timeString)
     }, [entry.startDateTime])
 
 
 
-    const updateStartTime = (e) => {
+    const handleStartTime = (e) => {
+        // console.log(e.target.value)
         setStartTime(e.target.value);
         handleStartTimeData(e.target.value);
+        updateStartTime(e.target.value)
     }
 
 
@@ -38,8 +40,8 @@ export default function StartTime({ handleStartTimeData, startTime, setStartTime
             <input
                 type="time"
                 className="startTimeInput"
-                value={startTimeFormatted}
-                onChange={updateStartTime}
+                value={entry.startTime}
+                onChange={handleStartTime}
                 style={{
                     border: 'none',
                     backgroundColor: 'inherit',

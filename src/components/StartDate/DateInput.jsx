@@ -1,9 +1,11 @@
 import './dateInput.css'
 import { useEffect } from 'react';
-
+import { useEntry } from '../../utils/EntryProvider';
 
 
 export default function DateInput({ handleDateData, date, setDate }) {
+
+    const { entry, updateStartDate } = useEntry()    
 
     useEffect(() => {
         if (!date || date === ""){
@@ -15,7 +17,7 @@ export default function DateInput({ handleDateData, date, setDate }) {
     
     
     const getTodaysDate = () => {
-        const today = new Date();  // This gets the current date and time
+        const today = new Date(); 
         const currentDay = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
         return currentDay.toISOString().split('T')[0];  // Formats to YYYY-MM-DD
       };
@@ -23,6 +25,7 @@ export default function DateInput({ handleDateData, date, setDate }) {
     const updateDateData = (event) => {
         setDate(event.target.value);
         handleDateData(event.target.value);
+        updateStartDate(event.target.value);
     }
 
     return (
@@ -30,7 +33,7 @@ export default function DateInput({ handleDateData, date, setDate }) {
             <input
                 type="date"
                 className='date-field'
-                value={date}
+                value={entry.startDate}
                 onChange={updateDateData}
                 style={{
                     border:'none', 

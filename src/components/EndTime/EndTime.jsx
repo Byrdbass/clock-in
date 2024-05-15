@@ -26,7 +26,7 @@ export default function EndTime({
             setEndDate(newDate)
             handleEndDateData(newDate)
         }
-        const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+        const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
         if (newEndTime !== endTime) {
             setEndTime(newEndTime)
             handleEndTimeData(newEndTime)

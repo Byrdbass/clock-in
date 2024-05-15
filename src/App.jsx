@@ -39,6 +39,7 @@ function App() {
   const [projectRecordId, setProjectRecordId] = useState('')
   // const [hasError, setHasError] = useState(false)
 
+  //TODO DELETE DUPLICATE
   const getCurrentTime = () => {
     const now = new Date();
     const options = { hour: '2-digit', minute: '2-digit', hour12: true };
@@ -46,7 +47,7 @@ function App() {
     return timeString;
   };
   const [showModal, setShowModal] = useState(false);
-  const [startDate, setStartTime] = useState(getCurrentTime());
+  const [startDate, setStartTime] = useState(getCurrentTime()); //TODO DELETE
   const [endTime, setEndTime] = useState('');
   const [endDate, setEndDate] = useState();
   const [date, setDate] = useState('');
