@@ -4,63 +4,22 @@ import { useEffect } from 'react';
 import { useTimer } from '../../utils/TimerProvider';
 import { useEntry } from '../../utils/EntryProvider';
 
-export default function EndTime({
-    handleEndTimeData,
-    handleEndDateData,
-    endTime,
-    setEndTime,
-    startTime,
-    duration,
-    setDuration,
-    endDate,
-    setEndDate }) {
+export default function EndTime() {
     
     const { entry, updateEndTime, updateDuration } = useEntry();
     const { setCountDownTime } = useTimer();
-    const formatTime = (num) => `${num < 10 ? '0' : ''}${num}`;
 
     useEffect(() => {
-        const [startHours, startMinutes] = startTime.split(":").map(Number);
-        const startDate = new Date();
-        startDate.setHours(startHours, startMinutes, 0, 0)
-        const newDate = new Date(startDate.getTime() + duration * 60000);
-        if (newDate.getTime() !== endDate?.getTime()) {
-            setEndDate(newDate)
-            handleEndDateData(newDate)
+        if (entry.endDateTime) {
+            updateDuration(entry.startDateTime, entry.endDateTime);
         }
-        const newEndTime = newDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
-        if (newEndTime !== endTime) {
-            setEndTime(newEndTime)
-            handleEndTimeData(newEndTime)
-        }
-
-    }, [startTime, duration, endTime, endDate])
-
+    }, [entry.endDateTime]);
 
     const handleEndTime = (e) => {
-        const newEndTimeValue = e.target.value;
-        setEndTime(newEndTimeValue);
-        handleEndTimeData(newEndTimeValue);
-        //comparing values for change
-        const [startHours, startMinutes] = startTime.split(":").map(Number);
-        const [endHours, endMinutes] = newEndTimeValue.split(":").map(Number);
-        const startDate = new Date();
-        startDate.setHours(startHours, startMinutes, 0, 0);
-        const endDate = new Date();
-        endDate.setHours(endHours, endMinutes, 0, 0);
-
-        //updating Timer
-        const formattedTime = `${formatTime(endHours)}:${formatTime(endMinutes)}`;
-        setCountDownTime(formattedTime)
-
-        const newDuration = (endDate - startDate) / 60000;
-        if (newDuration >= 0) {
-            setDuration(newDuration);
-            setEndTime(newEndTimeValue);
-            handleEndTimeData(newEndTimeValue);
-        }
+        //TODO: Timer used to be set here
+        // add the option in a button to coordinate end time with countdown timer
         updateEndTime(e.target.value)
-        updateDuration(entry.startDateTime, entry.endDateTime)
+        console.log("in endTime", entry.endDateTime, e.target.value)
     }
 
     return (
@@ -82,6 +41,7 @@ export default function EndTime({
                     // zIndex: '1'
                 }}
             />
+            {/* TODO: add spinning icon back! */}
             {/* <div className="endTime-icon-div"></div> */}
         </div>
     )

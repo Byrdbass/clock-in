@@ -7,44 +7,27 @@ let base = new Airtable({ apiKey: `${apiKey}` }).base(`${timeSheetHoursBase}`);
 
 export function createTimeEntry(
   notes,
-  date,
-  startTime,
+  startDateTime,
   jobcode3,
   userRecordID,
   projectRecordId,
   duration,
-  endTime,
-  endDate
+  endDateTime
 ) {
   return new Promise((resolve, reject) => {
     if (userRecordID === "" || userRecordID === null) {
       userRecordID = "recz0x2YIqlsm6vQR";
     }
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    console.log(`${date}T${startTime}`);
-    let startDateTime = new Date(`${date}T${startTime}:00Z`); // UTC format
-    // TODO: THIS IS AN "INVALID DATE" due to seconds being added?
-    const timezoneOffsetHours = startDateTime.getTimezoneOffset() / 60;
-    // startDateTime.setHours(startDateTime.getHours() - timezoneOffsetHours);
-    const startDateTimeString = startDateTime.setHours(
-      startDateTime.getHours() + timezoneOffsetHours
-    );
-    let endDateTime = new Date(`${endDate}T${endTime}:00Z`); // UTC format
-    const endDateTimeString = endDateTime.setHours(
-      endDateTime.getHours() + timezoneOffsetHours
-    );
-    console.log(startDateTime);
-    console.log(endDateTimeString);
     base("Timesheet_Hours").create(
       [
         {
           fields: {
             Team_Member: [`${userRecordID}`],
-            Start_Time_Manual: startDateTimeString,
+            Start_Time_Manual: startDateTime,
             // "Start_Time_Manual_test": `${startDateTime}`,
-            Date_of_Timesheet: `${date}`,
+            // Date_of_Timesheet: `${startDateTime}`,
             End_Time_Manual: endDateTime,
-            End_Time_Manual_test: endDateTimeString,
+            End_Time_Manual_test: endDateTime,
             Product_Jobcode3: [`${projectRecordId}`],
             Product_Jobcode3_fallback: `${jobcode3}`,
             Notes: `${notes}`,
@@ -61,6 +44,7 @@ export function createTimeEntry(
         if (records && records.length > 0) {
           resolve(records[0].getId());
         }
-      });
+      }
+    );
   });
 }

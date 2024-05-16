@@ -9,9 +9,16 @@ export default function EndDate({ endDate, endTime, duration }) {
 
     useEffect(() => {
         const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        const newDateStr = new Date(endDate)
+        const newDateStr = new Date(entry.endDateTime)
         setEndDateStr(newDateStr.toLocaleDateString('en-US', options))
-    }, [endDate, endTime, duration])
+        //TODO: account for if time runs over midnight
+        if (entry.startDate) {
+            let updatedEndDateStr = new Date(entry.startDateTime)
+            updateEndDate(entry.startDate);
+            setEndDateStr(updatedEndDateStr.toLocaleDateString('en-US', options))
+        }
+    }, [entry.startDate])
+
     return (
         <>
             <div className="endDate-outer-div">

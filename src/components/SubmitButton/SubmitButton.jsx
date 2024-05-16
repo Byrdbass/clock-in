@@ -41,7 +41,9 @@ export default function SubmitButton({
             showError()
             return
         }
-        submitTimeEntry(entry.notes, date, startTime, jobCodeName, userRecordID, jobCodeRecordId, duration, endTime, endDate)
+        submitTimeEntry(entry.notes, 
+            entry.startDateTime, 
+            jobCodeName, entry.userRecordId, jobCodeRecordId, entry.duration, entry.endDateTime)
             .then(recordId => {
                 setSubmittedRecordId(recordId);
                 handleModalOpen()
