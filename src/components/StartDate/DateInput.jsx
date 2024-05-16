@@ -3,28 +3,11 @@ import { useEffect } from 'react';
 import { useEntry } from '../../utils/EntryProvider';
 
 
-export default function DateInput({ handleDateData, date, setDate }) {
+export default function DateInput() {
 
     const { entry, updateStartDate } = useEntry()    
 
-    useEffect(() => {
-        if (!date || date === ""){
-            const currentDate = getTodaysDate();
-            setDate(currentDate);
-            handleDateData(currentDate)
-        }
-    }, []);
-    
-    
-    const getTodaysDate = () => {
-        const today = new Date(); 
-        const currentDay = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
-        return currentDay.toISOString().split('T')[0];  // Formats to YYYY-MM-DD
-      };
-
     const updateDateData = (event) => {
-        setDate(event.target.value);
-        handleDateData(event.target.value);
         updateStartDate(event.target.value);
     }
 

@@ -144,19 +144,9 @@ function App() {
             {/* <TimeSheetHeader /> */}
             <CountUp2 />
             <div className='start-container'>
-              <DateInput
-                handleDateData={handleDateData}
-                date={date}
-                setDate={setDate}
-              />
-              <StartTime
-                handleStartTimeData={handleStartTimeData}
-                startTime={startDate}
-                setStartTime={setStartTime}
-              />
-              <ClockInBtn
-                handleStartTime={handleStartTimeData}
-              />
+              <DateInput />
+              <StartTime />
+              <ClockInBtn />
             </div>
             <div className="input-fields">
               <JobCodes
@@ -164,11 +154,6 @@ function App() {
                 setProjectRecordId={setProjectRecordId}
                 jobcode3={jobcode3}
                 setJobcode3={setJobcode3}
-                // userRecordID={userRecordID}
-              />
-              <TaskID
-                taskNum={taskNum}
-                setTaskNum={setTaskNum}
               />
               <Notes
                 handleNotesData={handleNotesData}

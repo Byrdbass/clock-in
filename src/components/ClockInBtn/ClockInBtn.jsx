@@ -7,7 +7,7 @@ export default function ClockInBtn() {
 
     // WHEN BUTTON CLICKED RESET TIMERS
     const {resetTimers} = useTimer()
-    const { entry, updateStartTime, updateStartDate } = useEntry()
+    const { updateStartTime, updateStartDate } = useEntry()
 
     const handleStartTime = () => {
         let newStartTime = getCurrentTime();
