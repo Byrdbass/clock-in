@@ -15,7 +15,7 @@ export default function EndTime({
     endDate,
     setEndDate }) {
     
-    const { entry, updateEndTime } = useEntry();
+    const { entry, updateEndTime, updateDuration } = useEntry();
     const { setCountDownTime } = useTimer();
     const formatTime = (num) => `${num < 10 ? '0' : ''}${num}`;
 
@@ -60,6 +60,7 @@ export default function EndTime({
             handleEndTimeData(newEndTimeValue);
         }
         updateEndTime(e.target.value)
+        updateDuration(entry.startDateTime, entry.endDateTime)
     }
 
     return (

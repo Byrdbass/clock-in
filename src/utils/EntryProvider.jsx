@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { convertTimeToDateObj, getDuration } from '../helpers/parseDateTime';
-import { getCurrentTime, getCurrentDate } from '../helpers/getCurrentTime'
+import { getInitialDateTime ,getCurrentTime, getCurrentDate } from '../helpers/getCurrentTime'
 import { getTeammateRecord, getProductNameAndID } from '../helpers/airTableGetJobcodes';
 
 
@@ -20,10 +20,10 @@ export const EntryProvider = ({ children, duration }) => {
         userName: "",
         userRecordId: initialUserRecordId,
         photoUrl: "",
-        startDateTime: new Date(), //in UTC - local time zone calc. of +/- hrs
+        startDateTime: getInitialDateTime(), //in UTC - local time zone calc. of +/- hrs
         startTime: initialTime,
         startDate: initialDate,
-        endDateTime: new Date(),
+        endDateTime: getInitialDateTime(),
         endTime: initialTime, //or initialize to "undefined?"
         endDate: initialDate,
         duration: 0,
@@ -201,6 +201,11 @@ export const EntryProvider = ({ children, duration }) => {
         setEntry(prev => ({ ...prev, endTime: newEndTime, endDateTime: newDateTime}))
     }
 
+    const updateDuration = (startDateTime, endDateTime) => {
+        let newDuration = getDuration(startDateTime, endDateTime)
+        setEntry(prev => ({ ...prev, duration: newDuration}))
+    }
+
     const updateNotes = (e) => {
         setEntry(prev => ({ ...prev, notes: e.target.value }))
     }
@@ -240,6 +245,7 @@ export const EntryProvider = ({ children, duration }) => {
             updateStartTime,
             updateEndDate,
             updateEndTime,
+            updateDuration,
             updateNotes,
             updateJobCodes,
         }}>
