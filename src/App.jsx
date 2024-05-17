@@ -17,8 +17,8 @@ import StartTime from './components/StartTime/StartTime'
 import ClockInBtn from './components/ClockInBtn/ClockInBtn'
 import EndDate from './components/EndDate/EndDate'
 import EndTime from './components/EndTime/EndTime'
+import UpdateEndTimeBtn from './components/UpdateEndTimeBtn/UpdateEndTimeBtn'
 import JobCodes from './components/JobCodes/JobCodes'
-import TaskID from './components/TaskID/TaskID'
 import Notes from './components/Notes/Notes'
 import SubmitButton from './components/SubmitButton/SubmitButton'
 
@@ -85,6 +85,7 @@ function App() {
   const handleModalErrorClose = () => {
     return setShowError(false)
   }
+  // TODO: what can i do this this? 
   // function getDerivedStateFromError() {
   //   return setHasError(true)
   // }
@@ -195,6 +196,7 @@ function App() {
                 setShowError={setShowError}
               />
             </div>
+            < UpdateEndTimeBtn />
           </div>
           {/* <div className='timer-container'>
             <DurationSlider

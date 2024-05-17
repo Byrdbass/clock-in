@@ -15,17 +15,21 @@ export default function ModalConfirmation({
     const { entry, handleModalClose } = useEntry()
 
     useEffect(() => {
-        const [hours, minutes] = startTime.split(":").map(Number)
+        const [hours, minutes] = entry.startTime.split(":").map(Number)
         const AMorPM = hours > 12 ? "PM": "AM"
         const format12hr = hours%12 || 12
         const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
         setNewStartTime(`${format12hr}:${formattedMinutes} ${AMorPM}`)
-
-    }, [startTime])
+    }, [entry.startTime])
 
     useEffect(() => {
-        setNewEndTime(`${endTime.replace(/^0+/, "")}`)
-    }, [endTime])
+        const [hours, minutes] = entry.startTime.split(":").map(Number)
+        const AMorPM = hours > 12 ? "PM": "AM"
+        const format12hr = hours%12 || 12
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        setNewEndTime(`${format12hr}:${formattedMinutes} ${AMorPM}`)
+        // setNewEndTime(`${endTime.replace(/^0+/, "")}`)
+    }, [entry.endTime])
 
     if (!entry.showConfirmModal) return null
 
@@ -37,8 +41,8 @@ export default function ModalConfirmation({
                     {/* replace with a .svg of close button */}
                     <div className='modal-content'onClick={e => e.stopPropagation()}>
                         <p className='modal-row'>Name: {entry.userName}</p>
-                        <p>Date: {date} </p>
-                        <p>Duration: {duration} </p>
+                        <p>Date: {entry.startDate} </p>
+                        <p>Duration: {entry.duration} </p>
                         <p>Start Time: {newStartTime} </p>
                         <p>End Time: {newEndTime} </p>
                         <p>Job-Code/Product: {entry.jobCodeArr.jobCode} </p>

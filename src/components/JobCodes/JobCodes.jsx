@@ -25,6 +25,7 @@ export default function JobCodes() {
   const handleToggle = () => {
     const newJobCodeList = entry.jobCodeType === "Recent Job Codes" ? "All Job Codes" : "Recent Job Codes"
     const newJobColor = entry.jobCodeColor === 'dark' ? 'light' : 'dark'
+    // updateJobCodes({})
     updateJobCodeType(newJobCodeList, newJobColor)
     setSelectedJobCode("")
   }

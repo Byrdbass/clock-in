@@ -1,0 +1,22 @@
+.endTimeBtn-outer-div{
+    position: relative;
+    top: 213px;
+    left: -22px;
+}
+
+.endTimeBtn-inner-div{
+
+}
+
+.endTimeBtn{
+    color: var(--white);
+    background-color: var(--red);
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 12.1px;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+}
+
