@@ -16,5 +16,6 @@ export const getCurrentTime = () => {
 
 export const getCurrentDate = () => {
     const today = new Date();  // This gets the current date and time
-    return today.toISOString().split('T')[0]; 
+    //formatting for Canada so the output is "YYYY-MM-DD" for parseDateTime.js
+    return today.toLocaleDateString("en-CA"); 
 }
